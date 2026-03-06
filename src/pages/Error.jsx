@@ -33,8 +33,8 @@ function Error() {
           <div className="error-page__description-container">
             <div>
               {isPhone
-                ? <ArrowShortIcon width="auto" height="50px" fill="currentColor" />
-                : <ArrowLongIcon width="100px" height="auto" fill="currentColor" />
+                ? <ArrowShortIcon height="50px" fill="currentColor" />
+                : <ArrowLongIcon width="100px" fill="currentColor" />
               }
             </div >
             <p>

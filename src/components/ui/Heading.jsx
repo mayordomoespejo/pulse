@@ -84,7 +84,6 @@ function Heading({
           : <ArrowIcon
             className="heading__arrow"
             width={isPhone ? '40px' : '100px'}
-            height="auto"
             fill="currentColor"
           />
       )}

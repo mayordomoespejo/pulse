@@ -37,8 +37,8 @@
   }
 
   &--h1 {
-    @include heading-vars(h1);
     line-height: 1;
+    @include heading-vars(h1);
   }
 
   &--h2 {
