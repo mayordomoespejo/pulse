@@ -1,0 +1,156 @@
+@use "../config/variables" as *;
+@use "../config/mixins" as *;
+@use "../config/videoMixins" as *;
+
+.featured-page {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  height: 100%;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  &__title {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  &__list-container {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__list-container .list--loading {
+    margin-top: auto;
+    margin-left: auto;
+  }
+
+  &__empty {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
+
+  &__progress {
+    margin-left: auto;
+  }
+
+
+  &__hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    height: fit-content;
+    padding: 24px;
+    transition: all 0.2s ease;
+    --height-badge: 40px;
+    border-top: 1px solid $c-tertiary;
+    border-bottom: 1px solid $c-tertiary;
+  }
+
+  &__hero-icon {
+    color: $c-tertiary;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__hero-decoration {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: repeating-linear-gradient(90deg,
+        rgba($c-primary, 0.1),
+        rgba($c-primary, 0.1) 4px,
+        transparent 4px,
+        transparent 8px);
+    z-index: -1;
+  }
+
+  &__hero-text {
+    margin-top: 0.2em;
+    font-size: 1.5rem;
+    color: $c-secondary;
+    line-height: 1;
+    max-width: 600px;
+    font-weight: 600;
+    text-align: center;
+
+    @include breakpoint('desktop') {
+      font-size: 1.85rem;
+    }
+  }
+
+  &__credits-link {
+    a {
+      color: $c-secondary;
+      text-decoration: underline;
+      font-size: 0.9rem;
+    }
+  }
+
+  &__hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    position: relative;
+
+    @include breakpoint('desktop') {
+      gap: 6rem;
+    }
+  }
+
+  &__hero-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 100px;
+    position: relative;
+
+    @include breakpoint('desktop') {
+      min-width: 140px;
+    }
+  }
+
+  &__hero-stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: $c-tertiary;
+    line-height: 1;
+    font-family: $font-secondary;
+    font-feature-settings: "tnum";
+
+    @include breakpoint('desktop') {
+      font-size: 3.25rem;
+    }
+  }
+
+  &__hero-stat-label {
+    font-size: .75rem;
+    color: $c-tertiary;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    position: relative;
+
+    @include breakpoint('desktop') {
+      font-size: 0.875rem;
+    }
+  }
+}

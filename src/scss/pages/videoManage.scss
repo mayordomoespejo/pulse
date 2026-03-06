@@ -1,0 +1,85 @@
+@use "../config/variables" as *;
+@use "../config/mixins" as *;
+@use "../config/videoMixins" as *;
+
+.video-manage {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  flex: 1;
+  
+  &__main {
+    display: flex;
+    flex-direction: column;
+    gap: 1.875rem;
+    flex: 1;
+  }
+
+  &__filters {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+
+    @include breakpoint(tablet) {
+      @include video-list-grid;
+      row-gap: 0;
+    }
+  }
+
+  &__inputs {
+    width: 100%;
+    grid-column: 1 / 2;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  &__list-container {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__list-container .list--loading {
+    margin-top: auto;
+    margin-left: auto;
+  }
+
+  &__filter-btn {
+    flex-shrink: 0;
+    width: 3rem;
+    height: 3rem;
+    min-width: 3rem;
+    border-radius: 3333px;
+    border: 1px solid $c-tertiary;
+    background: transparent;
+    color: $c-tertiary;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+
+    &:hover {
+      background: rgba($c-tertiary, 0.06);
+    }
+
+    &--active {
+      background: $c-tertiary;
+      color: $c-primary;
+
+      &:hover {
+        background: $c-tertiary;
+      }
+    }
+  }
+
+  &__credits-link {
+    a {
+      color: $c-secondary;
+      text-decoration: underline;
+      font-size: 0.9rem;
+    }
+  }
+}

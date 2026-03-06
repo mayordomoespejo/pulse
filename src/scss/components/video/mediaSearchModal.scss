@@ -1,0 +1,96 @@
+@use "../../config/variables" as *;
+
+.media-search {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  &__group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+
+  &__group-label {
+    font-family: $font-secondary;
+    font-size: 0.6875rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: rgba($c-tertiary, 0.5);
+  }
+
+  &__options {
+    display: flex;
+    gap: 0.625rem;
+  }
+
+  &__option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.625rem;
+    padding: 0.875rem 1.125rem;
+    flex: 1;
+
+    border: 1px solid $c-tertiary;
+    border-radius: 6px;
+    background: transparent;
+    color: $c-tertiary;
+    cursor: pointer;
+
+    font-family: $font-secondary;
+    font-size: 0.6875rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+
+    transition: background-color 0.15s ease, color 0.15s ease;
+
+    &:hover:not(&--selected) {
+      background: rgba($c-tertiary, 0.04);
+    }
+
+    &--selected {
+      background: $c-tertiary;
+      color: $c-primary;
+    }
+  }
+
+  // Contenedor de tamaño fijo para que todos los botones tengan la misma altura
+  &__shape-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 60px;
+    flex-shrink: 0;
+  }
+
+  &__shape {
+    border: 1.5px solid currentColor;
+    border-radius: 3px;
+    flex-shrink: 0;
+
+    // Orientación
+    &--landscape { width: 56px; height: 36px; }
+    &--portrait  { width: 36px; height: 56px; }
+    &--square    { width: 44px; height: 44px; }
+
+    // Tamaño (tamaños absolutos distintos para comunicar la diferencia)
+    &--large     { width: 52px; height: 36px; }
+    &--medium    { width: 36px; height: 25px; }
+    &--small     { width: 22px; height: 15px; }
+  }
+
+  .select-input__label {
+    font-family: $font-secondary;
+    font-size: 0.6875rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: rgba($c-tertiary, 0.5);
+    line-height: 1.2;
+  }
+}

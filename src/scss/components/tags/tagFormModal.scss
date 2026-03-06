@@ -1,0 +1,13 @@
+@use "../../config/variables" as *;
+
+.tag-form-modal__form {
+  display: grid;
+  gap: 30px;
+  grid-template-columns: 1fr;
+  font-family: $font-secondary;
+
+  button {
+    align-self: center;
+    justify-self: center;
+  }
+}

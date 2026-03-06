@@ -1,0 +1,44 @@
+@use "../config/variables.scss" as *;
+@use "../config/mixins.scss" as *;
+
+
+.player-play-list-page {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  flex: 1;
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    transition: opacity .5s ease, transform 0.5s ease;
+    transform: scale(1);
+
+    @starting-style {
+      opacity: 0;
+    }
+
+    width: 100%;
+  }
+
+  &__player-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+  }
+
+  &__header {
+    display: flex;
+    gap: 10px;
+  }
+
+  &__title {
+    margin-top: 0;
+  }
+
+  &__progress {
+    align-self: flex-end;
+  }
+}

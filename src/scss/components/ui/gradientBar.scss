@@ -1,0 +1,38 @@
+.gradient-bar {
+  width: var(--gb-w, 27px);
+  height: var(--gb-h, 300px);
+  position: relative;
+  overflow: hidden;
+  transform: translateZ(0);
+}
+
+.gradient-bar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: calc(var(--gb-cycle, 300px) * 2);
+
+  background: repeating-linear-gradient(
+    180deg,
+    #7bff3a 0,
+    #8dff41 calc(var(--gb-cycle, 300px) * 0.10),
+    #b7ff46 calc(var(--gb-cycle, 300px) * 0.20),
+    #ddff45 calc(var(--gb-cycle, 300px) * 0.30),
+    #f6ff43 calc(var(--gb-cycle, 300px) * 0.40),
+    #ffd341 calc(var(--gb-cycle, 300px) * 0.50),
+    #ffb03a calc(var(--gb-cycle, 300px) * 0.60),
+    #ff7d2a calc(var(--gb-cycle, 300px) * 0.70),
+    #ff5b22 calc(var(--gb-cycle, 300px) * 0.80),
+    #7bff3a var(--gb-cycle, 300px)
+  );
+
+  will-change: transform;
+  animation: gb-move var(--gb-duration, 6s) linear infinite;
+}
+
+@keyframes gb-move {
+  to {
+    transform: translate3d(0, calc(var(--gb-cycle, 300px) * -1), 0);
+  }
+}

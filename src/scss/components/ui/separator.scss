@@ -1,0 +1,25 @@
+@use "../../config/mixins" as *;
+
+.separator {
+  display: none;
+
+  @include breakpoint(tablet) {
+    display: block;
+    background-color: white;
+  }
+
+  &--vertical {
+    @include breakpoint(tablet) {
+      width: 1px;
+      height: 100%;
+      align-self: stretch;
+    }
+  }
+
+  &--horizontal {
+    @include breakpoint(tablet) {
+      width: 100%;
+      height: 1px;
+    }
+  }
+}

@@ -1,0 +1,67 @@
+@use "../../config/mixins" as *;
+@use "../../config/videoMixins" as *;
+
+.list {
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
+  position: relative;
+  grid-auto-rows: auto;
+  align-items: start;
+  align-content: start;
+  position: relative;
+  flex-grow: 1;
+
+  :has(&--loading) {
+    align-content: stretch;
+  }
+
+  &--default {
+    flex-grow: 1;
+    align-items: stretch;
+    @include video-list-grid;
+
+    @include breakpoint(tablet) {
+      align-items: stretch;
+      @include video-list-grid;
+    }
+
+    > * {
+      height: 100%;
+    }
+  }
+
+  &--scrollable {
+    display: grid;
+    gap: 1rem;
+    overflow: hidden;
+
+    @include breakpoint(tablet) {
+      @include video-list-grid;
+      @include scrollbar;
+    }
+  }
+
+  &--loading {
+    margin-top: auto;
+    margin-left: auto;
+  }
+
+  &--tags {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+    align-items: stretch;
+  }
+
+  &__empty {
+    flex-grow: 1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+
+    @include breakpoint(tablet) {
+      justify-content: flex-end;
+    }
+  }
+}

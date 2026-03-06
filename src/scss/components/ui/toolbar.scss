@@ -1,0 +1,83 @@
+@use "../../config/variables" as *;
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: .25rem;
+  margin-top: .25rem;
+
+  li {
+    padding: 0;
+    width: 28px;
+    height: 28px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    overflow: visible;
+    min-width: 0;
+    background: transparent;
+    border: none;
+    transition: background-color .12s ease, color .12s ease, box-shadow .12s ease;
+
+    svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+
+    &.toolbar__action--large svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    &:hover {
+      color: $c-secondary;
+    }
+
+    &:active {
+      background-color: #f0f0f0;
+    }
+
+    &:focus-visible {
+      box-shadow: 0 0 0 2px rgba($c-primary, .3);
+      border-radius: 50%;
+    }
+
+    &.toolbar__action {
+      color: rgba($c-tertiary, 0.7);
+
+      &:hover {
+        color: $c-secondary;
+        border: 1px solid $c-secondary;
+      }
+    }
+
+    &.toolbar__action--delete {
+      color: $c-delete;
+
+      &:hover {
+        color: $c-secondary;
+        border: 1px solid $c-secondary;
+      }
+
+      svg {
+        path {
+          stroke: currentColor;
+        }
+      }
+    }
+
+    &.toolbar__action--disabled {
+      cursor: not-allowed;
+    }
+  }
+
+  &.toolbar--disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+
+    * {
+      cursor: not-allowed;
+    }
+  }
+}

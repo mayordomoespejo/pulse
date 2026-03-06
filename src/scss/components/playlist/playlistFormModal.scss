@@ -1,0 +1,83 @@
+@use "../../config/variables" as *;
+@use "../../config/mixins" as *;
+
+.playlist-form-modal {
+  overflow-y: auto;
+
+  @include breakpoint(tablet) {
+    overflow-y: initial;
+    height: fit-content;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+
+    button[type="submit"] {
+      align-self: center;
+    }
+  }
+
+  &__schedules {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__schedules-label {
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 1.25;
+    font-family: $font-secondary;
+    color: $c-font-primary;
+  }
+
+  &__schedules-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    @include breakpoint(tablet) {
+      flex-direction: row;
+    }
+  }
+
+  &__schedules-dates {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 326px;
+    width: 100%;
+    overflow-y: auto;
+
+
+    @include breakpoint(tablet) {
+      max-height: 326px;
+      @include scrollbar;
+    }
+
+
+  }
+
+  &__schedules-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: $c-font-primary;
+    font-size: 14px;
+    cursor: pointer;
+
+    svg {
+      @include click-animation();
+
+      &:hover .cross-circle-icon__bg {
+        fill: rgba($c-delete, 0.1);
+      }
+    }
+  }
+}

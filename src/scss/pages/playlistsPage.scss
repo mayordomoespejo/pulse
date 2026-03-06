@@ -1,0 +1,60 @@
+@use "../config/variables" as *;
+@use "../config/mixins" as *;
+@use "../config/videoMixins" as *;
+
+.playlists-page {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  flex: 1;
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    gap: 1.875rem;
+    flex: 1;
+  }
+
+  &__heading {
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    @include breakpoint(tablet) {
+      justify-content: space-between;
+    }
+  }
+
+  &__filters {
+    display: flex;
+    flex-direction: column;
+    gap: 1.875rem;
+
+    @include breakpoint(tablet) {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: row;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+
+  }
+
+  &__inputs {
+    display: grid;
+    gap: 10px;
+
+    @include breakpoint(tablet) {
+      gap: 20px;
+      grid-template-columns: auto auto;
+      width: 100%;
+    }
+
+    @include breakpoint(desktop) {
+      gap: 20px;
+      grid-template-columns: minmax(200px, 280px) minmax(200px, 280px) minmax(200px, 280px);
+    }
+  }
+}

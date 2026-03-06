@@ -1,0 +1,21 @@
+@use "../../config/variables.scss" as *;
+@use "../../config/mixins.scss" as *;
+
+.player-play-pause {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  --media-icon-color: transparent;
+
+  --media-button-icon-height: 100%;
+  --media-button-icon-width: 100%;
+}
+
+media-play-button {
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.75;
+  }
+}

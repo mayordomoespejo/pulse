@@ -1,0 +1,32 @@
+.link-underline {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+  height: fit-content;
+
+  &__link {
+    color: var(--link-color);
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  & svg {
+    display: flex;
+    position: relative;
+
+  }
+
+  &:hover {
+    color: var(--link-color);
+    opacity: 0.8;
+
+    svg {
+      path {
+        color: var(--link-color);
+        opacity: 0.8;
+      }
+    }
+  }
+}

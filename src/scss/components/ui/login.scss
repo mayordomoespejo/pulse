@@ -1,0 +1,168 @@
+@use "../../config/variables" as *;
+@use "../../config/mixins" as *;
+
+.login-page {
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 2rem;
+
+
+  &__bg {
+    position: absolute;
+    inset: 0;
+    background: $c-tertiary;
+    filter: saturate(1.1);
+    z-index: 0;
+  }
+
+  &__content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+
+    @include breakpoint(tablet) {
+      max-width: 420px;
+    }
+  }
+
+  &__logo-wrap {
+    align-self: center;
+    width: calc(100% + 2.9%);
+    transform: translateX(2.9%);
+    position: relative;
+    color: $c-primary;
+    --logo-hover-x: 50%;
+    --logo-hover-y: 50%;
+    --logo-hover-radius: 300px;
+    opacity: 0;
+    animation: login-logo-fade-in 5s ease forwards;
+
+    @include breakpoint(tablet) {
+      width: auto;
+      height: 150px;
+    }
+
+    @include breakpoint(desktop) {
+      height: 200px;
+    }
+  }
+
+  &__logo {
+    width: 100%;
+    height: auto;
+    display: block;
+    pointer-events: none;
+
+    @include breakpoint(tablet) {
+      width: auto;
+      height: 100%;
+    }
+  }
+
+  &__logo--hover {
+    position: absolute;
+    inset: 0;
+    color: $c-secondary;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    -webkit-mask-image: radial-gradient(circle var(--logo-hover-radius) at var(--logo-hover-x) var(--logo-hover-y), #000 0%, #000 55%, transparent 100%);
+    mask-image: radial-gradient(circle var(--logo-hover-radius) at var(--logo-hover-x) var(--logo-hover-y), #000 0%, #000 55%, transparent 100%);
+  }
+
+  &__logo-wrap[data-hover="true"] .login-page__logo--hover {
+    opacity: 1;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: relative;
+  }
+
+  &__inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: relative;
+  }
+
+  &__fields {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  &__button {
+    align-self: center;
+    justify-self: center;
+  }
+
+  &__password-toggle {
+    background: transparent;
+    border: none;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  &__empty-state-anchor {
+    position: fixed;
+    right: 1.25rem;
+    bottom: 1.25rem;
+    z-index: 3;
+    max-width: min(22rem, calc(100vw - 2.5rem));
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.24s ease-out, transform 0.24s ease-out;
+
+    @include breakpoint(tablet) {
+      right: 2rem;
+      bottom: 2rem;
+    }
+  }
+
+  &__empty-state-anchor--visible {
+    opacity: 1;
+    transform: translateY(0);
+    animation: login-empty-state-fade-in 0.24s ease-out;
+  }
+
+  &__empty-state.empty-state {
+    text-transform: uppercase;
+  }
+
+  &__empty-state-value {
+    text-transform: none;
+  }
+}
+
+@keyframes login-logo-fade-in {
+  from {
+    opacity: 0;
+    transform: translateX(2.9%) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(2.9%) scale(1);
+  }
+}
+
+@keyframes login-empty-state-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

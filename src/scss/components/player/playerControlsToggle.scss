@@ -1,0 +1,12 @@
+@use "../../config/variables.scss" as *;
+@use "../../config/mixins.scss" as *;
+
+.player-controls-toggle {
+  cursor: pointer;
+
+  &--fullscreen {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+}

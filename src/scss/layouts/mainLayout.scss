@@ -1,0 +1,61 @@
+@use "../config/variables.scss" as *;
+@use "../config/mixins.scss" as *;
+
+.main-layout {
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+
+  &__sidebar {
+    flex-shrink: 0;
+  }
+
+  &__content {
+    flex: 1 1 0%;
+    // Padding top debe ser mayor que la altura del header móvil
+    padding: calc(#{$mobile-header-height} + 1.875rem) 1.875rem 0 1.875rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-sizing: border-box;
+    overflow-x: auto;
+
+    @include breakpoint('tablet') {
+      padding-top: 7.5rem;
+      padding-bottom: 0;
+    }
+  }
+
+  &__body {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    padding-bottom: 2.5rem;
+  }
+
+  &__footer {
+    height: $mobile-header-height;
+    padding: 0;
+    border-top: 1px solid $c-tertiary;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .featured-page__credits-link {
+      margin: 0;
+    }
+
+    .featured-page__credits-link a {
+      color: $c-secondary;
+      text-decoration: underline;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+  }
+}

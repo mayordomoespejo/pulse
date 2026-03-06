@@ -1,0 +1,117 @@
+@use "../../config/variables" as *;
+
+.search-input {
+  display: flex;
+  flex-direction: column;
+  font-family: $font-secondary;
+  font-size: 1rem;
+  font-weight: 300;
+  position: relative;
+  line-height: 1.25;
+  width: 100%;
+  --input-label-color: inherit;
+  --input-border-color: #{$c-border};
+  --input-border-color-hover: #{rgba($c-border, 0.8)};
+  --input-text-color: inherit;
+  --input-placeholder-color: rgba($c-tertiary, 0.502);
+  --input-icon-color: #{$c-border};
+
+  &__input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    position: relative;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--input-border-color);
+    background-color: transparent;
+    transition: border-color 0.2s ease, outline 0.2s ease, background-color 0.2s ease;
+    cursor: text;
+
+    &:hover:not(:focus-within) {
+      border-color: var(--input-border-color-hover);
+    }
+
+    &[aria-disabled="true"] {
+      opacity: 0.6;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+  }
+
+  &__field {
+    flex: 1;
+    min-width: 0;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--input-text-color);
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    padding: 0;
+    margin: 0;
+    cursor: text;
+    caret-color: var(--input-caret-color);
+
+    &::placeholder {
+      color: var(--input-placeholder-color);
+      opacity: 1;
+    }
+
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0 30px transparent inset;
+      -webkit-text-fill-color: var(--input-text-color);
+      background-color: transparent;
+      background-clip: content-box;
+      transition: background-color 5000s ease-in-out 0s;
+      caret-color: var(--input-caret-color);
+    }
+
+    &:-moz-autofill {
+      background-color: transparent;
+      color: var(--input-text-color);
+    }
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    color: var(--input-icon-color);
+
+    svg {
+      stroke: currentColor;
+      fill: currentColor;
+    }
+  }
+
+  &--primary {
+    --input-border-color: #{$c-primary};
+    --input-border-color-hover: #{rgba($c-primary, 0.8)};
+    --input-text-color: #{$c-primary};
+    --input-placeholder-color: #{rgba($c-primary, 0.6)};
+    --input-icon-color: #{rgba($c-primary, 0.6)};
+    --input-caret-color: #{$c-primary};
+  }
+
+  &--secondary {
+    --input-border-color: #{rgba($c-tertiary, 0.8)};
+    --input-border-color-hover: #{rgba($c-tertiary, 0.6)};
+    --input-text-color: #{$c-tertiary};
+    --input-placeholder-color: #{rgba($c-tertiary, 0.6)};
+    --input-icon-color: #{rgba($c-tertiary, 0.6)};
+    --input-caret-color: #{rgba($c-tertiary, 0.8)};
+  }
+
+  &--error {
+    --input-border-color: #{$c-error};
+    --input-border-color-hover: #{$c-error};
+    --input-text-color: #{$c-error};
+    --input-placeholder-color: #{rgba($c-error, 0.6)};
+    --input-caret-color: #{$c-error};
+  }
+}

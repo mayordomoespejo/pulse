@@ -1,0 +1,62 @@
+@use "../../config/variables" as *;
+
+.spinner {
+  --spinner-size: 40px;
+  --spinner-border: 4px;
+  --spinner-color: #{$c-secondary};
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  &--center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &--button {
+    --spinner-size: 16px;
+    --spinner-border: 2px;
+  }
+
+  &--small {
+    --spinner-size: 50px;
+    --spinner-border: 3px;
+  }
+
+  &--medium {
+    --spinner-size: 75px;
+    --spinner-border: 4px;
+  }
+
+  &--large {
+    --spinner-size: 100px;
+    --spinner-border: 6px;
+  }
+
+  &__circle {
+    width: var(--spinner-size);
+    height: var(--spinner-size);
+    border: var(--spinner-border) solid $c-border;
+    border-top-color: var(--spinner-color);
+    border-radius: 50%;
+    box-sizing: border-box;
+    animation: spin 1s linear infinite;
+  }
+
+  &__text {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: $c-font-primary;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

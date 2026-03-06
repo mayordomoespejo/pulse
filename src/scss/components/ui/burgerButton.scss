@@ -1,0 +1,55 @@
+@use "../../config/variables" as *;
+@use "../../config/mixins" as *;
+
+.burger-button {
+  --burger-size: 28px;
+  --burger-line-height: 2px;
+  --burger-gap: 6px;
+
+  position: relative;
+  width: var(--burger-size);
+  height: var(--burger-size);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: $c-secondary;
+  background: transparent;
+  -webkit-tap-highlight-color: transparent;
+  transition: color 0.2s ease;
+
+  @include click-animation(0.95, 0.12s);
+}
+
+.burger-button__line {
+  position: absolute;
+  width: 20px;
+  height: var(--burger-line-height);
+  background: currentColor;
+  border-radius: 999px;
+  transition: transform 0.35s cubic-bezier(0.65, 0.05, 0.36, 1), opacity 0.2s ease;
+}
+
+.burger-button__line:nth-child(1) {
+  transform: translateY(calc(var(--burger-gap) * -1));
+}
+
+.burger-button__line:nth-child(2) {
+  transform: translateY(0);
+}
+
+.burger-button__line:nth-child(3) {
+  transform: translateY(var(--burger-gap));
+}
+
+.burger-button.is-active .burger-button__line:nth-child(1) {
+  transform: translateY(0) rotate(45deg);
+}
+
+.burger-button.is-active .burger-button__line:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0.2);
+}
+
+.burger-button.is-active .burger-button__line:nth-child(3) {
+  transform: translateY(0) rotate(-45deg);
+}

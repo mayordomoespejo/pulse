@@ -1,0 +1,42 @@
+@use "./fonts" as *;
+
+$c-primary: #EAEBDF;
+$c-secondary: #E52D16;
+$c-tertiary: #000000;
+$c-delete: #EE2737;
+$c-border: #CACACA;
+$c-font-primary: $c-tertiary;
+$c-success: #036313;
+$c-error: #ff0000;
+
+$font-default: "Funktional Grotesk", sans-serif;
+$font-secondary: "Monument Grotesk", sans-serif;
+
+$max-width: 1140px;
+
+// Mobile header height (padding top + logo height + padding bottom)
+// 20px + ~41px + 20px = ~81px
+$mobile-header-height: 81px;
+
+// Breakpoints
+$breakpoints: (
+  phone: 320px,
+  tablet: 768px,
+  desktop: 1024px,
+  desktop-lg: 1492px,
+);
+
+$heading-styles: (
+  h1: (
+    font-size: 2rem,
+    font-weight: 500,
+    tablet-font-size: 3rem,
+    desktop-font-size: 4rem,
+  ),
+  h2: (
+    font-size: 1.5rem,
+    font-weight: 500,
+    tablet-font-size: 1.75rem,
+    desktop-font-size: 2rem
+  ),
+);

@@ -1,0 +1,7 @@
+@use "../../config/mixins" as *;
+
+.create-button {
+  @include breakpoint(tablet) {
+    margin-left: auto;
+  }
+}

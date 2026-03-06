@@ -1,0 +1,217 @@
+@use "../../config/variables" as *;
+
+.input {
+  display: flex;
+  flex-direction: column;
+  font-family: $font-secondary;
+  font-size: 1rem;
+  font-weight: 300;
+  position: relative;
+  line-height: 1.25;
+  width: 100%;
+  --input-label-color: inherit;
+  --input-border-color: #{$c-border};
+  --input-border-color-hover: #{rgba($c-border, 0.8)};
+  --input-text-color: inherit;
+  --input-placeholder-color: rgba($c-tertiary, 0.502);
+  --input-icon-color: #{$c-border};
+  --input-caret-color: inherit;
+
+  &__label {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.25;
+    color: var(--input-label-color);
+    margin-bottom: 0.25rem;
+  }
+
+  &__input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    position: relative;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+    border: 1px solid $c-border;
+    background-color: transparent;
+    transition: border-color 0.2s ease, outline 0.2s ease, background-color 0.2s ease;
+    cursor: text;
+    border-color: var(--input-border-color);
+
+    &:hover:not(:focus-within) {
+      border-color: var(--input-border-color-hover);
+    }
+
+    &[aria-disabled="true"] {
+      opacity: 0.6;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+  }
+
+  &__field {
+    flex: 1;
+    min-width: 0;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--input-text-color);
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    padding: 0;
+    margin: 0;
+    cursor: text;
+    caret-color: var(--input-caret-color);
+
+    &::placeholder {
+      color: var(--input-placeholder-color);
+      opacity: 1;
+    }
+
+    // Desactivar estilos de autocompletado del navegador
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0 30px transparent inset;
+      -webkit-text-fill-color: var(--input-text-color);
+      background-color: transparent;
+      background-clip: content-box;
+      transition: background-color 5000s ease-in-out 0s;
+      caret-color: var(--input-caret-color);
+    }
+
+    &:-moz-autofill {
+      background-color: transparent;
+      color: var(--input-text-color);
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    &:disabled ~ * {
+      cursor: not-allowed;
+    }
+  }
+
+  &--primary {
+    --input-label-color: #{$c-primary};
+    --input-border-color: #{$c-primary};
+    --input-border-color-hover: #{rgba($c-primary, 0.8)};
+    --input-text-color: #{$c-primary};
+    --input-placeholder-color: #{rgba($c-primary, 0.6)};
+    --input-caret-color: #{$c-primary};
+    --input-icon-color: #{rgba($c-primary, 0.6)};
+  }
+
+  &--secondary {
+    --input-label-color: #{$c-tertiary};
+    --input-border-color: #{rgba($c-tertiary, 0.8)};
+    --input-border-color-hover: #{rgba($c-tertiary, 0.6)};
+    --input-text-color: #{$c-tertiary};
+    --input-placeholder-color: #{rgba($c-tertiary, 0.6)};
+    --input-caret-color: #{rgba($c-tertiary, 0.8)};
+    --input-icon-color: #{rgba($c-tertiary, 0.6)};
+
+  }
+
+  &--error {
+    --input-label-color: #{$c-error};
+    --input-border-color: #{$c-error};
+    --input-border-color-hover: #{$c-error};
+    --input-text-color: #{$c-error};
+    --input-placeholder-color: #{rgba($c-error, 0.6)};
+    --input-caret-color: #{$c-error};
+    --input-icon-color: #{$c-error};
+  }
+
+  &__error {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    color: $c-error;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.25;
+    margin-top: 0.25rem;
+    pointer-events: none;
+  }
+
+  &__hint {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 0.25rem;
+    font-size: 0.78rem;
+    line-height: 1.2;
+    color: rgba($c-tertiary, 0.65);
+    opacity: 0;
+    transform: translateY(-2px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    pointer-events: none;
+  }
+
+  &:focus-within &__hint {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &__icon-before {
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: auto;
+    width: 1.2188rem;
+    flex-shrink: 0;
+    color: var(--input-icon-color);
+
+    svg {
+      flex-shrink: 0;
+      width: 100%;
+      height: auto;
+      stroke: var(--input-icon-color);
+    }
+  }
+
+  &__icon-after {
+    display: inline-flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: auto;
+    width: 1.2188rem;
+    position: absolute;
+    right: 0.875rem;
+    top: 50%;
+    transform: translateY(-50%);
+    flex-shrink: 0;
+    color: var(--input-icon-color);
+    pointer-events: none;
+
+    svg {
+      flex-shrink: 0;
+      width: 100%;
+      height: auto;
+      stroke: var(--input-icon-color);
+    }
+  }
+
+  &__icon-after--interactive {
+    pointer-events: auto;
+    cursor: pointer;
+  }
+
+  &__icon-after button {
+    background: transparent;
+    border: none;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    color: inherit;
+    cursor: pointer;
+  }
+}

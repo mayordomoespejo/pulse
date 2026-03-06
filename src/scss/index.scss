@@ -1,0 +1,327 @@
+// Archivo principal de estilos SCSS
+// Importa todas las configuraciones y estilos de componentes
+
+@use "./config/variables" as *;
+@use "./config/fonts" as *;
+@use "./config/mixins" as *;
+
+// UI Components
+@use "./components/ui/backButton.scss" as *;
+@use "./components/ui/button.scss" as *;
+@use "./components/ui/burgerButton.scss" as *;
+@use "./components/ui/checkbox.scss" as *;
+@use "./components/ui/colorPicker.scss" as *;
+@use "./components/ui/createButton.scss" as *;
+@use "./components/ui/datePicker.scss" as *;
+@use "./components/ui/dropdownMenu.scss" as *;
+@use "./components/ui/eyeToggle.scss" as *;
+@use "./components/ui/header.scss" as *;
+@use "./components/ui/gradientBar.scss" as *;
+@use "./components/ui/heading.scss" as *;
+@use "./components/ui/input.scss" as *;
+@use "./components/ui/linkUnderline.scss" as *;
+@use "./components/ui/login.scss" as *;
+@use "./components/ui/modal.scss" as *;
+@use "./components/ui/navbar.scss" as *;
+@use "./components/ui/pagination.scss" as *;
+@use "./components/ui/processingBadge.scss" as *;
+@use "./components/ui/progressBar.scss" as *;
+@use "./components/ui/progressGradient.scss" as *;
+@use "./components/ui/searchInput.scss" as *;
+@use "./components/ui/selectDateRange.scss" as *;
+@use "./components/ui/selectInput.scss" as *;
+@use "./components/ui/separator.scss" as *;
+@use "./components/ui/sidebar.scss" as *;
+@use "./components/ui/spinner.scss" as *;
+@use "./components/ui/tags.scss" as *;
+@use "./components/ui/title.scss" as *;
+@use "./components/ui/titleCard.scss" as *;
+@use "./components/ui/toolbar.scss" as *;
+@use "./components/ui/tooltip.scss" as *;
+
+// Common Components
+@use "./components/common/emptyState.scss" as *;
+@use "./components/common/list.scss" as *;
+@use "./components/common/logo.scss" as *;
+@use "./components/common/videoUploadInput.scss" as *;
+
+// Tags Components
+@use "./components/tags/tagFormModal.scss" as *;
+@use "./components/tags/tagRemoveModal.scss" as *;
+@use "./components/tags/tagRow.scss" as *;
+@use "./components/tags/tagsPage.scss" as *;
+
+// Video Components
+@use "./components/video/mediaSearchModal.scss" as *;
+@use "./components/video/removeModal.scss" as *;
+@use "./components/video/videoCard.scss" as *;
+@use "./components/video/videoCardSelector.scss" as *;
+@use "./components/video/videoDuration.scss" as *;
+@use "./components/video/videoFormModal.scss" as *;
+
+// Playlist Components
+@use "./components/playlist/playlistAddVideosModal.scss" as *;
+@use "./components/playlist/playlistCard.scss" as *;
+@use "./components/playlist/playlistCardToday.scss" as *;
+@use "./components/playlist/playlistFormModal.scss" as *;
+@use "./components/playlist/playlistRemoveModal.scss" as *;
+@use "./components/playlist/playlistSortVideosModal.scss" as *;
+
+// Player Components
+@use "./components/player/playerCardPlayList.scss" as *;
+@use "./components/player/playerControlsToggle.scss" as *;
+@use "./components/player/playerIconWrapper.scss" as *;
+@use "./components/player/playerOverlay.scss" as *;
+@use "./components/player/playerPlaylist.scss" as *;
+@use "./components/player/playerPlayPause.scss" as *;
+@use "./components/player/playerVideo.scss" as *;
+@use "./components/player/playerVolumeButton.scss" as *;
+
+// Layouts
+@use "./layouts/mainLayout.scss" as *;
+
+// Pages
+@use "./pages/notFound.scss" as *;
+@use "./pages/error.scss" as *;
+@use "./pages/playerPlayListPage.scss" as *;
+@use "./pages/playlistsPage.scss" as *;
+@use "./pages/featuredPage.scss" as *;
+@use "./pages/videoManage.scss" as *;
+
+// CSS Custom Properties (variables CSS)
+:root {
+  --color-primary: #{$c-primary};
+  --color-secondary: #{$c-secondary};
+  --color-tertiary: #{$c-tertiary};
+  --color-delete: #{$c-delete};
+  --color-border: #{$c-border};
+  --color-font-primary: #{$c-font-primary};
+  --color-success: #{$c-success};
+  --color-error: #{$c-error};
+}
+
+// Screen reader only - oculta visualmente pero accesible para lectores de pantalla
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  border: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+// Reset y estilos globales
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  display: flex;
+  flex-direction: column;
+  max-width: 100vw;
+  min-height: 100vh;
+  overflow-x: hidden;
+  color: $c-font-primary;
+  background-color: $c-primary;
+  font-family: $font-default;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.3;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  mix-blend-mode: overlay;
+  animation: noise 0.25s steps(10) infinite;
+}
+
+@keyframes noise {
+  0% {
+    transform: translate(0, 0);
+  }
+  10% {
+    transform: translate(-1px, -1px);
+  }
+  20% {
+    transform: translate(1px, 1px);
+  }
+  30% {
+    transform: translate(-1px, 1px);
+  }
+  40% {
+    transform: translate(1px, -1px);
+  }
+  50% {
+    transform: translate(-1px, 0);
+  }
+  60% {
+    transform: translate(1px, 0);
+  }
+  70% {
+    transform: translate(0, -1px);
+  }
+  80% {
+    transform: translate(0, 1px);
+  }
+  90% {
+    transform: translate(-1px, -1px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+input,
+button,
+textarea,
+select {
+  border: none;
+  color: inherit;
+  background: none;
+  font: inherit;
+  line-height: inherit;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+input {
+  cursor: text;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+  overflow-wrap: break-word;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+h1 {
+  margin: 0;
+  padding: 0;
+  overflow-wrap: break-word;
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+h2 {
+  margin: 0;
+  padding: 0;
+  overflow-wrap: break-word;
+  font-size: 1.75rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+h3 {
+  margin: 0;
+  padding: 0;
+  overflow-wrap: break-word;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+h4 {
+  margin: 0;
+  padding: 0;
+  overflow-wrap: break-word;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+h5 {
+  margin: 0;
+  padding: 0;
+  overflow-wrap: break-word;
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+h6 {
+  margin: 0;
+  padding: 0;
+  overflow-wrap: break-word;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+ul,
+li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  cursor: pointer;
+
+  &:hover {
+    color: inherit;
+  }
+}
+
+button {
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+// Drag and drop utilities
+.is-dragging {
+  opacity: 0.7;
+  transform: scale(0.98);
+  transition: transform 0.12s ease, opacity 0.12s ease;
+  filter: saturate(120%);
+}
+
+.is-drag-placeholder {
+  border: 2px dashed $c-primary;
+  padding: 5px;
+  background: rgba($c-primary, 0.06);
+  box-shadow: 0 0 0 7px rgba($c-primary, 0.06);
+  opacity: 0.5;
+}
+
+[draggable="true"].is-dragging {
+  z-index: 9999 !important;
+}
+
+[draggable="true"]:not(.is-dragging) {
+  z-index: auto !important;
+}

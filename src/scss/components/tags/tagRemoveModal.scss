@@ -1,0 +1,9 @@
+@use "../../config/variables" as *;
+
+.tag-remove-modal {
+  &__content {
+    display: grid;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+}

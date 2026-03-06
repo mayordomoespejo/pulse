@@ -1,0 +1,105 @@
+@use "../../config/variables" as *;
+@use "../../config/mixins" as *;
+
+.navbar {
+  display: none;
+
+  @include breakpoint('tablet') {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 30px;
+    gap: 1.25rem;
+    background-color: $c-primary;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 30;
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    
+    @include click-animation(0.99, 0.1s);
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    &:active {
+      opacity: 0.6;
+    }
+  }
+
+  &__logo-text-icon {
+    width: 164px;
+    height: 41px;
+    max-width: 100%;
+    height: auto;
+  }
+
+  &__logo-icon {
+    width: auto;
+    height: 100%;
+  }
+
+  &__right {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-left: auto;
+  }
+
+  &__button-wrapper {
+    flex-shrink: 0;
+  }
+
+  &__button {
+    width: 100%;
+    white-space: nowrap;
+    transition: opacity 0.2s ease, background-color 0.2s ease;
+    min-width: 0;
+  }
+
+  &__button--active {
+    opacity: 1;
+    background-color: rgba(255, 255, 255, 0.2);
+    font-weight: 600;
+  }
+
+  &__logout-button {
+    min-width: 0;
+    padding: 0.97rem;
+  }
+
+  &__language-button,
+  &__logout-button {
+    width: 3rem;
+    height: 3rem;
+    min-width: 3rem;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__language-button {
+    font-size: 0.875rem;
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+
+  @include breakpoint-max('desktop') {
+    &__button {
+      padding-inline: 2.5rem;
+    }
+  }
+}

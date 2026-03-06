@@ -1,0 +1,224 @@
+@use "../../config/variables.scss" as *;
+@use "../../config/mixins.scss" as *;
+
+.select-input {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  height: fit-content;
+  font-family: $font-secondary;
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.25;
+  --select-label-color: inherit;
+  --select-border-color: #{$c-border};
+  --select-border-color-hover: #{rgba($c-border, 0.8)};
+  --select-text-color: inherit;
+  --select-placeholder-color: rgba($c-tertiary, 0.502);
+  --select-icon-color: #{$c-border};
+  --select-focus-color: #{$c-border};
+
+  &__label {
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 1.25;
+    color: inherit;
+  }
+
+  .select {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: transparent;
+    cursor: pointer;
+
+    &__control {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      background-color: transparent;
+      cursor: pointer;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--select-border-color);
+      border-radius: 0.75rem;
+      min-height: auto;
+
+      &:hover:not(.select__control--is-focused):not(.select__control--menu-is-open) {
+        border-color: var(--select-border-color-hover);
+      }
+
+      &:focus-within {
+        border-color: var(--select-focus-color);
+        outline: 1px solid var(--select-focus-color);
+        outline-offset: -1px;
+      }
+    }
+
+    &__control--is-focused,
+    &__control--menu-is-open {
+      border-color: var(--select-focus-color);
+      outline: 2px solid var(--select-focus-color);
+      outline-offset: -1px;
+      box-shadow: none;
+    }
+
+    &__input-container,
+    &__value-container,
+    &__single-value,
+    &__placeholder,
+    &__dropdown-indicator,
+    &__clear-indicator,
+    &__indicators {
+      cursor: pointer;
+      padding: 0;
+      margin: 0;
+      min-height: auto;
+    }
+
+    &__input-container {
+      color: var(--select-text-color);
+    }
+
+    &__single-value {
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.25;
+      color: var(--select-text-color);
+    }
+
+    &__placeholder {
+      color: var(--select-placeholder-color);
+    }
+
+    &__indicators {
+      gap: 0.5rem;
+    }
+
+    &__dropdown-indicator svg {
+      width: 12px;
+      height: 16px;
+      display: block;
+      stroke: var(--select-icon-color);
+    }
+
+    &__dropdown-indicator,
+    &__clear-indicator {
+      color: var(--select-icon-color);
+    }
+
+    &__clear-indicator svg {
+      stroke: var(--select-icon-color);
+    }
+
+    &__menu {
+      z-index: 2;
+    }
+
+    &__menu {
+      background: $c-primary;
+      border: 1px solid $c-tertiary;
+    }
+
+    &__option {
+      color: $c-tertiary;
+      background: transparent;
+    }
+
+    &__option--is-focused {
+      background: rgba($c-tertiary, 0.05);
+    }
+
+    &__option--is-selected {
+      background: $c-tertiary;
+      color: $c-primary;
+    }
+
+    &__multi-value {
+      background-color: #D3D4C8;
+      border-radius: 6px;
+      padding-inline: 0.5rem;
+      gap: 0.1rem;
+
+      &__label {
+        padding: 0;
+        color: $c-tertiary;
+        line-height: 20px;
+      }
+
+      &__remove {
+        color: $c-tertiary;
+        background: transparent;
+      }
+    }
+
+    &__multi-value__remove:hover,
+    &__multi-value__remove:active,
+    &__clear-indicator:hover,
+    &__clear-indicator:active {
+      background: transparent;
+      color: $c-secondary;
+    }
+
+    &__multi-value__remove:hover svg,
+    &__multi-value__remove:active svg {
+      stroke: $c-secondary;
+    }
+
+    &--disabled {
+      border-radius: 0.75rem;
+      cursor: not-allowed;
+
+      div {
+        color: rgba($c-tertiary, 0.5);
+      }
+    }
+  }
+
+  &--error {
+    --select-border-color: #{$c-error};
+    --select-border-color-hover: #{$c-error};
+    --select-text-color: #{$c-error};
+    --select-placeholder-color: #{rgba($c-error, 0.6)};
+    --select-focus-color: #{$c-error};
+    --select-icon-color: #{$c-error};
+  }
+}
+
+.select-primary {
+  .select-input__label {
+    color: $c-tertiary;
+  }
+
+  .select {
+    &__single-value {
+      color: $c-tertiary;
+      font-weight: 300;
+    }
+
+    &__placeholder {
+      color: rgba($c-tertiary, 0.5);
+    }
+
+    &__input-container {
+      color: $c-tertiary;
+    }
+  }
+}
+
+.select-secondary {
+  --select-border-color: #{rgba($c-tertiary, 0.8)};
+  --select-border-color-hover: #{rgba($c-tertiary, 0.6)};
+  --select-text-color: #{$c-tertiary};
+  --select-placeholder-color: #{rgba($c-tertiary, 0.6)};
+  --select-focus-color: #{rgba($c-tertiary, 0.8)};
+  --select-icon-color: #{rgba($c-tertiary, 0.6)};
+}
+
+.select__menu {
+  z-index: 2;
+}

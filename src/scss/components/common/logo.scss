@@ -1,0 +1,55 @@
+@use "../../config/variables" as *;
+@use "../../config/mixins" as *;
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  background-color: $c-font-primary;
+  overflow: hidden;
+
+  &--border {
+    padding: .0744rem;
+  }
+
+  @include breakpoint(tablet) {
+    width: 40px;
+    height: 40px;
+
+    &--border {
+      padding: .0744rem;
+    }
+  }
+
+  &--no-background {
+    background-color: transparent;
+  }
+
+  // Estilos para el logo con texto
+  &--text {
+    width: auto;
+    height: auto;
+    min-width: auto;
+    min-height: auto;
+    background-color: transparent;
+    padding: 0;
+  }
+
+  &__icon {
+    &--text {
+      width: 164px;
+      height: 41px;
+      max-width: 100%;
+      height: auto;
+      
+      @media (max-width: 480px) {
+        width: 130px;
+        height: auto;
+      }
+    }
+  }
+}

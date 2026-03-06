@@ -1,0 +1,19 @@
+@use "../../config/variables" as *;
+@use "../../config/mixins" as *;
+
+.progress-gradient {
+  flex-grow: 1;
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
+  color: $c-tertiary;
+
+  &__value {
+    font-size: 9rem;
+    line-height: 0.6;
+
+    @include breakpoint(tablet) {
+      line-height: 0.5;
+    }
+  }
+}

@@ -1,0 +1,58 @@
+@use "../../config/variables" as *;
+
+.processing-badge {
+  position: absolute;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
+  border-radius: 3.125rem;
+  font-weight: 500;
+  text-align: center;
+  white-space: nowrap;
+  height: calc(100% - 16px);
+
+  padding: 3px 6px;
+  font-size: 12px;
+
+  cursor: not-allowed;
+
+  // Posiciones del badge
+  &--top-right {
+    top: 8px;
+    right: 4px;
+  }
+
+  &--top-left {
+    top: 8px;
+    left: 8px;
+  }
+
+  &--bottom-right {
+    bottom: 8px;
+    right: 8px;
+  }
+
+  &--bottom-left {
+    bottom: 8px;
+    left: 8px;
+  }
+
+  &__text {
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+    color: $c-secondary;
+    font-weight: 700;
+  }
+
+  &__gradient {
+    width: 10px;
+    height: 100%;
+    border-radius: 999px;
+    overflow: hidden;
+    --gb-w: 10px;
+    --gb-h: 100%;
+  }
+}

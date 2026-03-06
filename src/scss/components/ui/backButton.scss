@@ -1,0 +1,42 @@
+@use "../../config/variables" as *;
+@use "../../config/mixins" as *;
+
+.back-button {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: back-button-bounce 5s ease-in-out infinite;
+
+  svg {
+    width: 40px;
+    height: auto;
+
+    path {
+      fill: $c-secondary;
+    }
+  }
+}
+
+@keyframes back-button-bounce {
+  0%,
+  84%,
+  100% {
+    transform: translateX(0);
+  }
+  88% {
+    transform: translateX(-6px);
+  }
+  92% {
+    transform: translateX(4px);
+  }
+  96% {
+    transform: translateX(-2px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .back-button {
+    animation: none;
+  }
+}

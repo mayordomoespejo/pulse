@@ -1,0 +1,17 @@
+@use "../../config/variables" as *;
+
+.video-duration {
+  position: absolute;
+  bottom: 1.25rem;
+  right: 1.25rem;
+  z-index: 1;
+
+  padding: 0.2rem 0.5rem;
+  border-radius: .375rem;
+  background-color: rgba($c-tertiary, 0.698);
+
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 20px;
+  color: #FFFFFF;
+}

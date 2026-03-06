@@ -1,0 +1,155 @@
+@use "../../config/variables" as *;
+@use "../../config/mixins" as *;
+@use "../../config/videoMixins" as *;
+
+.playlist-card-today {
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  border-radius: 12px;
+  padding: 24px;
+  transition: all 0.2s ease;
+  position: relative;
+  cursor: pointer;
+
+  --height-badge: 40px;
+
+  &--disabled {
+    cursor: not-allowed;
+  }
+
+  &__badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: $c-primary;
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    line-height: 1;
+    font-weight: 500;
+    background: rgba($c-primary, 0.1);
+    backdrop-filter: blur(8px);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    border: 1px solid rgba($c-primary, 0.15);
+    transition: all 0.2s ease;
+
+    svg {
+      display: inline-flex;
+      align-items: center;
+      width: 14px;
+      height: 14px;
+      stroke-width: 2.5;
+      color: $c-primary;
+    }
+  }
+
+  &__duration {
+    font-size: 16px;
+    color: $c-font-primary;
+    font-weight: 500;
+    margin-top: 1rem;
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+  }
+
+  &__thumbnail-wrapper {
+    position: relative;
+    width: 100%;
+    transform-origin: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__stack-img-wrapper {
+    position: absolute;
+    pointer-events: none;
+    @include video-card-thumbnail;
+    left: 0;
+  }
+
+  &__stack-img--1 {
+    top: -10px;
+    z-index: 2;
+    scale: 0.95;
+    background: #576A80;
+  }
+
+  &__stack-img--2 {
+    top: -20px;
+    z-index: 1;
+    scale: 0.9;
+    background: #303A46;
+  }
+
+  &__thumbnail {
+    position: relative;
+    z-index: 4;
+    cursor: pointer;
+
+    @include video-card-thumbnail;
+
+    &--disabled {
+      cursor: not-allowed;
+      z-index: 5;
+    }
+  }
+
+  &__play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: grid;
+    place-items: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: rgba($c-tertiary, 0.6);
+    color: #fff;
+    border: 1px solid $c-primary;
+    cursor: pointer;
+    z-index: 6;
+
+    svg {
+      position: relative;
+      left: 2px;
+    }
+  }
+
+  &__grid-icon {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 6;
+    cursor: grab;
+  }
+
+  &__meta {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: rgba($c-tertiary, 0.6);
+    color: #fff;
+    border-radius: .375rem;
+    padding: .1875rem .5rem;
+    font-size: 12px;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+
+    &__videos {
+      white-space: nowrap;
+    }
+  }
+
+  &__drag-handle {
+    background-color: $c-primary;
+  }
+}

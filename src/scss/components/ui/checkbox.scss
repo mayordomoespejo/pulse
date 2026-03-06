@@ -1,0 +1,74 @@
+@use "sass:string";
+@use "../../config/variables" as *;
+
+$checkbox-check-color: string.slice(#{$c-tertiary}, 2);
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  position: relative;
+
+  font-family: $font-secondary;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.25rem;
+
+  &__input {
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    min-width: 25px;
+    min-height: 25px;
+    border-radius: 50%;
+    border: 1px solid $c-primary;
+    background-color: transparent;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 13px;
+      left: 12px;
+      width: 12px;
+      height: 9px;
+      background-image: url("data:image/svg+xml,%3Csvg%20width%3D%2211%22%20height%3D%228%22%20viewBox%3D%220%200%2011%208%22%20fill%3D%22none%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M3.97%207.18796C3.78215%207.18792%203.60201%207.11327%203.46921%206.98042L0.749205%204.26042C0.681552%204.19508%200.627589%204.11692%200.590466%204.0305C0.553343%203.94408%200.533803%203.85113%200.532986%203.75708C0.532168%203.66303%200.55009%203.56975%200.585706%203.4827C0.621322%203.39565%200.673918%203.31657%200.740425%203.25006C0.806932%203.18355%200.886019%203.13095%200.973071%203.09534C1.06012%203.05972%201.1534%203.0418%201.24745%203.04262C1.3415%203.04344%201.43445%203.06298%201.52087%203.1001C1.60729%203.13722%201.68545%203.19118%201.75079%203.25884L3.97%205.47805L9.2492%200.198837C9.3828%200.0698089%209.56172%20-0.0015871%209.74745%202.67769e-05C9.93317%200.00164066%2010.1108%200.0761355%2010.2422%200.207466C10.3735%200.338797%2010.448%200.516456%2010.4496%200.702178C10.4512%200.887901%2010.3798%201.06683%2010.2508%201.20042L4.47079%206.98042C4.33798%207.11327%204.15784%207.18792%203.97%207.18796Z%22%20fill%3D%22%23#{$checkbox-check-color}%22/%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      pointer-events: none;
+    }
+
+    &:checked {
+      background-color: $c-primary;
+    }
+
+    &:checked::after {
+      opacity: 1;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $c-primary;
+      outline-offset: 2px;
+    }
+  }
+
+  &--error {
+    color: $c-error;
+  }
+
+  &__error {
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    color: $c-error;
+    font-size: 14px;
+    font-weight: 400;
+    pointer-events: none;
+  }
+}

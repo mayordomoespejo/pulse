@@ -1,0 +1,60 @@
+@use "../../config/variables" as *;
+
+.color-picker {
+  display: grid;
+  gap: 10px;
+
+  &__swatches {
+    display: grid;
+    grid-template-columns: repeat(9, 24px);
+    gap: 8px;
+    align-items: center;
+  }
+
+  &__swatch {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    border: 1px solid rgba($c-tertiary, .05);
+    box-shadow: 0 1px 2px rgba($c-tertiary, .06);
+
+    &.is-active {
+      outline: 1px solid $c-border;
+      outline-offset: 2px;
+    }
+  }
+
+  &__custom {
+    display: grid;
+    grid-template-columns: 42px 1fr;
+    gap: 12px;
+    align-items: center;
+  }
+
+  &__native {
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  &__hex {
+    width: 100%;
+  }
+
+  input[type="color"] {
+    &::-webkit-color-swatch {
+      border-radius: 8px;
+      padding: 0;
+      overflow: hidden;
+      border: none;
+    }
+
+    &::-webkit-color-swatch-wrapper {
+      border-radius: 8px;
+      padding: 0;
+      overflow: hidden;
+    }
+  }
+}

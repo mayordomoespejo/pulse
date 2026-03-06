@@ -1,0 +1,21 @@
+.title-card {
+
+  &__title {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: .5rem;
+
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.25rem;
+
+    &--clickable {
+      cursor: pointer;
+    }
+
+    &--disabled {
+      cursor: not-allowed;
+    }
+  }
+}

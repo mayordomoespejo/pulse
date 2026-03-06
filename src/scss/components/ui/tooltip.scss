@@ -1,0 +1,165 @@
+@use "../../config/mixins.scss" as *;
+@use "../../config/variables.scss" as *;
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+
+  // CONTENIDO JSX o HTML
+  &__custom-content {
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 5;
+    pointer-events: none;
+    transition: opacity 0.2s ease-in-out;
+
+    &--html {
+      position: absolute;
+      z-index: 10;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .15s ease, transform .15s ease;
+      background: #20272fc3;
+      color: #fff;
+      padding: .25rem .5rem;
+      border-radius: .375rem;
+      font-size: 12px;
+      white-space: nowrap;
+      width: max-content;
+
+      @include breakpoint(tablet) {
+        max-width: 300px;
+      }
+    }
+  }
+
+  &.tooltip-top &__custom-content {
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 0.3rem;
+  }
+
+  &.tooltip-bottom &__custom-content {
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 0.3rem;
+  }
+
+  &.tooltip-left &__custom-content {
+    top: 100%;
+    right: 100%;
+    transform: translateY(0);
+    margin-top: 0.3rem;
+    margin-right: 0.3rem;
+  }
+
+  &.tooltip-right &__custom-content {
+    top: 100%;
+    left: 100%;
+    transform: translateY(0);
+    margin-top: 0.3rem;
+    margin-left: 0.3rem;
+  }
+
+  &.tooltip-top-left &__custom-content {
+    bottom: 100%;
+    left: 0;
+    transform: translateX(0);
+    margin-bottom: 0.3rem;
+  }
+
+  &:hover &__custom-content {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  // CONTENIDO TEXTO plano (pseudoelemento ::after)
+  &::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    z-index: 10;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .15s ease, transform .15s ease;
+    background: #20272F;
+    color: #fff;
+    padding: .25rem .5rem;
+    border-radius: .375rem;
+    font-size: 12px;
+    white-space: nowrap;
+    width: max-content;
+  }
+
+  &.tooltip-top::after {
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 0.4rem;
+  }
+
+  &.tooltip-bottom::after {
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 0.4rem;
+  }
+
+  &.tooltip-left::after {
+    top: 100%;
+    right: 100%;
+    transform: translateY(0);
+    margin-top: 0.4rem;
+    margin-right: 0.4rem;
+  }
+
+  &.tooltip-right::after {
+    top: 100%;
+    left: 100%;
+    transform: translateY(0);
+    margin-top: 0.4rem;
+    margin-left: 0.4rem;
+  }
+
+  &.tooltip-top-left::after {
+    bottom: 100%;
+    left: 0;
+    transform: translateX(0);
+    margin-bottom: 0.4rem;
+  }
+
+  &:hover::after {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &__default-trigger {
+    color: $c-primary;
+    font-size: 14px;
+    font-weight: 600;
+  }
+}
+
+.tooltip--custom::after {
+  display: none;
+}
+
+.tooltip--no-relative {
+  position: static;
+
+  &::after {
+    max-width: 100%;
+
+    @include breakpoint(tablet) {
+      max-width: 300px;
+    }
+  }
+}
+
+.tooltip__bold {
+  font-weight: 700 !important;
+}

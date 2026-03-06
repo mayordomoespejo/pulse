@@ -1,0 +1,37 @@
+@use "../../config/variables.scss" as *;
+@use "../../config/mixins.scss" as *;
+
+
+.player-playlist {
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  gap: 20px;
+  color: #20272F;
+
+  @include breakpoint(desktop) {
+    max-width: 286px;
+  }
+
+  &__title {
+    color: #20272F;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 20px;
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+
+    @include breakpoint(desktop) {
+      @include scrollbar;
+      max-height: calc(100vh - 250px);
+    }
+  }
+}

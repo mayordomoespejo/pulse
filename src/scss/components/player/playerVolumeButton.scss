@@ -1,0 +1,19 @@
+media-mute-button {
+  &[mediavolumelevel="off"] {
+    --media-primary-color: transparent;
+  }
+
+  &[disabled] {
+    opacity: 0.45;
+    pointer-events: none;
+  }
+
+  flex-shrink: 0;
+
+}
+
+
+media-volume-range {
+  --media-range-thumb-background: white;
+  --media-primary-color: #E52D16;
+}

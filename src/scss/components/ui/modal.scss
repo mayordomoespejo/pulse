@@ -1,0 +1,201 @@
+@use "../../config/mixins" as *;
+@use "../../config/variables" as *;
+
+.modal__backdrop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: fixed;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 40;
+
+  background-color: rgba($c-tertiary, 0.502);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+
+  &.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  &.is-closing {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.15' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.9'/%3E%3C/svg%3E");
+    background-size: 140px 140px;
+    mix-blend-mode: overlay;
+    opacity: 0.65;
+    pointer-events: none;
+  }
+
+  @include breakpoint(tablet) {
+    padding: 20px;
+    background-color: rgba($c-tertiary, 0.502);
+  }
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  padding: 2.5rem 1.875rem;
+  gap: 1.875rem;
+  height: 100%;
+
+  position: relative;
+  background-color: $c-primary;
+  border-radius: 0.6rem;
+  overflow: hidden;
+
+  opacity: 0;
+  transform: translateY(100vh);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+
+  @include breakpoint(tablet) {
+    height: auto;
+  }
+
+  &.is-open {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &.is-closing {
+    opacity: 0;
+    transform: translateY(100vh);
+  }
+
+  &__drag-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem 0;
+  }
+
+  &__drag-handle {
+    width: 2.5rem;
+    height: 0.25rem;
+    background-color: #E5E7EB;
+    border-radius: 0.125rem;
+    cursor: grab;
+
+    &:active {
+      cursor: grabbing;
+    }
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+
+    &__title {
+      font-weight: 500;
+      font-size: 22px;
+    }
+
+    &__subtitle {
+      font-size: 16px;
+      font-weight: 400;
+      color: #000;
+      flex-grow: 1;
+      width: 100%;
+    }
+
+    &__close {
+      margin-left: auto;
+      cursor: pointer;
+
+      svg {
+        cursor: pointer;
+        transition: transform 0.1s ease-out;
+        @include click-animation();
+      }
+
+      &:hover svg path {
+        stroke: $c-secondary;
+      }
+    }
+  }
+
+  &__actions {
+    display: flex;
+    gap: 1rem;
+
+    &--left {
+      justify-content: flex-start;
+    }
+
+    &--center {
+      justify-content: center;
+    }
+
+    &--right {
+      justify-content: flex-end;
+    }
+
+    &--space-between {
+      justify-content: space-between;
+    }
+
+    &--floating {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      padding: 1.875rem;
+      z-index: 50;
+      justify-content: center;
+    }
+  }
+}
+
+@include breakpoint(tablet) {
+  .modal__backdrop {
+    align-items: center;
+  }
+
+  .modal {
+    min-width: 630px;
+    width: auto;
+    max-width: 630px;
+    transform: scale(0.95);
+
+    &.is-open {
+      transform: scale(1);
+    }
+
+    &.is-closing {
+      transform: scale(0.95);
+    }
+
+    &__drag-indicator {
+      display: none;
+    }
+  }
+}
+
+body.modal-open {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+}
