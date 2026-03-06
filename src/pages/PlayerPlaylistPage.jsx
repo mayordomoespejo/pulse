@@ -8,6 +8,7 @@ import PlayerVideo from '../components/player/PlayerVideo'
 import Heading from '../components/ui/Heading'
 import ProgressGradient from '../components/ui/ProgressGradient'
 import TitleCard from '../components/ui/TitleCard'
+import { PEXELS_URL } from '../constants/constants'
 import { ROUTES_NAMES } from '../router/routesNames'
 import { getVideo } from '../services/videos/getVideo'
 import useVideoStore from '../stores/videoStore'
@@ -87,7 +88,7 @@ function PlayerPlaylistPage() {
               <a href={currentVideo?.video?.photographerUrl} target="_blank" rel="noreferrer">
                 {currentVideo?.video?.photographer}
               </a>{' '}{PEXELS.ON}{' '}
-              <a href={currentVideo?.video?.pexelsUrl || 'https://www.pexels.com'} target="_blank" rel="noreferrer">
+              <a href={currentVideo?.video?.pexelsUrl || PEXELS_URL} target="_blank" rel="noreferrer">
                 {PEXELS.BRAND}
               </a>
             </p>

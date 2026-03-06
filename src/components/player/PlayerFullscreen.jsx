@@ -4,6 +4,11 @@ import { ExpandScreenIcon, FullScreenIcon } from '../../assets/icons/icons'
 
 import PlayerIconWrapper from './PlayerIconWrapper'
 
+/**
+ * media-chrome fullscreen toggle button (enter/exit icons).
+ *
+ * @returns {JSX.Element}
+ */
 function PlayerFullscreen() {
   return (
     <MediaFullscreenButton className="player-fullscreen" >

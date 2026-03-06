@@ -10,6 +10,13 @@ import Header from './Header'
 import Navbar from './Navbar'
 import Sidebar from './Sidebar'
 
+/**
+ * Top-level navigation controller.
+ * Renders Header + Sidebar on mobile, Navbar on tablet+.
+ * Handles logout, route navigation, and mobile menu state.
+ *
+ * @returns {JSX.Element}
+ */
 function Navigation() {
   const navigate = useNavigate()
   const location = useLocation()

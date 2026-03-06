@@ -23,11 +23,10 @@ export const generateThumbnail = (file) => {
       canvas.toBlob((blob) => {
         const thumbUrl = URL.createObjectURL(blob)
         resolve({ blob, url: thumbUrl })
-        // Revoke only the video URL
         URL.revokeObjectURL(url)
       }, 'image/jpeg')
     })
 
-    video.onerror = () => reject(new Error('Error al cargar el vídeo'))
+    video.onerror = () => reject(new Error('Failed to load video'))
   })
 }

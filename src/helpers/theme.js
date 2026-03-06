@@ -13,13 +13,3 @@ export const sizesIconBar = {
   desktop: { width: 24, height: 24 },
   mobile: { width: 16, height: 16 }
 }
-
-export const DEFAULT_COLORS_TAGS = [
-  'var(--color-secondary)',
-  '#B63A2E',
-  '#C9A665',
-  '#8EA577',
-  '#6C94A8',
-  '#9C8CBF',
-  '#B78492',
-]

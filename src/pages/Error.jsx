@@ -6,6 +6,12 @@ import Button from '../components/ui/Button'
 import useBreakpoint from '../hooks/useBreakpoint'
 import { ROUTES_NAMES } from '../router/routesNames'
 
+/**
+ * Generic error boundary fallback page.
+ * Displays an error title, description, and a button to return to the home route.
+ *
+ * @returns {JSX.Element}
+ */
 function Error() {
   const { t } = useTranslation()
   const navigate = useNavigate()
@@ -27,8 +33,8 @@ function Error() {
           <div className="error-page__description-container">
             <div>
               {isPhone
-                ? <ArrowShortIcon width="auto" height="50px" fill="currentColor" />
-                : <ArrowLongIcon width="100px" height="auto" fill="currentColor" />
+                ? <ArrowShortIcon height="50px" fill="currentColor" />
+                : <ArrowLongIcon width="100px" fill="currentColor" />
               }
             </div >
             <p>

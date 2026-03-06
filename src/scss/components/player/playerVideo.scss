@@ -87,13 +87,9 @@
   }
 
   &__media-container {
-    aspect-ratio: 15/9;
+    aspect-ratio: 16/9;
     border-radius: 1rem;
     overflow: hidden;
-
-    @include breakpoint(desktop) {
-      aspect-ratio: 16/9;
-    }
   }
 
   &__video {
@@ -102,11 +98,6 @@
     object-fit: contain;
     position: relative;
     background-color: #000000;
-    // aspect-ratio: 15/9;  wip
-
-    // @include breakpoint(desktop) {
-    //   aspect-ratio: 16/9;
-    // }
   }
 
   &__cast-button {

@@ -21,9 +21,9 @@
 
 @mixin video-list-grid {
   display: grid;
+  grid-template-columns: 1fr;
   row-gap: 20px;
   column-gap: 20px;
-
 
   @include breakpoint(tablet) {
     grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));

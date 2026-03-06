@@ -25,5 +25,3 @@ export default {
   clearToken,
   isAuthenticated,
 }
-
-

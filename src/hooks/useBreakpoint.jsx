@@ -7,6 +7,11 @@ const DEFAULT_BREAKPOINTS = {
   desktopLg: 1440,
 }
 
+/**
+ * Reactively tracks the active viewport breakpoint.
+ *
+ * @returns {{ isPhone: boolean, isTablet: boolean, isDesktop: boolean, isDesktopLg: boolean }}
+ */
 const useBreakpoint = () => {
   const [breakpoint, setBreakpoint] = useState({
     isPhone: false,

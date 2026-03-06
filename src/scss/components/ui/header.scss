@@ -30,7 +30,7 @@
     padding: 0;
     cursor: pointer;
     transition: opacity 0.2s ease;
-    
+
     @include click-animation(0.99, 0.1s);
 
     &:hover {
@@ -40,6 +40,12 @@
     &:active {
       opacity: 0.6;
     }
+  }
+
+  .header__logo {
+    width: 120px;
+    height: auto;
+    display: block;
   }
 
   @include breakpoint('tablet') {

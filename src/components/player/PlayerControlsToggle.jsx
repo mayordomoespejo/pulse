@@ -3,6 +3,15 @@ import useFullscreen from '../../hooks/useFullscreen'
 
 import PlayerIconWrapper from './PlayerIconWrapper'
 
+/**
+ * Eye toggle button that shows/hides player controls in fullscreen mode.
+ * Renders nothing when not in fullscreen.
+ *
+ * @param {Object} props
+ * @param {boolean} props.showControlsInFullscreen
+ * @param {Function} props.setShowControlsInFullscreen
+ * @returns {JSX.Element|null}
+ */
 function PlayerControlsToggle({ showControlsInFullscreen, setShowControlsInFullscreen }) {
   const mediaIsFullscreen = useFullscreen()
   if (!mediaIsFullscreen) return null
@@ -21,5 +30,3 @@ function PlayerControlsToggle({ showControlsInFullscreen, setShowControlsInFulls
 }
 
 export default PlayerControlsToggle
-
-

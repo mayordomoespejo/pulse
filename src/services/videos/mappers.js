@@ -1,3 +1,8 @@
+import { PEXELS_URL } from '../../constants/constants'
+
+const FALLBACK_AUTHOR = 'Unknown author'
+const FALLBACK_TITLE_PREFIX = 'Pexels video'
+
 const QUALITY_PRIORITY = {
   hd: 3,
   sd: 2,
@@ -37,7 +42,7 @@ function mapPlaybackSources(videoFiles = []) {
 
 function extractTitleFromUrl(url, fallbackId) {
   if (!url) {
-    return `Pexels video ${fallbackId}`
+    return `${FALLBACK_TITLE_PREFIX} ${fallbackId}`
   }
 
   const segments = url.split('/').filter(Boolean)
@@ -45,7 +50,7 @@ function extractTitleFromUrl(url, fallbackId) {
   const cleaned = slug.replace(/-\d+$/, '').replace(/-/g, ' ').trim()
 
   if (!cleaned) {
-    return `Pexels video ${fallbackId}`
+    return `${FALLBACK_TITLE_PREFIX} ${fallbackId}`
   }
 
   return cleaned.charAt(0).toUpperCase() + cleaned.slice(1)
@@ -63,8 +68,8 @@ export function mapPexelsVideo(video) {
     url: selectPlaybackUrl(video?.video_files),
     playbackSources: sources,
     pexelsUrl: video?.url || null,
-    photographer: video?.user?.name || 'Unknown author',
-    photographerUrl: video?.user?.url || 'https://www.pexels.com',
+    photographer: video?.user?.name || FALLBACK_AUTHOR,
+    photographerUrl: video?.user?.url || PEXELS_URL,
     tags: [],
     width: Number(video?.width) || null,
     height: Number(video?.height) || null,

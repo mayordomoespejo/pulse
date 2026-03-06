@@ -2,6 +2,21 @@ import { BackwardCircleIcon, BackwardIcon, ForwardCircleIcon, ForwardIcon } from
 
 import PlayerIconWrapper from './PlayerIconWrapper'
 
+/**
+ * Next or previous track button for the player.
+ * Renders nothing when `isShow` is false.
+ *
+ * @param {Object} props
+ * @param {Function} [props.onNextVideo]
+ * @param {Function} [props.onPrevVideo]
+ * @param {boolean} [props.isShow=true]
+ * @param {boolean} [props.isDisabled=false]
+ * @param {string} [props.slot] - media-chrome slot name.
+ * @param {string} [props.className]
+ * @param {boolean} [props.isCircle=false] - Uses circle icons when true.
+ * @param {boolean} [props.isPrev=false] - Renders the previous button when true.
+ * @returns {JSX.Element|null}
+ */
 const PlayerNextPrev = ({
   onNextVideo,
   onPrevVideo,

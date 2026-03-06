@@ -16,12 +16,6 @@ import PlayerVolumeButton from './PlayerVolumeButton'
 
 import 'castable-video'
 
-/**
- * Componente principal del reproductor de video
- * Maneja la reproducción de videos con controles personalizados y funcionalidad de pantalla completa
- * @returns {JSX.Element} Componente del reproductor de video
- */
-
 const PlayerVideo = () => {
   const { t } = useTranslation()
   const PLAYER_VIDEO = t('PLAYER_VIDEO', { returnObjects: true })
@@ -185,12 +179,6 @@ const PlayerVideo = () => {
     return () => clearTimeout(timerId)
   }, [dispatch, getMediaElement, selectedSourceLink])
 
-  /**
-   * Obtiene el volumen actual del elemento de media
-   * Compatible con ReactPlayer, HTMLMediaElement y castable-video
-   * @returns {number|undefined} Volumen actual o undefined si no se puede obtener
-   */
-
   const readCurrentVolume = useCallback(() => {
     const node = mediaRef?.current
     if (node && typeof node.getInternalPlayer === 'function') {
@@ -204,21 +192,11 @@ const PlayerVideo = () => {
     return undefined
   }, [mediaRef])
 
-  /**
-   * Maneja el cambio al siguiente video
-   * Guarda el volumen actual antes de cambiar de video
-   */
-
   const handleNext = useCallback(() => {
     const v = readCurrentVolume()
     if (typeof v === 'number' && !Number.isNaN(v)) setVolume(v)
     onNextVideo(nextVideo)
   }, [nextVideo, onNextVideo, readCurrentVolume, setVolume])
-
-  /**
-   * Aplica el volumen de la store al reproductor cuando cambia el video
-   * Compatible con ReactPlayer, HTMLMediaElement y castable-video
-   */
 
   useEffect(() => {
     const apply = () => {
@@ -242,11 +220,6 @@ const PlayerVideo = () => {
       return () => clearTimeout(t)
     }
   }, [canControlVolume, hasCurrentVideo, mediaRef, volume])
-
-  /**
-   * Renderiza los controles del reproductor
-   * @returns {JSX.Element} Controles del reproductor
-   */
 
   const renderControls = () => (
     <>

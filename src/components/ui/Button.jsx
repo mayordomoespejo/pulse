@@ -1,31 +1,19 @@
 /**
- * Componente de botón reutilizable
- * 
- * @param {object} props - Props del componente
- * @param {React.ReactNode} [props.children] - Contenido del botón (nueva forma)
- * @param {string} [props.label] - Texto visible del botón (forma antigua, se mantiene por compatibilidad)
- * @param {Function} [props.onClick] - Función que se ejecuta al hacer click
- * @param {'primary'|'secondary'|'secondary-filled'} [props.variant='primary'] - Variante visual del botón (nueva forma)
- * @param {('primary' | 'secondary' | 'secondary-filled' | 'secondary-inverse' | 'tertiary' | 'remove' | 'link')} [props.theme] - Variante de color del botón (forma antigua, se mantiene por compatibilidad)
- * @param {string} [props.type='button'] - Tipo de botón HTML ('button', 'submit', 'reset')
- * @param {boolean} [props.disabled=false] - Si el botón está deshabilitado
- * @param {string} [props.className=''] - Clases CSS adicionales
- * @param {string} [props.form] - ID del formulario al que pertenece el botón
- * @param {boolean} [props.shadow] - Si se debe mostrar una sombra
- * @param {('xsmall' | 'small' | 'medium' | 'none')} [props.size='medium'] - Tamaño del botón
- * @param {React.ReactNode} [props.iconStart] - Icono que se muestra al inicio del botón
- * @param {React.ReactNode} [props.iconEnd] - Icono que se muestra al final del botón
- * @param {boolean} [props.mobileIconOnly] - Si el botón solo muestra el icono en móvil
- * @returns {JSX.Element} Componente de botón
- * 
- * @example
- * // Nueva forma (recomendada)
- * <Button variant="primary" onClick={handleClick}>
- *   Click me
- * </Button>
- * 
- * // Forma antigua (mantiene compatibilidad)
- * <Button label="Click me" theme="primary" onClick={handleClick} />
+ * @param {Object} props
+ * @param {React.ReactNode} [props.children]
+ * @param {string} [props.label] - Text label (alternative to children)
+ * @param {Function} [props.onClick]
+ * @param {('primary'|'secondary'|'secondary-filled'|'secondary-inverse'|'tertiary'|'remove'|'link')} [props.variant='primary']
+ * @param {string} [props.theme] - Alias for variant (legacy)
+ * @param {string} [props.type='button']
+ * @param {boolean} [props.disabled=false]
+ * @param {string} [props.className='']
+ * @param {string} [props.form]
+ * @param {boolean} [props.shadow=false]
+ * @param {('xsmall'|'small'|'medium'|'none')} [props.size='medium']
+ * @param {React.ReactNode} [props.iconStart]
+ * @param {React.ReactNode} [props.iconEnd]
+ * @param {boolean} [props.mobileIconOnly=false]
  */
 const Button = ({
   children,

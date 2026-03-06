@@ -1,11 +1,19 @@
 import Tooltip from './Tooltip'
 
+/**
+ * Row of icon action buttons with tooltip labels.
+ * Delete actions are styled in red via `action.isDelete` or a label containing "delete".
+ *
+ * @param {Object} props
+ * @param {Array<{label: string, icon: JSX.Element, onClick: Function, isDelete?: boolean}>} [props.actions=[]]
+ * @param {string} [props.className]
+ * @param {boolean} [props.disabled=false]
+ * @returns {JSX.Element|null}
+ */
 function Toolbar({ actions = [], className = '', disabled = false }) {
 
   const isDeleteAction = (action) => {
-    return action.isDelete ||
-      action.label?.toLowerCase().includes('delete') ||
-      action.label?.toLowerCase().includes('eliminar')
+    return action.isDelete || action.label?.toLowerCase().includes('delete')
   }
 
   const isLargeIcon = (action) => {

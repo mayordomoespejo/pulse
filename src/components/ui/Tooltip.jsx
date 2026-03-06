@@ -1,21 +1,19 @@
-'use client'
-
 import { isValidElement } from 'react'
 import { Trans } from 'react-i18next'
 
 /**
- * Tooltip personalizado con soporte para contenido textual o JSX.
+ * Tooltip with support for JSX, HTML strings, and plain text content.
  *
- * - JSX → render directo
- * - String con HTML → <Trans>
- * - String plano → ::after con data-tooltip
+ * - JSX → rendered directly inside the tooltip
+ * - String with HTML tags → rendered via `<Trans>`
+ * - Plain string → CSS `::after` via `data-tooltip`
  *
  * @param {Object} props
- * @param {React.ReactNode} props.children - Elemento que activa el tooltip. Por defecto se muestra un `?`.
- * @param {React.ReactNode|string} props.content - Contenido del tooltip.
- * @param {'top'|'bottom'|'left'|'right'|'top-left'} [props.position='top'] - Posición del tooltip.
- * @param {string} [props.className] - Clases personalizadas.
- * @param {boolean} [props.noRelative=false] - Si evita position: relative.
+ * @param {React.ReactNode} props.children - Trigger element. Defaults to a `?` span.
+ * @param {React.ReactNode|string} props.content - Tooltip content.
+ * @param {'top'|'bottom'|'left'|'right'|'top-left'} [props.position='bottom'] - Tooltip position.
+ * @param {string} [props.className] - Additional CSS classes.
+ * @param {boolean} [props.noRelative=false] - Omits `position: relative` on the wrapper.
  */
 
 function Tooltip({
@@ -29,7 +27,6 @@ function Tooltip({
   const trigger = children || <span className="tooltip__default-trigger">?</span>
   const hasHTMLTags = typeof content === 'string' && /<\s*\/?\s*\w+[^>]*>/.test(content)
 
-  // JSX (caso 1)
   if (isValidElement(content)) {
     return (
       <span className={`${tooltipClass} tooltip--custom ${className}`}>
@@ -41,7 +38,6 @@ function Tooltip({
     )
   }
 
-  // String con HTML (caso 2)
   if (hasHTMLTags) {
     return (
       <span className={`${tooltipClass} tooltip--custom ${className}`}>
@@ -57,7 +53,6 @@ function Tooltip({
     )
   }
 
-  // Texto plano (caso 3)
   return (
     <span
       className={`${tooltipClass} ${className}`}

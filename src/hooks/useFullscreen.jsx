@@ -5,6 +5,12 @@ function getIsFullscreen() {
   return Boolean(document.fullscreenElement || document.webkitFullscreenElement)
 }
 
+/**
+ * Returns true whenever the document is in fullscreen mode.
+ * Handles both the standard Fullscreen API and the WebKit prefix (Safari).
+ *
+ * @returns {boolean}
+ */
 function useFullscreen() {
   const [isFullscreen, setIsFullscreen] = useState(getIsFullscreen())
 
@@ -23,5 +29,3 @@ function useFullscreen() {
 }
 
 export default useFullscreen
-
-

@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
-import { DEFAULT_VIDEO_THUMBNAIL } from '../../constants/constants'
+import { PEXELS_URL } from '../../constants/constants'
 import { ROUTES_NAMES } from '../../router/routesNames'
 import TitleCard from '../ui/TitleCard'
 
@@ -49,7 +49,7 @@ function VideoCard({ video }) {
       }}
     >
       <div className="video-card__thumbnail">
-        <img src={thumbnailUrl || DEFAULT_VIDEO_THUMBNAIL} alt={title} loading="lazy" />
+        <img src={thumbnailUrl} alt={title} loading="lazy" />
         <VideoDuration duration={duration} />
       </div>
 
@@ -61,7 +61,7 @@ function VideoCard({ video }) {
           <a href={photographerUrl} target="_blank" rel="noreferrer" onClick={(event) => event.stopPropagation()}>
             {photographer}
           </a>{' '}{PEXELS.ON}{' '}
-          <a href={pexelsUrl || 'https://www.pexels.com'} target="_blank" rel="noreferrer" onClick={(event) => event.stopPropagation()}>
+          <a href={pexelsUrl || PEXELS_URL} target="_blank" rel="noreferrer" onClick={(event) => event.stopPropagation()}>
             {PEXELS.BRAND}
           </a>
         </p>

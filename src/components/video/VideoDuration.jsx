@@ -1,9 +1,8 @@
-import PropTypes from 'prop-types'
-
 /**
- * Convierte la duración en segundos al formato de visualización
- * @param {number} seconds - Duración en segundos
- * @returns {string} Duración formateada (MM:SS o HH:MM:SS)
+ * Formats a duration in seconds to MM:SS or HH:MM:SS.
+ *
+ * @param {number} seconds - Duration in seconds.
+ * @returns {string} Formatted duration string.
  */
 const formatDuration = (seconds) => {
   if (!seconds || isNaN(seconds)) return '0:00'
@@ -13,42 +12,28 @@ const formatDuration = (seconds) => {
   const remainingSeconds = Math.floor(seconds % 60)
 
   if (hours > 0) {
-    // Formato: HH:MM:SS (para videos de una hora o más)
     return `${hours}:${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`
   }
 
-  // Formato: MM:SS (para videos menores a una hora)
   return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`
 }
 
 /**
- * VideoDuration - Componente para mostrar la duración de un video
+ * Displays a video duration badge.
  *
- * Muestra la duración del video en formato legible (MM:SS o HH:MM:SS)
- * con estilos consistentes para la interfaz de usuario.
- *
- * Props:
- * @param {number} duration - Duración del video en segundos
- * @param {string} [className=''] - Clases CSS adicionales
- *
- * @returns {JSX.Element|null} Span con la duración formateada o null si no hay duración
+ * @param {Object} props
+ * @param {number} props.duration - Duration in seconds.
+ * @param {string} [props.className=''] - Additional CSS classes.
+ * @returns {JSX.Element|null}
  */
-
 function VideoDuration({ duration, className = '' }) {
   if (!duration) return null
 
-  const formattedDuration = formatDuration(duration)
-
   return (
     <span className={`video-duration ${className}`}>
-      {formattedDuration}
+      {formatDuration(duration)}
     </span>
   )
-}
-
-VideoDuration.propTypes = {
-  duration: PropTypes.number.isRequired,
-  className: PropTypes.string,
 }
 
 export default VideoDuration
