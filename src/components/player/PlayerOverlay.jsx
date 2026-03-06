@@ -1,5 +1,4 @@
-import { useMediaSelector } from 'media-chrome/react/media-store'
-import { useMediaDispatch, MediaActionTypes } from 'media-chrome/react/media-store'
+import { MediaActionTypes, useMediaDispatch, useMediaSelector } from 'media-chrome/react/media-store'
 import { useTranslation } from 'react-i18next'
 
 import { LogoIcon } from '../../assets/icons/icons'
@@ -14,6 +13,13 @@ import PlayerPlayPause from './PlayerPlayPause'
 import PlayerReload from './PlayerReload'
 
 
+/**
+ * Centered player overlay that renders the appropriate UI layer based on playback state:
+ * empty state, loading spinner, play/pause, next/prev end-of-video controls, or playlist reset.
+ * Also renders the heading slot with the current video title.
+ *
+ * @returns {JSX.Element}
+ */
 function PlayerOverlay() {
   const { t } = useTranslation()
   const PLAYER_OVERLAY = t('PLAYER_OVERLAY', { returnObjects: true })
@@ -83,13 +89,10 @@ function PlayerOverlay() {
         </div>
       )
     }
-    // Spinner --> Se muestra cuando el video está cargando
     if (mediaLoading) return <PlayerIconWrapper Component={Spinner} isCircle />
 
-    // Play pause icon --> Se muestra cuando el video no ha finalizado y no hay un siguiente video
     if (!mediaEnded && !mediaLoading) return <PlayerPlayPause isCircle sizeCircle="large" />
 
-    // Canceled overlay --> Se muestra al finalizar el video, next video, reload
     if (mediaEnded && nextVideo) {
       return (
         <div className="player-overlay__ended-finalized">
@@ -100,7 +103,6 @@ function PlayerOverlay() {
       )
     }
 
-    // Finalized overlay --> Se muestra al finalizar el video y no hay un siguiente video
     if (mediaEnded && !nextVideo) {
       return (
         <div className="player-overlay__finished">
@@ -119,7 +121,7 @@ function PlayerOverlay() {
         <Heading
           title={hasCurrentVideo ? currentVideo?.video?.title : ''}
           responsiveStyles={{ fontSize: { phone: 14, desktop: 24 } }}
-          color="#fff"
+          color="var(--color-secondary)"
           className="player-overlay__heading__title"
         />
       </div>

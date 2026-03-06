@@ -58,7 +58,6 @@
     }
   }
 
-  // Contenedor de tamaño fijo para que todos los botones tengan la misma altura
   &__shape-wrapper {
     display: flex;
     align-items: center;
@@ -73,12 +72,10 @@
     border-radius: 3px;
     flex-shrink: 0;
 
-    // Orientación
     &--landscape { width: 56px; height: 36px; }
     &--portrait  { width: 36px; height: 56px; }
     &--square    { width: 44px; height: 44px; }
 
-    // Tamaño (tamaños absolutos distintos para comunicar la diferencia)
     &--large     { width: 52px; height: 36px; }
     &--medium    { width: 36px; height: 25px; }
     &--small     { width: 22px; height: 15px; }

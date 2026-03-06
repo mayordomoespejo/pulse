@@ -10,6 +10,13 @@ function normalizeLanguage(code) {
   return SUPPORTED_LANGUAGES.includes(shortCode) ? shortCode : 'es'
 }
 
+/**
+ * Button that toggles the active language between 'es' and 'en'.
+ *
+ * @param {Object} props
+ * @param {string} [props.className]
+ * @returns {JSX.Element}
+ */
 function LanguageToggleButton({ className = '' }) {
   const { i18n, t } = useTranslation()
   const currentLanguage = normalizeLanguage(i18n.resolvedLanguage || i18n.language)
@@ -22,7 +29,7 @@ function LanguageToggleButton({ className = '' }) {
   return (
     <Button
       type="button"
-      theme="tertiary"
+      variant="tertiary"
       size="medium"
       className={`language-toggle-button ${className}`}
       onClick={handleToggleLanguage}

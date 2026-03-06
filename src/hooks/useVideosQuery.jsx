@@ -6,11 +6,14 @@ import { getVideos } from '../services/videos/getVideos'
 /**
  * React Query wrapper for paginated Pexels video data.
  *
- * @param {Object} params Query params.
+ * @param {Object} params
  * @param {string} [params.search=''] Search term.
- * @param {number} [params.page=1] Page number.
- * @param {number} [params.limit=DEFAULT_LIMIT] Page size.
- * @param {'popular'|'search'} [params.source='search'] Pexels endpoint source.
+ * @param {number} [params.page=1] 1-based page index.
+ * @param {number} [params.limit=DEFAULT_LIMIT] Items per page.
+ * @param {'popular'|'search'} [params.source='search'] Pexels endpoint to use.
+ * @param {string} [params.orientation=''] Video orientation filter.
+ * @param {string} [params.size=''] Video size filter.
+ * @param {string} [params.locale=''] Locale filter.
  * @returns {import('@tanstack/react-query').UseQueryResult}
  */
 function useVideosQuery({ search = '', page = 1, limit = DEFAULT_LIMIT, source = 'search', orientation = '', size = '', locale = '' }) {

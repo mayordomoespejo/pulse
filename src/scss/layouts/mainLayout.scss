@@ -16,14 +16,13 @@
 
   &__content {
     flex: 1 1 0%;
-    // Padding top debe ser mayor que la altura del header móvil
     padding: calc(#{$mobile-header-height} + 1.875rem) 1.875rem 0 1.875rem;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     position: relative;
     box-sizing: border-box;
-    overflow-x: auto;
+    overflow-x: hidden;
 
     @include breakpoint('tablet') {
       padding-top: 7.5rem;
@@ -47,15 +46,15 @@
     justify-content: center;
     align-items: center;
 
-    .featured-page__credits-link {
+    &-credits {
       margin: 0;
-    }
 
-    .featured-page__credits-link a {
-      color: $c-secondary;
-      text-decoration: underline;
-      font-size: 0.9rem;
-      text-align: center;
+      a {
+        color: $c-secondary;
+        text-decoration: underline;
+        font-size: 0.9rem;
+        text-align: center;
+      }
     }
   }
 }

@@ -1,18 +1,25 @@
 import { useTranslation } from 'react-i18next'
 
-import { DEFAULT_VIDEO_THUMBNAIL } from '../../constants/constants'
 import ProcessingBadge from '../ui/ProcessingBadge'
 import Tags from '../ui/Tags'
 import VideoDuration from '../video/VideoDuration'
 
+/**
+ * Single item row in the player sidebar playlist.
+ * Disabled and shows a processing badge when the video URL is not available.
+ *
+ * @param {Object} props
+ * @param {Object} props.playlistItem - Playlist item from the store.
+ * @param {Function} props.setCurrentVideo - Store action to set the active video.
+ * @param {boolean} props.isActive - Highlights this item as currently playing.
+ * @returns {JSX.Element}
+ */
 function PlayerCardPlayList({ playlistItem, setCurrentVideo, isActive }) {
   const { t } = useTranslation()
   const VIDEO_CARD = t('VIDEO_CARD', { returnObjects: true })
 
   const { thumbnailUrl, title, duration, tags, url } = playlistItem?.video || {}
-  const defaultThumbnail = thumbnailUrl || DEFAULT_VIDEO_THUMBNAIL
 
-  // Función para manejar el clic - solo permite interacción si hay URL
   const handleClick = () => {
     if (url) {
       setCurrentVideo(playlistItem)
@@ -25,7 +32,7 @@ function PlayerCardPlayList({ playlistItem, setCurrentVideo, isActive }) {
       onClick={handleClick}
     >
       <div className={`player-card-play-list__image-container ${!url ? 'player-card-play-list__image-container--disabled' : ''}`}>
-        {defaultThumbnail && <img src={defaultThumbnail} alt={title} />}
+        {thumbnailUrl && <img src={thumbnailUrl} alt={title} />}
         <VideoDuration duration={duration} />
         {!url && (
           <ProcessingBadge

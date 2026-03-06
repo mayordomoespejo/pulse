@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(test -f /Users/Miguel/Documents/developer/pulse/.env.example)",
+      "Bash(test -f /Users/Miguel/Documents/developer/pulse/.env)",
+      "Bash(npm uninstall chroma-js match-sorter react-day-picker @formkit/drag-and-drop date-fns)",
+      "Bash(grep -E \"\\\\.scss$\")",
+      "Bash(for comp in Button BackButton ButtonLink BurgerButton CreateButton DropdownMenu GradientBar Heading Input LinkUnderline Modal Navigation Navbar Pagination ProcessingBadge ProgressBar ProgressGradient SearchInput SelectInput Separator Sidebar SidebarItem Spinner Tags Title TitleCard Toolbar Tooltip)",
+      "Bash(do echo -n \"$comp: \")",
+      "Bash(grep -r \"import.*$comp\\\\|from.*$comp\" /Users/Miguel/Documents/developer/pulse/src --include=\"*.jsx\" --include=\"*.js\")",
+      "Bash(grep -v \"^/Users/Miguel/Documents/developer/pulse/src/components/ui/$comp\")",
+      "Bash(done)",
+      "Bash(grep -r -i \"portfolio\\\\|folio\" --include=\"*.{js,jsx,ts,tsx,md,txt,env,yml,yaml,json}\" .)"
+    ]
+  }
+}

@@ -1,6 +1,3 @@
-// Archivo principal de estilos SCSS
-// Importa todas las configuraciones y estilos de componentes
-
 @use "./config/variables" as *;
 @use "./config/fonts" as *;
 @use "./config/mixins" as *;
@@ -9,28 +6,19 @@
 @use "./components/ui/backButton.scss" as *;
 @use "./components/ui/button.scss" as *;
 @use "./components/ui/burgerButton.scss" as *;
-@use "./components/ui/checkbox.scss" as *;
-@use "./components/ui/colorPicker.scss" as *;
-@use "./components/ui/createButton.scss" as *;
-@use "./components/ui/datePicker.scss" as *;
-@use "./components/ui/dropdownMenu.scss" as *;
 @use "./components/ui/eyeToggle.scss" as *;
 @use "./components/ui/header.scss" as *;
 @use "./components/ui/gradientBar.scss" as *;
 @use "./components/ui/heading.scss" as *;
 @use "./components/ui/input.scss" as *;
-@use "./components/ui/linkUnderline.scss" as *;
 @use "./components/ui/login.scss" as *;
 @use "./components/ui/modal.scss" as *;
 @use "./components/ui/navbar.scss" as *;
 @use "./components/ui/pagination.scss" as *;
 @use "./components/ui/processingBadge.scss" as *;
-@use "./components/ui/progressBar.scss" as *;
 @use "./components/ui/progressGradient.scss" as *;
 @use "./components/ui/searchInput.scss" as *;
-@use "./components/ui/selectDateRange.scss" as *;
 @use "./components/ui/selectInput.scss" as *;
-@use "./components/ui/separator.scss" as *;
 @use "./components/ui/sidebar.scss" as *;
 @use "./components/ui/spinner.scss" as *;
 @use "./components/ui/tags.scss" as *;
@@ -43,29 +31,11 @@
 @use "./components/common/emptyState.scss" as *;
 @use "./components/common/list.scss" as *;
 @use "./components/common/logo.scss" as *;
-@use "./components/common/videoUploadInput.scss" as *;
-
-// Tags Components
-@use "./components/tags/tagFormModal.scss" as *;
-@use "./components/tags/tagRemoveModal.scss" as *;
-@use "./components/tags/tagRow.scss" as *;
-@use "./components/tags/tagsPage.scss" as *;
 
 // Video Components
 @use "./components/video/mediaSearchModal.scss" as *;
-@use "./components/video/removeModal.scss" as *;
 @use "./components/video/videoCard.scss" as *;
-@use "./components/video/videoCardSelector.scss" as *;
 @use "./components/video/videoDuration.scss" as *;
-@use "./components/video/videoFormModal.scss" as *;
-
-// Playlist Components
-@use "./components/playlist/playlistAddVideosModal.scss" as *;
-@use "./components/playlist/playlistCard.scss" as *;
-@use "./components/playlist/playlistCardToday.scss" as *;
-@use "./components/playlist/playlistFormModal.scss" as *;
-@use "./components/playlist/playlistRemoveModal.scss" as *;
-@use "./components/playlist/playlistSortVideosModal.scss" as *;
 
 // Player Components
 @use "./components/player/playerCardPlayList.scss" as *;
@@ -84,11 +54,9 @@
 @use "./pages/notFound.scss" as *;
 @use "./pages/error.scss" as *;
 @use "./pages/playerPlayListPage.scss" as *;
-@use "./pages/playlistsPage.scss" as *;
 @use "./pages/featuredPage.scss" as *;
 @use "./pages/videoManage.scss" as *;
 
-// CSS Custom Properties (variables CSS)
 :root {
   --color-primary: #{$c-primary};
   --color-secondary: #{$c-secondary};
@@ -100,7 +68,7 @@
   --color-error: #{$c-error};
 }
 
-// Screen reader only - oculta visualmente pero accesible para lectores de pantalla
+// Screen reader only
 .sr-only {
   position: absolute;
   width: 1px;
@@ -113,7 +81,7 @@
   white-space: nowrap;
 }
 
-// Reset y estilos globales
+// Reset & global styles
 *,
 *::before,
 *::after {
@@ -302,26 +270,3 @@ button {
   cursor: pointer;
 }
 
-// Drag and drop utilities
-.is-dragging {
-  opacity: 0.7;
-  transform: scale(0.98);
-  transition: transform 0.12s ease, opacity 0.12s ease;
-  filter: saturate(120%);
-}
-
-.is-drag-placeholder {
-  border: 2px dashed $c-primary;
-  padding: 5px;
-  background: rgba($c-primary, 0.06);
-  box-shadow: 0 0 0 7px rgba($c-primary, 0.06);
-  opacity: 0.5;
-}
-
-[draggable="true"].is-dragging {
-  z-index: 9999 !important;
-}
-
-[draggable="true"]:not(.is-dragging) {
-  z-index: auto !important;
-}

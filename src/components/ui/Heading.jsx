@@ -3,17 +3,12 @@ import useBreakpoint from '../../hooks/useBreakpoint'
 
 import BackButton from './BackButton'
 
-export const ALLOWED_TAGS = { h1: true, h2: true, h3: true }
+const ALLOWED_TAGS = { h1: true, h2: true, h3: true }
 
-export const SIZE_CLASSES = {
+const SIZE_CLASSES = {
   h1: 'heading--h1',
   h2: 'heading--h2',
   h3: 'heading--h3',
-}
-
-export const COLOR_TOKENS = {
-  primary: '#20272F',
-  secondary: '#ffffff',
 }
 
 /**
@@ -27,9 +22,9 @@ export const COLOR_TOKENS = {
  *   lineHeight?: { phone?: number, desktop?: number }
  * }} [props.responsiveStyles]
  * @param {string} [props.color] - Color token for the heading
- * @param {string} [props.title] - Título del encabezado
- * @param {boolean} [props.back=false] - Muestra botón de volver en h2
- * @param {boolean} [props.showArrow=false] - Muestra flecha decorativa a la izquierda del título
+ * @param {string} [props.title] - Heading text
+ * @param {boolean} [props.back=false] - Renders a back button instead of the arrow icon
+ * @param {boolean} [props.showArrow=false] - Forces the decorative arrow to show on h1/h3 headings
  * @returns {JSX.Element}
  */
 

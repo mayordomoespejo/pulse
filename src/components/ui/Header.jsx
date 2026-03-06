@@ -7,15 +7,12 @@ import { ROUTES_NAMES } from '../../router/routesNames'
 import BurgerButton from './BurgerButton'
 
 /**
- * Header - Componente de encabezado para móvil
- * 
- * Muestra el header con logo y botón hamburguesa para abrir/cerrar el sidebar.
- * Solo se muestra en dispositivos móviles.
- * 
- * @component
- * @param {boolean} isMenuOpen - Estado del menú móvil (abierto/cerrado)
- * @param {Function} onToggleMenu - Función para alternar el estado del menú móvil
- * @returns {JSX.Element} Header con logo y botón hamburguesa
+ * Fixed mobile header with logo and hamburger menu toggle.
+ * Hidden on tablet and above (replaced by Navbar).
+ *
+ * @param {Object} props
+ * @param {boolean} props.isMenuOpen
+ * @param {Function} props.onToggleMenu
  */
 function Header({ isMenuOpen, onToggleMenu }) {
   const { t } = useTranslation()

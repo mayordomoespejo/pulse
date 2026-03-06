@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { Outlet } from 'react-router-dom'
 
+import { PEXELS_URL } from '../constants/constants'
 import Navigation from '../components/ui/Navigation'
 
 function MainLayout() {
@@ -15,8 +16,8 @@ function MainLayout() {
           <Outlet />
         </div>
         <footer className="main-layout__footer">
-          <p className="featured-page__credits-link">
-            <a href="https://www.pexels.com" target="_blank" rel="noreferrer">{PEXELS.PROVIDED_BY}</a>
+          <p className="main-layout__footer-credits">
+            <a href={PEXELS_URL} target="_blank" rel="noreferrer">{PEXELS.PROVIDED_BY}</a>
           </p>
         </footer>
       </main>

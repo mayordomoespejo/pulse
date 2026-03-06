@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-const PEXELS_API_URL = 'https://api.pexels.com/videos'
+import { PEXELS_API_URL } from '../constants/constants'
+
 const PEXELS_API_KEY = import.meta.env.VITE_PEXELS_API_KEY
 
 const apiClient = axios.create({

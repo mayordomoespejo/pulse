@@ -1,3 +1,12 @@
+/**
+ * Inline SVG Pulse logo for use inside the player.
+ *
+ * @param {Object} props
+ * @param {string} [props.className]
+ * @param {number} [props.width=90]
+ * @param {number} [props.height=90]
+ * @returns {JSX.Element}
+ */
 function PlayerLogo({
   className = '',
   width = 90,

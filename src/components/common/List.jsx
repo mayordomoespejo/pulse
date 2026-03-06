@@ -41,15 +41,14 @@ function List({
           </div>
           :
           <ul
-            className={`list list--${typeList} ${items?.length === 0 && Array.isArray(items) ? 'list--empty' : ''} ${className}`}
+            className={`list list--${typeList} ${className}`}
             ref={ref}
           >
-            {Array.isArray(items) && items?.map((item, index) => (
-              <Fragment key={item?.id ?? index ?? new Date().getTime()}>
+            {items.map((item, index) => (
+              <Fragment key={item?.id ?? index}>
                 {renderItem(item, index)}
               </Fragment>
-            ))
-            }
+            ))}
           </ul>
       }
     </>

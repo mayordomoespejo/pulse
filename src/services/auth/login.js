@@ -2,7 +2,7 @@ const DEMO_USERNAME = import.meta.env.VITE_DEMO_USERNAME || 'demo@pulse.dev'
 const DEMO_PASSWORD = import.meta.env.VITE_DEMO_PASSWORD || 'Pulse123!'
 
 /**
- * Simulates login against demo credentials for portfolio preview.
+ * Simulates login against demo credentials.
  *
  * @param {Object} credentials User credentials.
  * @param {string} credentials.username Username/email.

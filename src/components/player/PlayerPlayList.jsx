@@ -4,6 +4,12 @@ import useVideoStore from '../../stores/videoStore'
 
 import PlayerCardPlayList from './PlayerCardPlayList'
 
+/**
+ * Scrollable sidebar playlist showing all items in the current playlist.
+ * Highlights the active item and delegates playback selection to the store.
+ *
+ * @returns {JSX.Element}
+ */
 function PlayerPlaylist() {
   const { t } = useTranslation()
   const { currentPlaylist, currentVideo, setCurrentVideo } = useVideoStore()

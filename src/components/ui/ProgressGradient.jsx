@@ -7,6 +7,18 @@ const lerp = (a, b, t) => a + (b - a) * t
 const easeInQuad = (t) => t * t
 const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3)
 
+/**
+ * Animated loading progress indicator backed by a gradient bar.
+ * Simulates realistic progress: accelerates, stalls near the end, then snaps to 100% on completion.
+ *
+ * @param {Object} props
+ * @param {string} [props.className]
+ * @param {boolean} [props.isLoading=false] - Drives the animation; false triggers instant completion.
+ * @param {number} [props.width=27] - GradientBar width in px.
+ * @param {number} [props.height=300] - GradientBar height in px.
+ * @param {number} [props.gradientDuration=6] - GradientBar animation cycle in seconds.
+ * @returns {JSX.Element}
+ */
 function ProgressGradient({
   className = '',
   isLoading = false,

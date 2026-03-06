@@ -7,12 +7,6 @@ import createPlayerSlice from './createPlayerSlice'
  * @typedef {import('./createPlayerSlice').PlayerSliceState} VideoStore
  */
 
-/**
- * Store principal de video.
- *
- * @returns {VideoStore} 
- */
-
 /** @type {() => VideoStore} */
 const useVideoStore = create(
   persist(

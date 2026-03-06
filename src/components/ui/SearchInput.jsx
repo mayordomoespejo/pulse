@@ -4,6 +4,21 @@ import { useSearchParams } from 'react-router-dom'
 
 import { MagnifyingGlassIcon } from '../../assets/icons/icons'
 
+/**
+ * Debounced search input that syncs to URL search params or calls a controlled callback.
+ *
+ * @param {Object} props
+ * @param {string} [props.paramName='search'] - URL search param key (when `useParams` is true).
+ * @param {string} [props.placeholder]
+ * @param {string} [props.className]
+ * @param {boolean} [props.useParams=true] - Syncs to URL params when true; calls `onChange` when false.
+ * @param {string} [props.value] - Controlled value (only when `useParams` is false).
+ * @param {Function} [props.onChange] - Called with the debounced value (only when `useParams` is false).
+ * @param {number} [props.debounceMs=400] - Debounce delay in ms.
+ * @param {'primary'|'secondary'} [props.variant='secondary'] - Visual style variant.
+ * @param {boolean} [props.disabled=false]
+ * @returns {JSX.Element}
+ */
 function SearchInput({
   paramName = 'search',
   placeholder,

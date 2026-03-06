@@ -20,11 +20,6 @@
     align-items: stretch;
     @include video-list-grid;
 
-    @include breakpoint(tablet) {
-      align-items: stretch;
-      @include video-list-grid;
-    }
-
     > * {
       height: 100%;
     }

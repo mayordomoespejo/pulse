@@ -6,6 +6,12 @@ import Button from '../components/ui/Button'
 import useBreakpoint from '../hooks/useBreakpoint'
 import { ROUTES_NAMES } from '../router/routesNames'
 
+/**
+ * Generic error boundary fallback page.
+ * Displays an error title, description, and a button to return to the home route.
+ *
+ * @returns {JSX.Element}
+ */
 function Error() {
   const { t } = useTranslation()
   const navigate = useNavigate()

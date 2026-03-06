@@ -1,18 +1,18 @@
 /**
  * @typedef {Object} PlayerSliceState
- * @property {Object|null} currentPlaylist - Playlist actual
- * @property {Object|null} currentVideo - Video actual
- * @property {Object|null} prevVideo - Video anterior
- * @property {Object|null} nextVideo - Siguiente video
- * @property {number} volume - Volumen global del reproductor (0–1)
- * @property {Function} setVolume - Establece el volumen
- * @property {boolean} autoFullscreen - Auto activar pantalla completa
- * @property {Function} setCurrentPlaylist - Establece la playlist actual
- * @property {Function} setCurrentVideo - Establece el video actual y actualiza los videos anterior y siguiente
- * @property {Function} setAutoFullscreen - Establece auto pantalla completa
- * @property {Function} onPrevVideo - Navega al video anterior en la playlist
- * @property {Function} onNextVideo - Navega al siguiente video en la playlist
- * @property {Function} onResetPlaylist - Reinicia la playlist al primer video
+ * @property {Object|null} currentPlaylist - Active playlist
+ * @property {Object|null} currentVideo - Currently playing video item
+ * @property {Object|null} prevVideo - Previous video item in the playlist
+ * @property {Object|null} nextVideo - Next video item in the playlist
+ * @property {number} volume - Global player volume (0–1)
+ * @property {Function} setVolume - Set the player volume
+ * @property {boolean} autoFullscreen - Whether to auto-enter fullscreen on play
+ * @property {Function} setCurrentPlaylist - Set the active playlist
+ * @property {Function} setCurrentVideo - Set the current video and update prev/next
+ * @property {Function} setAutoFullscreen - Toggle auto-fullscreen
+ * @property {Function} onPrevVideo - Navigate to the previous video
+ * @property {Function} onNextVideo - Navigate to the next video
+ * @property {Function} onResetPlaylist - Reset the playlist to the first video
  */
 
 const clamp = (n, min = 0, max = 1) => Math.max(min, Math.min(max, Number(n)))

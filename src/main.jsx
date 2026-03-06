@@ -5,7 +5,6 @@ import { RouterProvider } from 'react-router-dom'
 
 import Toaster from './components/common/Toaster.jsx'
 import { router } from './router/router.jsx'
-import 'react-day-picker/style.css'
 import './scss/index.scss'
 
 import '../i18n-config.js'

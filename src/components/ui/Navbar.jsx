@@ -9,6 +9,15 @@ import { ROUTES_NAMES } from '../../router/routesNames'
 import Button from './Button'
 import LanguageToggleButton from './LanguageToggleButton'
 
+/**
+ * Desktop navigation bar with logo, nav links, language toggle, and logout.
+ * Hidden on mobile (replaced by Header + Sidebar).
+ *
+ * @param {Object} props
+ * @param {Function} [props.onNavClick] - Called with the target path on nav link click.
+ * @param {Function} props.onMenuClick - Called with `{ isLogout: true }` on logout.
+ * @returns {JSX.Element}
+ */
 function Navbar({ onNavClick, onMenuClick }) {
   const { t } = useTranslation()
   const navigate = useNavigate()
@@ -63,7 +72,7 @@ function Navbar({ onNavClick, onMenuClick }) {
             <div key={item.key} className="navbar__button-wrapper">
               <Button
                 label={item.label}
-                theme="tertiary"
+                variant="tertiary"
                 size="medium"
                 onClick={() => handleNavClick(item.path)}
                 className={`navbar__button ${isActive ? 'navbar__button--active' : ''}`}
