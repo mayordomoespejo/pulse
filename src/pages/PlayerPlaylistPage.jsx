@@ -4,12 +4,14 @@ import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
 
+import { HeartIcon } from '../assets/icons/icons'
 import PlayerVideo from '../components/player/PlayerVideo'
 import Heading from '../components/ui/Heading'
 import ProgressGradient from '../components/ui/ProgressGradient'
 import TitleCard from '../components/ui/TitleCard'
-import { ROUTES_NAMES } from '../router/routesNames'
+import { useFavorites } from '../hooks/useFavorites'
 import { useWatchHistory } from '../hooks/useWatchHistory'
+import { ROUTES_NAMES } from '../router/routesNames'
 import { getVideo } from '../services/videos/getVideo'
 import useVideoStore from '../stores/videoStore'
 
@@ -22,10 +24,12 @@ function PlayerPlaylistPage() {
   const { t } = useTranslation()
   const TITLE = t('TITLE', { returnObjects: true })
   const PEXELS = t('PEXELS', { returnObjects: true })
+  const VIDEO_CARD = t('VIDEO_CARD', { returnObjects: true })
   const { videoId } = useParams()
   const navigate = useNavigate()
   const { currentPlaylist, currentVideo, setCurrentPlaylist, setCurrentVideo } = useVideoStore()
   const { addToHistory } = useWatchHistory()
+  const { isFavorite, toggleFavorite } = useFavorites()
 
   const { data, isLoading, isError } = useQuery({
     queryKey: ['video', videoId],
@@ -81,11 +85,27 @@ function PlayerPlaylistPage() {
           <div className="player-play-list-page__player-section">
             <PlayerVideo />
             <div className="player-play-list-page__player-info">
-              <TitleCard
-                className="player-play-list-page__title"
-                title={currentVideo?.video?.title}
-                tags={currentVideo?.video?.tags}
-              />
+              <div className="player-play-list-page__title-row">
+                <TitleCard
+                  className="player-play-list-page__title"
+                  title={currentVideo?.video?.title}
+                  tags={currentVideo?.video?.tags}
+                />
+                {video && (
+                  <button
+                    className={`player-play-list-page__favorite${isFavorite(video.id) ? ' player-play-list-page__favorite--active' : ''}`}
+                    onClick={() => toggleFavorite(video)}
+                    aria-label={isFavorite(video.id) ? VIDEO_CARD.FAVORITE_REMOVE : VIDEO_CARD.FAVORITE_ADD}
+                  >
+                    <HeartIcon
+                      fill={isFavorite(video.id) ? 'currentColor' : 'none'}
+                      stroke="currentColor"
+                      width="20"
+                      height="20"
+                    />
+                  </button>
+                )}
+              </div>
 
               <p className="player-play-list-page__credits">
                 {PEXELS.VIDEO_BY}{' '}
