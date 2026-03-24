@@ -1,18 +1,34 @@
 import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-/**
- * OAuth callback page — opened as a popup by the Google login flow.
- * Notifies the opener via BroadcastChannel and closes itself.
- */
+import Spinner from '../components/ui/Spinner'
+import { ROUTES_NAMES } from '../router/routesNames'
+import { supabase } from '../services/supabase/supabaseClient'
+
 function AuthCallback() {
-  useEffect(() => {
-    const channel = new BroadcastChannel('auth')
-    channel.postMessage({ type: 'AUTH_COMPLETE' })
-    channel.close()
-    window.close()
-  }, [])
+  const navigate = useNavigate()
 
-  return null
+  useEffect(() => {
+    const isExpectedOrigin =
+      window.opener && window.opener.location.origin === window.location.origin
+
+    supabase.auth.getSession().then(() => {
+      if (isExpectedOrigin) {
+        const channel = new BroadcastChannel('auth')
+        channel.postMessage({ type: 'AUTH_COMPLETE' })
+        channel.close()
+        window.close()
+        return
+      }
+      navigate(ROUTES_NAMES.ROOT, { replace: true })
+    })
+  }, [navigate])
+
+  return (
+    <div className="auth-callback">
+      <Spinner size="large" />
+    </div>
+  )
 }
 
 export default AuthCallback
