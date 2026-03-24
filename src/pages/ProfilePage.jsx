@@ -37,6 +37,11 @@ function ProfilePage() {
       if (authUser) {
         await supabase.from('watch_history').delete().eq('user_id', authUser.id)
         await supabase.from('favorites').delete().eq('user_id', authUser.id)
+        // Note: deleting the record from auth.users requires a Supabase service-role key
+        // (admin privileges), which must never be exposed in a client-side app.
+        // The auth record is therefore left in place; the user's personal data (watch
+        // history and favorites) has already been erased above. To fully remove the
+        // auth record, call a server-side edge function or Supabase admin API endpoint.
       }
       await supabase.auth.signOut()
       clearToken()

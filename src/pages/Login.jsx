@@ -8,6 +8,7 @@ import Input from '../components/ui/Input'
 import Spinner from '../components/ui/Spinner'
 import { ROUTES_NAMES } from '../router/routesNames'
 import { loginWithGoogle, sendOtp, verifyOtp } from '../services/auth/login'
+import { supabase } from '../services/supabase/supabaseClient'
 import { isAuthenticated, setToken } from '../utils/auth'
 
 function Login() {
@@ -73,11 +74,15 @@ function Login() {
     try {
       await loginWithGoogle()
       const channel = new BroadcastChannel('auth')
-      channel.onmessage = (event) => {
-        if (event.data.type === 'AUTH_COMPLETE' && event.data.session?.access_token) {
-          setToken(event.data.session.access_token)
-          channel.close()
-          navigate(ROUTES_NAMES.ROOT, { replace: true })
+      channel.onmessage = async (event) => {
+        if (event.data.type === 'AUTH_COMPLETE') {
+          // Fetch the session directly from Supabase — never trust payload-embedded credentials
+          const { data } = await supabase.auth.getSession()
+          if (data.session?.access_token) {
+            setToken(data.session.access_token)
+            channel.close()
+            navigate(ROUTES_NAMES.ROOT, { replace: true })
+          }
         }
       }
     } catch {

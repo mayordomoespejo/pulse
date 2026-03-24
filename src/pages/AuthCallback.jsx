@@ -8,10 +8,15 @@ function AuthCallback() {
   const navigate = useNavigate()
 
   useEffect(() => {
+    // Only proceed if this window was opened by an expected same-origin popup flow
+    const isExpectedOrigin =
+      window.opener && window.opener.location.origin === window.location.origin
+
     supabase.auth.getSession().then(({ data }) => {
-      if (window.opener) {
+      if (isExpectedOrigin) {
         const channel = new BroadcastChannel('auth')
-        channel.postMessage({ type: 'AUTH_COMPLETE', session: data.session })
+        // Post a minimal signal — receivers must call supabase.auth.getSession() themselves
+        channel.postMessage({ type: 'AUTH_COMPLETE' })
         channel.close()
         window.close()
         return
