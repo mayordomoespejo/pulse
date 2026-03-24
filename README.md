@@ -38,6 +38,9 @@ Demo credentials are shown directly on the login screen.
 - User profile with favorites and watch history counts
 - Email OTP login (passwordless)
 - Google OAuth login (popup flow)
+- Favorite toggle from the video player page
+- Animated digit counters on profile stats (YouTube-style)
+- Account deletion with confirmation modal
 - Responsive design (mobile, tablet, desktop)
 - Language switcher (EN / ES)
 - Pexels attribution in compliance with API terms

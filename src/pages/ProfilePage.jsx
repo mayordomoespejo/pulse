@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 
 import Button from '../components/ui/Button'
 import Heading from '../components/ui/Heading'
+import Modal from '../components/ui/Modal'
 import Spinner from '../components/ui/Spinner'
 import StatCounter from '../components/ui/StatCounter'
 import { useFavorites } from '../hooks/useFavorites'
@@ -19,6 +20,7 @@ function ProfilePage() {
   const navigate = useNavigate()
   const [user, setUser] = useState(null)
   const [deleteError, setDeleteError] = useState(null)
+  const [showDeleteModal, setShowDeleteModal] = useState(false)
   const { favorites } = useFavorites()
   const { history } = useWatchHistory()
 
@@ -32,8 +34,12 @@ function ProfilePage() {
     navigate(ROUTES_NAMES.LOGIN, { replace: true })
   }
 
-  const handleDeleteAccount = async () => {
-    if (!window.confirm(PROFILE.DELETE_CONFIRM)) return
+  const handleDeleteAccount = () => {
+    setShowDeleteModal(true)
+  }
+
+  const handleConfirmDelete = async () => {
+    setShowDeleteModal(false)
     try {
       const { data: { user: authUser } } = await supabase.auth.getUser()
       if (authUser) {
@@ -108,6 +114,30 @@ function ProfilePage() {
           <p className="profile-page__error" role="alert">{deleteError}</p>
         )}
       </div>
+
+      {showDeleteModal && (
+        <Modal
+          title={PROFILE.DELETE_TITLE}
+          onClose={() => setShowDeleteModal(false)}
+          actionsAlignment="space-between"
+          actions={
+            <>
+              <Button
+                variant="secondary"
+                label={PROFILE.DELETE_CANCEL}
+                onClick={() => setShowDeleteModal(false)}
+              />
+              <Button
+                variant="remove"
+                label={PROFILE.DELETE_CONFIRM_BTN}
+                onClick={handleConfirmDelete}
+              />
+            </>
+          }
+        >
+          <p>{PROFILE.DELETE_CONFIRM}</p>
+        </Modal>
+      )}
     </div>
   )
 }

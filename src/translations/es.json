@@ -284,7 +284,10 @@
         "WATCHED": "Vistos",
         "LOGOUT": "Cerrar sesión",
         "DELETE_ACCOUNT": "Eliminar cuenta",
-        "DELETE_CONFIRM": "¿Seguro que quieres eliminar tu cuenta de forma permanente? Esta acción no se puede deshacer."
+        "DELETE_TITLE": "Eliminar cuenta",
+        "DELETE_CONFIRM": "¿Seguro que quieres eliminar tu cuenta de forma permanente? Esta acción no se puede deshacer.",
+        "DELETE_CONFIRM_BTN": "Confirmar",
+        "DELETE_CANCEL": "Cancelar"
     },
     "RECENTLY_WATCHED": {
         "TITLE": "Visto recientemente"

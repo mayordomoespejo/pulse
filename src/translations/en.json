@@ -280,7 +280,10 @@
         "WATCHED": "Watched",
         "LOGOUT": "Sign out",
         "DELETE_ACCOUNT": "Delete account",
-        "DELETE_CONFIRM": "Are you sure you want to permanently delete your account? This action cannot be undone."
+        "DELETE_TITLE": "Delete account",
+        "DELETE_CONFIRM": "Are you sure you want to permanently delete your account? This action cannot be undone.",
+        "DELETE_CONFIRM_BTN": "Confirm",
+        "DELETE_CANCEL": "Cancel"
     },
     "RECENTLY_WATCHED": {
         "TITLE": "Recently watched"
