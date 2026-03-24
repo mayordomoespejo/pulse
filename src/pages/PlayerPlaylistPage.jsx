@@ -85,27 +85,26 @@ function PlayerPlaylistPage() {
           <div className="player-play-list-page__player-section">
             <PlayerVideo />
             <div className="player-play-list-page__player-info">
-              <div className="player-play-list-page__title-row">
-                <TitleCard
-                  className="player-play-list-page__title"
-                  title={currentVideo?.video?.title}
-                  tags={currentVideo?.video?.tags}
-                />
-                {video && (
-                  <button
-                    className={`player-play-list-page__favorite${isFavorite(video.id) ? ' player-play-list-page__favorite--active' : ''}`}
-                    onClick={() => toggleFavorite(video)}
-                    aria-label={isFavorite(video.id) ? VIDEO_CARD.FAVORITE_REMOVE : VIDEO_CARD.FAVORITE_ADD}
-                  >
-                    <HeartIcon
-                      fill={isFavorite(video.id) ? 'currentColor' : 'none'}
-                      stroke="currentColor"
-                      width="20"
-                      height="20"
-                    />
-                  </button>
-                )}
-              </div>
+              {video && (
+                <button
+                  className={`player-play-list-page__favorite${isFavorite(video.id) ? ' player-play-list-page__favorite--active' : ''}`}
+                  onClick={() => toggleFavorite(video)}
+                  aria-label={isFavorite(video.id) ? VIDEO_CARD.FAVORITE_REMOVE : VIDEO_CARD.FAVORITE_ADD}
+                >
+                  <HeartIcon
+                    fill={isFavorite(video.id) ? 'currentColor' : 'none'}
+                    stroke="currentColor"
+                    width="20"
+                    height="20"
+                  />
+                </button>
+              )}
+
+              <TitleCard
+                className="player-play-list-page__title"
+                title={currentVideo?.video?.title}
+                tags={currentVideo?.video?.tags}
+              />
 
               <p className="player-play-list-page__credits">
                 {PEXELS.VIDEO_BY}{' '}
