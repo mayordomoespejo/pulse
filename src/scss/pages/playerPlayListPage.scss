@@ -48,7 +48,7 @@
     text-align: left;
     width: 100%;
     min-width: 0;
-    padding: 0 0.5rem 0.25rem 0.5rem;
+    padding: 0;
 
     @include breakpoint('desktop') {
       flex: 1;
@@ -73,6 +73,7 @@
 
   &__favorite {
     align-self: flex-start;
+    margin-bottom: 0.5rem;
     border: none;
     background: transparent;
     color: rgba($c-tertiary, 0.35);
