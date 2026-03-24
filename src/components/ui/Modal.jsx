@@ -121,6 +121,8 @@ const Modal = ({
       <div
         ref={modalRef}
         className={`modal ${isVisible ? 'is-open' : ''} ${isClosing ? 'is-closing' : ''} ${className}`}
+        role="dialog"
+        aria-modal="true"
         onClick={(e) => e.stopPropagation()}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
@@ -136,13 +138,13 @@ const Modal = ({
         <div className="modal__header">
           {title && <h2 className="modal__header__title">{title}</h2>}
 
-          <button className="modal__header__close" onClick={handleClose}>
+          <button type="button" className="modal__header__close" onClick={handleClose}>
             {iconClose}
           </button>
           {subtitle && <h2 className="modal__header__subtitle">{subtitle}</h2>}
         </div>
         <div className={`modal__content ${classNameContent}`}>{children}</div>
-        {(!actions || isClosing) ? <></> : (isTablet || !isFloating)
+        {(!actions || isClosing) ? null : (isTablet || !isFloating)
           ? (
             <div className={`modal__actions modal__actions--${actionsAlignment}`}>
               {actions}

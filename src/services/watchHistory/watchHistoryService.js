@@ -10,7 +10,7 @@ export async function getWatchHistory(limit = 10) {
     .from('watch_history')
     .select('*')
     .order('watched_at', { ascending: false })
-    .limit(limit * 5)
+    .limit(limit * 5) // fetch 5× the desired limit so deduplication by video_id still yields enough unique entries
   if (error) throw error
 
   const seen = new Set()

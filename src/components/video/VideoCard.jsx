@@ -12,6 +12,7 @@ import VideoDuration from './VideoDuration'
 function VideoCard({ video }) {
   const { t } = useTranslation()
   const PEXELS = t('PEXELS', { returnObjects: true })
+  const VIDEO_CARD = t('VIDEO_CARD', { returnObjects: true })
   const navigate = useNavigate()
   const { isFavorite, toggleFavorite } = useFavorites()
 
@@ -56,7 +57,7 @@ function VideoCard({ video }) {
         <button
           className={`video-card__favorite${favorited ? ' video-card__favorite--active' : ''}`}
           onClick={handleToggleFavorite}
-          aria-label={favorited ? 'Remove from favorites' : 'Add to favorites'}
+          aria-label={favorited ? VIDEO_CARD.FAVORITE_REMOVE : VIDEO_CARD.FAVORITE_ADD}
         >
           <HeartIcon fill={favorited ? 'currentColor' : 'none'} stroke="currentColor" width="16" height="16" />
         </button>

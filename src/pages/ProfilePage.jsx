@@ -18,6 +18,7 @@ function ProfilePage() {
   const PROFILE = t('PROFILE', { returnObjects: true })
   const navigate = useNavigate()
   const [user, setUser] = useState(null)
+  const [deleteError, setDeleteError] = useState(null)
   const { favorites } = useFavorites()
   const { history } = useWatchHistory()
 
@@ -48,7 +49,7 @@ function ProfilePage() {
       clearToken()
       navigate(ROUTES_NAMES.LOGIN)
     } catch (err) {
-      console.error('Delete account failed', err)
+      setDeleteError(err?.message || t('CONSTANTS.GENERAL_ERROR'))
     }
   }
 
@@ -103,6 +104,9 @@ function ProfilePage() {
         >
           {PROFILE.DELETE_ACCOUNT}
         </button>
+        {deleteError && (
+          <p className="profile-page__error" role="alert">{deleteError}</p>
+        )}
       </div>
     </div>
   )

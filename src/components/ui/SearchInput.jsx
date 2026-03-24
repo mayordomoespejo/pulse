@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSearchParams } from 'react-router-dom'
 
@@ -37,28 +37,44 @@ function SearchInput({
   )
   const inputRef = useRef(null)
 
+  // Keep mutable refs for values that shouldn't re-trigger the debounce timer.
+  // `searchParams` is a new object on every render (React Router), and `onChange`
+  // may be an inline function — putting either directly in the dep array would
+  // reset the debounce on every keystroke render cycle.
+  const searchParamsRef = useRef(searchParams)
+  const setSearchParamsRef = useRef(setSearchParams)
+  const onChangeRef = useRef(onChange)
+  useEffect(() => { searchParamsRef.current = searchParams }, [searchParams])
+  useEffect(() => { setSearchParamsRef.current = setSearchParams }, [setSearchParams])
+  useEffect(() => { onChangeRef.current = onChange }, [onChange])
+
   useEffect(() => {
     if (!useParams) {
       setInputValue(value ?? '')
     }
   }, [useParams, value])
 
+  const commitValue = useCallback((val) => {
+    if (useParams) {
+      const next = new URLSearchParams(searchParamsRef.current)
+      if (val) {
+        next.set(paramName, val)
+      } else {
+        next.delete(paramName)
+      }
+      setSearchParamsRef.current(next)
+    } else {
+      onChangeRef.current?.(val)
+    }
+  }, [useParams, paramName])
+
   useEffect(() => {
     const timeout = setTimeout(() => {
-      if (useParams) {
-        if (inputValue) {
-          searchParams.set(paramName, inputValue)
-        } else {
-          searchParams.delete(paramName)
-        }
-        setSearchParams(searchParams)
-      } else {
-        onChange?.(inputValue)
-      }
+      commitValue(inputValue)
     }, debounceMs)
 
     return () => clearTimeout(timeout)
-  }, [inputValue, useParams, paramName, searchParams, setSearchParams, onChange, debounceMs])
+  }, [inputValue, debounceMs, commitValue])
 
   const handleClickContainer = () => {
     if (!disabled) {

@@ -164,7 +164,9 @@
         "ACTIONS": {
             "EDIT": "Edit",
             "DELETE": "Delete"
-        }
+        },
+        "FAVORITE_ADD": "Add to favorites",
+        "FAVORITE_REMOVE": "Remove from favorites"
     },
     "VIDEO_MANAGE": {
         "TITLE": "Explore",

@@ -182,7 +182,9 @@
             "EDIT": "Editar",
             "DELETE": "Eliminar"
         },
-        "PROCESSING": "Vídeo procesándose"
+        "PROCESSING": "Vídeo procesándose",
+        "FAVORITE_ADD": "Añadir a favoritos",
+        "FAVORITE_REMOVE": "Quitar de favoritos"
     },
     "VIDEO_MANAGE": {
         "TITLE": "Explorar",
