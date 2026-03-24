@@ -2,23 +2,19 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import { PEXELS_URL } from '../../constants/constants'
+import { useFavorites } from '../../hooks/useFavorites'
 import { ROUTES_NAMES } from '../../router/routesNames'
+import { HeartIcon } from '../../assets/icons/icons'
 import TitleCard from '../ui/TitleCard'
 
 import VideoDuration from './VideoDuration'
 
-/**
- * Video preview card with attribution and detail navigation.
- *
- * @param {Object} props Component props.
- * @param {Object} props.video Normalized video model.
- * @returns {JSX.Element}
- */
 function VideoCard({ video }) {
   const { t } = useTranslation()
   const PEXELS = t('PEXELS', { returnObjects: true })
-
+  const VIDEO_CARD = t('VIDEO_CARD', { returnObjects: true })
   const navigate = useNavigate()
+  const { isFavorite, toggleFavorite } = useFavorites()
 
   const {
     id,
@@ -30,9 +26,16 @@ function VideoCard({ video }) {
     photographerUrl,
   } = video || {}
 
+  const favorited = isFavorite(id)
+
   const handleOpenDetail = () => {
     if (!id) return
     navigate(ROUTES_NAMES.VIDEO_DETAIL.replace(':videoId', id))
+  }
+
+  const handleToggleFavorite = (event) => {
+    event.stopPropagation()
+    toggleFavorite(video)
   }
 
   return (
@@ -51,6 +54,13 @@ function VideoCard({ video }) {
       <div className="video-card__thumbnail">
         <img src={thumbnailUrl} alt={title} loading="lazy" />
         <VideoDuration duration={duration} />
+        <button
+          className={`video-card__favorite${favorited ? ' video-card__favorite--active' : ''}`}
+          onClick={handleToggleFavorite}
+          aria-label={favorited ? VIDEO_CARD.FAVORITE_REMOVE : VIDEO_CARD.FAVORITE_ADD}
+        >
+          <HeartIcon fill={favorited ? 'currentColor' : 'none'} stroke="currentColor" width="16" height="16" />
+        </button>
       </div>
 
       <div className="video-card__content">

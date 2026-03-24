@@ -193,7 +193,7 @@ $transition-properties: background-color, color, border-color, opacity, transfor
   &--remove {
     background-color: $c-delete;
     border-color: $c-delete;
-    color: #FFFFFF;
+    color: $c-primary;
 
     &:hover:not(:disabled):not(&--disabled) {
       background-color: transparent;
@@ -228,7 +228,7 @@ $transition-properties: background-color, color, border-color, opacity, transfor
     line-height: 100%;
     letter-spacing: 0;
     text-transform: uppercase;
-    color: #000000;
+    color: $c-tertiary;
     text-align: left;
     gap: 0;
 

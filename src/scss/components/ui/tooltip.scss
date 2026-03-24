@@ -22,7 +22,7 @@
       pointer-events: none;
       transition: opacity .15s ease, transform .15s ease;
       background: #20272fc3;
-      color: #fff;
+      color: $c-primary;
       padding: .25rem .5rem;
       border-radius: .375rem;
       font-size: 12px;
@@ -87,7 +87,7 @@
     pointer-events: none;
     transition: opacity .15s ease, transform .15s ease;
     background: #20272F;
-    color: #fff;
+    color: $c-primary;
     padding: .25rem .5rem;
     border-radius: .375rem;
     font-size: 12px;

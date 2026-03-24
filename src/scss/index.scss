@@ -25,6 +25,7 @@
 @use "./components/ui/title.scss" as *;
 @use "./components/ui/titleCard.scss" as *;
 @use "./components/ui/toolbar.scss" as *;
+@use "./components/ui/statCounter.scss" as *;
 @use "./components/ui/tooltip.scss" as *;
 
 // Common Components
@@ -56,6 +57,9 @@
 @use "./pages/playerPlayListPage.scss" as *;
 @use "./pages/featuredPage.scss" as *;
 @use "./pages/videoManage.scss" as *;
+@use "./pages/authCallback.scss" as *;
+@use "./pages/favoritesPage.scss" as *;
+@use "./pages/profilePage.scss" as *;
 
 :root {
   --color-primary: #{$c-primary};

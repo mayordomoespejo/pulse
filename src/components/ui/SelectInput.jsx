@@ -1,5 +1,3 @@
-'use client'
-
 import { useField } from 'formik'
 import { useTranslation } from 'react-i18next'
 import Select, { components } from 'react-select'

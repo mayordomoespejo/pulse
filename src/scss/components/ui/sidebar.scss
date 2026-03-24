@@ -85,7 +85,7 @@
         }
 
         &:hover {
-          background: rgba(255, 255, 255, 0.3);
+          background: rgba($c-primary, 0.3);
         }
 
         .sidebar__icon {

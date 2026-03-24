@@ -1,107 +1,105 @@
-import { useMutation } from '@tanstack/react-query'
-import { Formik, Form } from 'formik'
 import { useEffect, useRef, useState } from 'react'
-import toast from 'react-hot-toast'
-import { Trans, useTranslation } from 'react-i18next'
-import { useNavigate, Navigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+import { Navigate, useNavigate } from 'react-router-dom'
 
-import { EyeToggleIcon, LogoTextIcon } from '../assets/icons/icons'
-import EmptyState from '../components/common/EmptyState'
+import { LogoTextIcon } from '../assets/icons/icons'
 import Button from '../components/ui/Button'
 import Input from '../components/ui/Input'
 import Spinner from '../components/ui/Spinner'
 import { ROUTES_NAMES } from '../router/routesNames'
-import { loginService } from '../services/auth/login'
-import { setToken, isAuthenticated } from '../utils/auth'
-import { loginValidation } from '../validations/loginValidation'
+import { loginWithGoogle, sendOtp, verifyOtp } from '../services/auth/login'
+import { supabase } from '../services/supabase/supabaseClient'
+import { isAuthenticated, setToken } from '../utils/auth'
 
-/**
- * Login - Página de inicio de sesión
- * 
- * Maneja la autenticación de usuarios mediante formulario con validación.
- * Redirige a usuarios ya autenticados y muestra errores de autenticación.
- * 
- * @component
- * @returns {JSX.Element} Página de login con formulario de autenticación
- */
 function Login() {
-  const demoUsername = import.meta.env.VITE_DEMO_USERNAME || 'demo@pulse.dev'
-  const demoPassword = import.meta.env.VITE_DEMO_PASSWORD || 'Pulse123!'
   const logoRef = useRef(null)
-  const inputsRef = useRef(null)
-  const emptyStateTimeoutRef = useRef(null)
-  const [showPassword, setShowPassword] = useState(false)
-  const [activeInputName, setActiveInputName] = useState(null)
-  const [lastActiveInputName, setLastActiveInputName] = useState('username')
-  const [isEmptyStateVisible, setIsEmptyStateVisible] = useState(false)
-  const [shouldRenderEmptyState, setShouldRenderEmptyState] = useState(false)
+  const channelRef = useRef(null)
+  const [step, setStep] = useState('email')
+  const [email, setEmail] = useState('')
+  const [code, setCode] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState(null)
+  const [isGoogleLoading, setIsGoogleLoading] = useState(false)
+  const [googleError, setGoogleError] = useState(null)
   const navigate = useNavigate()
   const alreadyLogged = isAuthenticated()
   const { t } = useTranslation()
   const LOGIN = t('LOGIN', { returnObjects: true })
 
-  const { mutate: mutateLogin, isPending: isLoginPending } = useMutation({
-    mutationFn: (data) => loginService(data),
-
-  })
-
-  const handleSubmit = async (values, { setSubmitting, setFieldError }) => {
-    setSubmitting(true)
-    mutateLogin(values, {
-      onSuccess: ({ data }) => {
-        setToken(data?.accessToken)
-        navigate(ROUTES_NAMES.ROOT, { replace: true })
-        toast.success(LOGIN.TOAST.SUCCESS)
-      },
-      onError: (error) => {
-        const { status, response } = error || {}
-        if (status === 500) {
-          return toast.error(LOGIN.TOAST.ERROR)
-        }
-        const message = response?.data?.errorKey
-          ? t(response.data.errorKey)
-          : response?.data?.errors?.join(', ')
-
-        setFieldError('global', message || LOGIN.ERRORS.DEFAULT)
-      },
-      onSettled: () => {
-        setSubmitting(false)
-      },
-    })
-  }
-
-  const initialValues = {
-    username: '',
-    password: '',
-  }
-
-  const togglePasswordVisibility = () => {
-    setShowPassword((prev) => !prev)
-  }
-
-  const handleInputsFocusCapture = (event) => {
-    const inputName = event?.target?.name
-    if (inputName === 'username' || inputName === 'password') {
-      setActiveInputName(inputName)
+  const handleSendOtp = async (e) => {
+    e.preventDefault()
+    if (!email.trim()) {
+      setError(LOGIN.ERROR_EMAIL_REQUIRED)
+      return
+    }
+    setIsLoading(true)
+    setError(null)
+    try {
+      await sendOtp(email)
+      setStep('code')
+    } catch {
+      setError(LOGIN.ERROR_SEND)
+    } finally {
+      setIsLoading(false)
     }
   }
 
-  const handleInputsBlurCapture = () => {
-    setTimeout(() => {
-      if (!inputsRef.current?.contains(document.activeElement)) {
-        setActiveInputName(null)
-        return
-      }
-
-      const focusedName = document.activeElement?.name
-      if (focusedName === 'username' || focusedName === 'password') {
-        setActiveInputName(focusedName)
-      }
-    }, 0)
+  const handleVerifyOtp = async (e) => {
+    e.preventDefault()
+    if (!code.trim()) {
+      setError(LOGIN.ERROR_CODE_REQUIRED)
+      return
+    }
+    setIsLoading(true)
+    setError(null)
+    try {
+      const data = await verifyOtp(email, code)
+      setToken(data.session.access_token)
+      navigate(ROUTES_NAMES.ROOT, { replace: true })
+    } catch {
+      setError(LOGIN.ERROR_VERIFY)
+    } finally {
+      setIsLoading(false)
+    }
   }
 
-  const emptyStateTarget = activeInputName || lastActiveInputName
-  const emptyStateValue = emptyStateTarget === 'password' ? demoPassword : demoUsername
+  const handleBack = () => {
+    setStep('email')
+    setCode('')
+    setError(null)
+  }
+
+  const handleGoogleLogin = async () => {
+    setIsGoogleLoading(true)
+    setGoogleError(null)
+    try {
+      await loginWithGoogle()
+      const channel = new BroadcastChannel('auth')
+      channelRef.current = channel
+      channel.onmessage = async (event) => {
+        if (event.data.type === 'AUTH_COMPLETE') {
+          // Fetch the session directly from Supabase — never trust payload-embedded credentials
+          const { data } = await supabase.auth.getSession()
+          if (data.session?.access_token) {
+            setToken(data.session.access_token)
+            channel.close()
+            channelRef.current = null
+            navigate(ROUTES_NAMES.ROOT, { replace: true })
+          }
+        }
+      }
+    } catch {
+      setGoogleError(LOGIN.ERROR_SEND)
+      setIsGoogleLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    return () => {
+      channelRef.current?.close()
+      channelRef.current = null
+    }
+  }, [])
 
   useEffect(() => {
     const target = logoRef.current
@@ -143,35 +141,6 @@ function Login() {
     }
   }, [])
 
-  useEffect(() => {
-    if (emptyStateTimeoutRef.current) {
-      clearTimeout(emptyStateTimeoutRef.current)
-      emptyStateTimeoutRef.current = null
-    }
-
-    if (activeInputName) {
-      setLastActiveInputName(activeInputName)
-      setShouldRenderEmptyState(true)
-      requestAnimationFrame(() => setIsEmptyStateVisible(true))
-      return undefined
-    }
-
-    setIsEmptyStateVisible(false)
-    emptyStateTimeoutRef.current = setTimeout(() => {
-      setShouldRenderEmptyState(false)
-    }, 180)
-
-    return undefined
-  }, [activeInputName])
-
-  useEffect(() => {
-    return () => {
-      if (emptyStateTimeoutRef.current) {
-        clearTimeout(emptyStateTimeoutRef.current)
-      }
-    }
-  }, [])
-
   if (alreadyLogged) {
     return <Navigate to={ROUTES_NAMES.ROOT} replace />
   }
@@ -184,81 +153,108 @@ function Login() {
           <LogoTextIcon className="login-page__logo" fill="currentColor" />
           <LogoTextIcon className="login-page__logo login-page__logo--hover" fill="currentColor" />
         </div>
-        <Formik
-          initialValues={initialValues}
-          validationSchema={loginValidation(t)}
-          onSubmit={handleSubmit}
-        >
-          {({ isSubmitting, errors }) => (
-            <Form id="login-form" className="login-page__form" autoComplete="off" data-form-type="other">
-              <div className="login-page__inputs">
-                <div
-                  className="login-page__fields"
-                  ref={inputsRef}
-                  onFocusCapture={handleInputsFocusCapture}
-                  onBlurCapture={handleInputsBlurCapture}
-                >
-                  <Input
-                    name="username"
-                    type="text"
-                    label={LOGIN.USERNAME_LABEL}
-                    variant="primary"
-                    placeholder={demoUsername}
-                    autoComplete="off"
-                  />
-                  <Input
-                    name="password"
-                    type={showPassword ? 'text' : 'password'}
-                    label={LOGIN.PASSWORD_LABEL}
-                    variant="primary"
-                    placeholder={demoPassword}
-                    autoComplete="new-password"
-                    iconAfterInteractive
-                    IconAfter={(
-                      <button
-                        type="button"
-                        className="login-page__password-toggle"
-                        aria-label={showPassword ? LOGIN.HIDE_PASSWORD : LOGIN.SHOW_PASSWORD}
-                        aria-pressed={showPassword}
-                        onClick={togglePasswordVisibility}
-                      >
-                        <EyeToggleIcon stroke="currentColor" isOpen={showPassword} />
-                      </button>
-                    )}
-                  />
-                </div>
-                {errors?.global && <p className="input__error login-page__error">{errors?.global}</p>}
+
+        <div className="login-page__inputs">
+          {(error || googleError) && (
+            <p className="input__error login-page__error">{error || googleError}</p>
+          )}
+
+          {step === 'email' ? (
+            <form className="login-page__form" onSubmit={handleSendOtp} autoComplete="off" noValidate>
+              <div className="login-page__fields">
+                <Input
+                  useFormik={false}
+                  name="email"
+                  type="email"
+                  label={LOGIN.EMAIL_LABEL}
+                  variant="primary"
+                  placeholder={LOGIN.EMAIL_PLACEHOLDER}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  disabled={isLoading}
+                  autoComplete="email"
+                />
               </div>
               <Button
                 type="submit"
                 className="login-page__button"
-                label={LOGIN.SUBMIT}
-                iconEnd={isSubmitting || isLoginPending
-                  ? <Spinner size="button" /> : null}
-                disabled={isSubmitting || isLoginPending}
+                label={isLoading ? '' : LOGIN.SEND_CODE}
+                iconEnd={isLoading ? <Spinner size="button" /> : null}
+                disabled={isLoading}
               />
-            </Form>
+            </form>
+          ) : (
+            <form className="login-page__form" onSubmit={handleVerifyOtp} noValidate>
+              <div className="login-page__fields">
+                <div className="login-page__code-field">
+                  <Input
+                    useFormik={false}
+                    id="otp-code"
+                    name="code"
+                    type="text"
+                    label={LOGIN.CODE_LABEL}
+                    variant="primary"
+                    placeholder={LOGIN.CODE_PLACEHOLDER}
+                    value={code}
+                    onChange={(e) => setCode(e.target.value)}
+                    required
+                    disabled={isLoading}
+                    autoComplete="one-time-code"
+                    inputMode="numeric"
+                    maxLength={6}
+                    className="login-page__code-input"
+                  />
+                  <button
+                    type="button"
+                    className="login-page__back-link"
+                    onClick={handleBack}
+                    disabled={isLoading}
+                  >
+                    {LOGIN.BACK}
+                  </button>
+                </div>
+              </div>
+              <Button
+                type="submit"
+                className="login-page__button"
+                label={isLoading ? '' : LOGIN.VERIFY}
+                iconEnd={isLoading ? <Spinner size="button" /> : null}
+                disabled={isLoading}
+              />
+            </form>
           )}
-        </Formik>
-      </div>
-      {shouldRenderEmptyState && (
-        <div
-          className={`login-page__empty-state-anchor ${isEmptyStateVisible ? 'login-page__empty-state-anchor--visible' : ''}`}
-          aria-live="polite"
-        >
-          <EmptyState
-            className="login-page__empty-state"
-            textColor="primary"
-            text={(
-              <Trans
-                i18nKey="LOGIN.DEMO_HINT"
-                values={{ value: emptyStateValue }}
-                components={{ 1: <span className="login-page__empty-state-value" /> }}
-              />
-            )}
-          />
+
+          <div className="login-page__divider">
+            <span className="login-page__divider-line" />
+            <span className="login-page__divider-text">{LOGIN.OR}</span>
+            <span className="login-page__divider-line" />
+          </div>
+
+          <button
+            type="button"
+            className="login-page__google-btn"
+            onClick={handleGoogleLogin}
+            disabled={isGoogleLoading}
+          >
+            <svg
+              className="login-page__google-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              width="18"
+              height="18"
+              aria-hidden="true"
+            >
+              <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
+              <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+              <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" />
+              <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
+            </svg>
+            <span>{isGoogleLoading ? <Spinner size="button" /> : LOGIN.GOOGLE}</span>
+          </button>
         </div>
-      )}
+      </div>
+
     </div>
   )
 }

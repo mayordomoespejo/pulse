@@ -1,283 +1,307 @@
 {
-  "CONSTANTS": {
-    "CANCEL": "Cancel",
-    "CREATE": "Create",
-    "EDIT": "Edit",
-    "SAVE": "Save",
-    "ADD": "Add",
-    "COLOR": "Color",
-    "VIDEOS": "videos",
-    "VIDEO": "video",
-    "UPLOAD": "Upload",
-    "SELECT_NO_OPTIONS": "No options",
-    "TAGS_LABEL": "Associated tags",
-    "TAGS_PLACEHOLDER": "Search by tag",
-    "DELETE": "Delete",
-    "CONFIRM": "Confirm",
-    "GENERAL_ERROR": "An error has occurred",
-    "TODAY": "Today",
-    "TOMORROW": "Tomorrow",
-    "THIS_WEEK": "This week",
-    "CLOSE": "Close",
-    "SEARCH": "Search",
-    "BACK_TO_HOME": "Back to home page"
-  },
-  "TITLE": {
-    "MAIN": "Video Manager"
-  },
-  "NOT_FOUND": {
-    "NUMBER": "404",
-    "TITLE": "Page not found",
-    "SUBTITLE": "Oops! The page you're looking for doesn't exist",
-    "DESCRIPTION": "It seems you got lost. The page you're looking for is not available or has been moved.",
-    "SUGGESTION": "What can you do?"
-  },
-  "SIDEBAR": {
-    "LOGO": "PULSE",
-    "FEATURED": "Featured",
-    "LIBRARY": "Explore",
-    "LOGOUT": "Logout"
-  },
-  "NAVBAR": {
-    "LIBRARY": "Explore",
-    "GO_TO_HOME": "Go to home page"
-  },
-  "HEADER": {
-    "TOGGLE_MENU": "Toggle menu"
-  },
-  "LANGUAGE_SWITCH": {
-    "TITLE": "ES / EN",
-    "ARIA": "Switch language to {{lang}}"
-  },
-  "LINK_UNDERLINE": {
-    "BACK": "Back"
-  },
-  "PEXELS": {
-    "VIEW_DETAILS": "View details",
-    "VIDEO_BY": "Video by",
-    "ON": "on",
-    "BRAND": "Pexels",
-    "PROVIDED_BY": "Videos provided by Pexels",
-    "DURATION": "Duration"
-  },
-  "PLAYER_OVERLAY": {
-    "EMPTY": "No videos to play"
-  },
-  "PLAYER_PLAYLIST": {
-    "TITLE": "Playlist"
-  },
-  "PLAYER_VIDEO": {
-    "QUALITY": "Quality",
-    "QUALITY_AUTO": "Auto",
-    "QUALITY_HD": "HD",
-    "QUALITY_SD": "SD",
-    "QUALITY_HLS": "HLS"
-  },
-  "HOME": {
-    "TITLE": "Pulse Video Manager",
-    "DESCRIPTION": "Welcome to the video manager"
-  },
-  "PAGINATION": {
-    "NAVIGATION": "Pagination Navigation",
-    "GO_TO_PREVIOUS": "Go to previous page",
-    "GO_TO_NEXT": "Go to next page",
-    "OF": "of"
-  },
-  "SELECT_DATE_RANGE": {
-    "PLACEHOLDER": "Select date"
-  },
-  "PLAYLISTS_PAGE": {
-    "TITLE": "Video Manager",
-    "HEADING": "Playlists",
-    "CREATE_BUTTON": "Create playlist"
-  },
-  "FEATURED_PAGE": {
-    "TITLE": "Featured",
-    "HERO_TEXT": "The most powerful from Pulse is here",
-    "PLAYLISTS_LABEL": "Playlists",
-    "VIDEOS_LABEL": "Discover"
-  },
-  "PLAYLIST_SORT_VIDEOS_MODAL": {
-    "TITLE": "Sort videos",
-    "SUBTITLE": "Drag videos to reorder them",
-    "SAVE_ORDER": "Save order",
-    "SAVING": "Saving…",
-    "TOAST": {
-      "SUCCESS": "Order updated",
-      "ERROR": "Error updating order"
-    }
-  },
-  "TAGS_PAGE": {
-    "TITLE": "Tags panel",
-    "LIST_HEADER": "Tags list",
-    "ADD": "Add tag",
-    "TOAST": {
-      "CREATE_SUCCESS": "Tag created successfully",
-      "EDIT_SUCCESS": "Tag updated successfully",
-      "CREATE_ERROR": "Error creating tag",
-      "EDIT_ERROR": "Error updating tag",
-      "DELETE_SUCCESS": "Tag deleted successfully",
-      "DELETE_ERROR": "Error deleting tag"
-    }
-  },
-  "VIDEO_UPLOAD_INPUT": {
-    "EDIT_LABEL": "File uploaded",
-    "PLACEHOLDER": "Drag a video or click to upload",
-    "REMOVE_ARIA": "Remove video"
-  },
-  "REMOVE_MODAL": {
-    "TITLE": "Confirmation required",
-    "BODY": {
-      "LINE_1": "You are about to delete the video <1>{{title}}</1>.",
-      "LINE_2": "Do you want to continue?"
+    "CONSTANTS": {
+        "CANCEL": "Cancel",
+        "CREATE": "Create",
+        "EDIT": "Edit",
+        "SAVE": "Save",
+        "ADD": "Add",
+        "COLOR": "Color",
+        "VIDEOS": "videos",
+        "VIDEO": "video",
+        "UPLOAD": "Upload",
+        "SELECT_NO_OPTIONS": "No options",
+        "TAGS_LABEL": "Associated tags",
+        "TAGS_PLACEHOLDER": "Search by tag",
+        "DELETE": "Delete",
+        "CONFIRM": "Confirm",
+        "GENERAL_ERROR": "An error has occurred",
+        "TODAY": "Today",
+        "TOMORROW": "Tomorrow",
+        "THIS_WEEK": "This week",
+        "CLOSE": "Close",
+        "SEARCH": "Search",
+        "BACK_TO_HOME": "Back to home page"
     },
-    "BUTTON": {
-      "CANCEL": "Cancel",
-      "CONFIRM": "Delete"
-    }
-  },
-  "VIDEO_FORM_MODAL": {
-    "TITLE_CREATE": "Upload video",
-    "TITLE_EDIT": "Edit video",
-    "TITLE_LABEL": "Title",
-    "TITLE_PLACEHOLDER": "Write the title of the video",
-    "VALIDATION": {
-      "TITLE": "Title is required",
-      "VIDEO": "You must upload a video",
-      "VIDEO_TYPE": "Only MP4 videos are allowed",
-      "VIDEO_SIZE": "Maximum file size is 500MB"
+    "TITLE": {
+        "MAIN": "Video Manager"
     },
-    "TOAST": {
-      "CREATE_SUCCESS": "Video created successfully",
-      "EDIT_SUCCESS": "Video updated successfully",
-      "CREATE_ERROR": "Error creating video",
-      "EDIT_ERROR": "Error updating video"
-    }
-  },
-  "VIDEO_CARD": {
-    "ACTIONS": {
-      "EDIT": "Edit",
-      "DELETE": "Delete"
-    }
-  },
-  "VIDEO_MANAGE": {
-    "TITLE": "Explore",
-    "SUBTITLE": "Discover",
-    "SEARCH_PLACEHOLDER": "Search by topic",
-    "UPLOAD_BUTTON": "Upload Video",
-    "EMPTY_STATE": "No videos available. Upload one to get started.",
-    "TOAST": {
-      "DELETE_SUCCESS": "Video deleted successfully",
-      "DELETE_ERROR": "Error deleting video"
-    }
-  },
-  "EMPTY_STATE": {
-    "DEFAULT": "No items to display.",
-    "VIDEOS": "No videos available. Upload one to get started.",
-    "PLAYLISTS": "No playlists available. Create one to get started.",
-    "TAGS": "No tags available. Create one to get started."
-  },
-  "PLAYLIST_FORM_MODAL": {
-    "TITLE_CREATE": "Create playlist",
-    "TITLE_EDIT": "Edit playlist",
-    "TITLE_LABEL": "Title",
-    "TITLE_PLACEHOLDER": "Write the title of the playlist",
-    "SCHEDULES_LABEL": "Schedule",
-    "DATE_PLACEHOLDER": "Select date and time",
-    "VALIDATION": {
-      "TITLE": "Title is required",
-      "SCHEDULE_REQUIRED": "Date is required"
+    "NOT_FOUND": {
+        "NUMBER": "404",
+        "TITLE": "Page not found",
+        "SUBTITLE": "Oops! The page you're looking for doesn't exist",
+        "DESCRIPTION": "It seems you got lost. The page you're looking for is not available or has been moved.",
+        "SUGGESTION": "What can you do?"
     },
-    "TOAST": {
-      "CREATE_SUCCESS": "Playlist created successfully",
-      "EDIT_SUCCESS": "Playlist updated successfully",
-      "CREATE_ERROR": "Error creating playlist",
-      "EDIT_ERROR": "Error updating playlist"
-    }
-  },
-  "TAG_FORM_MODAL": {
-    "TITLE_CREATE": "Add tag",
-    "TITLE_EDIT": "Edit tag",
-    "NAME": "Name",
-    "PLACEHOLDER": "Crossfit, WOD...",
-    "VALIDATION": {
-      "NAME": "You must write a tag",
-      "COLOR_INVALID": "Invalid color",
-      "COLOR_REQUIRED": "Color is required"
-    }
-  },
-  "TAG_REMOVE_MODAL": {
-    "TITLE": "Confirmation required",
-    "BODY": {
-      "LINE_1": "You are about to delete the tag <1>{{name}}</1>.",
-      "LINE_2": "Do you want to continue?"
-    }
-  },
-  "PLAYLIST_ADD_VIDEOS_MODAL": {
-    "TITLE": "Discover",
-    "HELP": "Select the videos you want to add to the playlist.",
-    "SEARCH_PLACEHOLDER": "Search by name",
-    "LOAD_MORE": "Load more",
-    "TOAST": {
-      "SUCCESS": "Videos added successfully",
-      "ERROR": "Error adding videos"
-    }
-  },
-  "PLAYLIST_ACTIONS_BAR": {
-    "EDIT": "Edit details",
-    "SORT": "Sort list",
-    "ADD_VIDEOS": "Explore content",
-    "DELETE": "Delete playlist"
-  },
-  "PLAYLIST_REMOVE_MODAL": {
-    "TITLE": "Confirmation required",
-    "BODY": {
-      "LINE_1": "You are about to delete the playlist <1>{{title}}</1>.",
-      "LINE_2": "Do you want to continue?"
+    "SIDEBAR": {
+        "LOGO": "PULSE",
+        "FEATURED": "Featured",
+        "LIBRARY": "Explore",
+        "FAVORITES": "Favorites",
+        "PROFILE": "Profile",
+        "LOGOUT": "Logout"
     },
-    "TOAST": {
-      "DELETE_SUCCESS": "Playlist deleted successfully",
-      "DELETE_ERROR": "Error deleting playlist"
-    }
-  },
-  "ERROR": {
-    "TITLE": "Error",
-    "MESSAGE": "An error has occurred"
-  },
-  "MEDIA_SEARCH": {
-    "TITLE": "Search media",
-    "CLEAR": "Clear",
-    "QUERY_LABEL": "What are you looking for?",
-    "QUERY_PLACEHOLDER": "Nature, city, sport...",
-    "ORIENTATION": "Orientation",
-    "LANDSCAPE": "Landscape",
-    "PORTRAIT": "Portrait",
-    "SQUARE": "Square",
-    "SIZE": "Size",
-    "LARGE": "Large",
-    "MEDIUM": "Medium",
-    "SMALL": "Small",
-    "LOCALE": "Localization",
-    "LOCALE_PLACEHOLDER": "Any language"
-  },
-  "LOGIN": {
-    "USERNAME_LABEL": "Username",
-    "PASSWORD_LABEL": "Password",
-    "SUBMIT": "Sign in",
-    "SHOW_PASSWORD": "Show password",
-    "HIDE_PASSWORD": "Hide password",
-    "TOAST": {
-      "SUCCESS": "Signed in",
-      "ERROR": "Error signing in"
+    "NAVBAR": {
+        "LIBRARY": "Explore",
+        "GO_TO_HOME": "Go to home page"
     },
-    "ERRORS": {
-      "DEFAULT": "Error signing in",
-      "INVALID_DEMO": "Invalid demo credentials"
+    "HEADER": {
+        "TOGGLE_MENU": "Toggle menu"
     },
-    "DEMO_HINT": "Enter \"<1>{{value}}</1>\"",
-    "VALIDATION": {
-      "USERNAME_REQUIRED": "Username is required",
-      "PASSWORD_REQUIRED": "Password is required"
+    "LANGUAGE_SWITCH": {
+        "TITLE": "ES / EN",
+        "ARIA": "Switch language to {{lang}}"
+    },
+    "LINK_UNDERLINE": {
+        "BACK": "Back"
+    },
+    "PEXELS": {
+        "VIEW_DETAILS": "View details",
+        "VIDEO_BY": "Video by",
+        "ON": "on",
+        "BRAND": "Pexels",
+        "PROVIDED_BY": "Videos provided by Pexels",
+        "DURATION": "Duration",
+        "PHOTOGRAPHER": "Photographer",
+        "VIEW_ON_PEXELS": "View on Pexels"
+    },
+    "PLAYER_OVERLAY": {
+        "EMPTY": "No videos to play"
+    },
+    "PLAYER_PLAYLIST": {
+        "TITLE": "Playlist"
+    },
+    "PLAYER_VIDEO": {
+        "QUALITY": "Quality",
+        "QUALITY_AUTO": "Auto",
+        "QUALITY_HD": "HD",
+        "QUALITY_SD": "SD",
+        "QUALITY_HLS": "HLS",
+        "FPS": "FPS",
+        "RESOLUTION": "Resolution"
+    },
+    "HOME": {
+        "TITLE": "Pulse Video Manager",
+        "DESCRIPTION": "Welcome to the video manager"
+    },
+    "PAGINATION": {
+        "NAVIGATION": "Pagination Navigation",
+        "GO_TO_PREVIOUS": "Go to previous page",
+        "GO_TO_NEXT": "Go to next page",
+        "OF": "of"
+    },
+    "SELECT_DATE_RANGE": {
+        "PLACEHOLDER": "Select date"
+    },
+    "PLAYLISTS_PAGE": {
+        "TITLE": "Video Manager",
+        "HEADING": "Playlists",
+        "CREATE_BUTTON": "Create playlist"
+    },
+    "FEATURED_PAGE": {
+        "TITLE": "Featured",
+        "HERO_TEXT": "The most powerful from Pulse is here",
+        "PLAYLISTS_LABEL": "Playlists",
+        "VIDEOS_LABEL": "Discover"
+    },
+    "PLAYLIST_SORT_VIDEOS_MODAL": {
+        "TITLE": "Sort videos",
+        "SUBTITLE": "Drag videos to reorder them",
+        "SAVE_ORDER": "Save order",
+        "SAVING": "Saving…",
+        "TOAST": {
+            "SUCCESS": "Order updated",
+            "ERROR": "Error updating order"
+        }
+    },
+    "TAGS_PAGE": {
+        "TITLE": "Tags panel",
+        "LIST_HEADER": "Tags list",
+        "ADD": "Add tag",
+        "TOAST": {
+            "CREATE_SUCCESS": "Tag created successfully",
+            "EDIT_SUCCESS": "Tag updated successfully",
+            "CREATE_ERROR": "Error creating tag",
+            "EDIT_ERROR": "Error updating tag",
+            "DELETE_SUCCESS": "Tag deleted successfully",
+            "DELETE_ERROR": "Error deleting tag"
+        }
+    },
+    "VIDEO_UPLOAD_INPUT": {
+        "EDIT_LABEL": "File uploaded",
+        "PLACEHOLDER": "Drag a video or click to upload",
+        "REMOVE_ARIA": "Remove video"
+    },
+    "REMOVE_MODAL": {
+        "TITLE": "Confirmation required",
+        "BODY": {
+            "LINE_1": "You are about to delete the video <1>{{title}}</1>.",
+            "LINE_2": "Do you want to continue?"
+        },
+        "BUTTON": {
+            "CANCEL": "Cancel",
+            "CONFIRM": "Delete"
+        }
+    },
+    "VIDEO_FORM_MODAL": {
+        "TITLE_CREATE": "Upload video",
+        "TITLE_EDIT": "Edit video",
+        "TITLE_LABEL": "Title",
+        "TITLE_PLACEHOLDER": "Write the title of the video",
+        "VALIDATION": {
+            "TITLE": "Title is required",
+            "VIDEO": "You must upload a video",
+            "VIDEO_TYPE": "Only MP4 videos are allowed",
+            "VIDEO_SIZE": "Maximum file size is 500MB"
+        },
+        "TOAST": {
+            "CREATE_SUCCESS": "Video created successfully",
+            "EDIT_SUCCESS": "Video updated successfully",
+            "CREATE_ERROR": "Error creating video",
+            "EDIT_ERROR": "Error updating video"
+        }
+    },
+    "VIDEO_CARD": {
+        "ACTIONS": {
+            "EDIT": "Edit",
+            "DELETE": "Delete"
+        },
+        "FAVORITE_ADD": "Add to favorites",
+        "FAVORITE_REMOVE": "Remove from favorites"
+    },
+    "VIDEO_MANAGE": {
+        "TITLE": "Explore",
+        "SUBTITLE": "Discover",
+        "SEARCH_PLACEHOLDER": "Search by topic",
+        "UPLOAD_BUTTON": "Upload Video",
+        "EMPTY_STATE": "No videos available. Upload one to get started.",
+        "TOAST": {
+            "DELETE_SUCCESS": "Video deleted successfully",
+            "DELETE_ERROR": "Error deleting video"
+        }
+    },
+    "EMPTY_STATE": {
+        "DEFAULT": "No items to display.",
+        "VIDEOS": "No videos available. Upload one to get started.",
+        "PLAYLISTS": "No playlists available. Create one to get started.",
+        "TAGS": "No tags available. Create one to get started."
+    },
+    "PLAYLIST_FORM_MODAL": {
+        "TITLE_CREATE": "Create playlist",
+        "TITLE_EDIT": "Edit playlist",
+        "TITLE_LABEL": "Title",
+        "TITLE_PLACEHOLDER": "Write the title of the playlist",
+        "SCHEDULES_LABEL": "Schedule",
+        "DATE_PLACEHOLDER": "Select date and time",
+        "VALIDATION": {
+            "TITLE": "Title is required",
+            "SCHEDULE_REQUIRED": "Date is required"
+        },
+        "TOAST": {
+            "CREATE_SUCCESS": "Playlist created successfully",
+            "EDIT_SUCCESS": "Playlist updated successfully",
+            "CREATE_ERROR": "Error creating playlist",
+            "EDIT_ERROR": "Error updating playlist"
+        }
+    },
+    "TAG_FORM_MODAL": {
+        "TITLE_CREATE": "Add tag",
+        "TITLE_EDIT": "Edit tag",
+        "NAME": "Name",
+        "PLACEHOLDER": "Crossfit, WOD...",
+        "VALIDATION": {
+            "NAME": "You must write a tag",
+            "COLOR_INVALID": "Invalid color",
+            "COLOR_REQUIRED": "Color is required"
+        }
+    },
+    "TAG_REMOVE_MODAL": {
+        "TITLE": "Confirmation required",
+        "BODY": {
+            "LINE_1": "You are about to delete the tag <1>{{name}}</1>.",
+            "LINE_2": "Do you want to continue?"
+        }
+    },
+    "PLAYLIST_ADD_VIDEOS_MODAL": {
+        "TITLE": "Discover",
+        "HELP": "Select the videos you want to add to the playlist.",
+        "SEARCH_PLACEHOLDER": "Search by name",
+        "LOAD_MORE": "Load more",
+        "TOAST": {
+            "SUCCESS": "Videos added successfully",
+            "ERROR": "Error adding videos"
+        }
+    },
+    "PLAYLIST_ACTIONS_BAR": {
+        "EDIT": "Edit details",
+        "SORT": "Sort list",
+        "ADD_VIDEOS": "Explore content",
+        "DELETE": "Delete playlist"
+    },
+    "PLAYLIST_REMOVE_MODAL": {
+        "TITLE": "Confirmation required",
+        "BODY": {
+            "LINE_1": "You are about to delete the playlist <1>{{title}}</1>.",
+            "LINE_2": "Do you want to continue?"
+        },
+        "TOAST": {
+            "DELETE_SUCCESS": "Playlist deleted successfully",
+            "DELETE_ERROR": "Error deleting playlist"
+        }
+    },
+    "ERROR": {
+        "TITLE": "Error",
+        "MESSAGE": "An error has occurred"
+    },
+    "MEDIA_SEARCH": {
+        "TITLE": "Search media",
+        "CLEAR": "Clear",
+        "QUERY_LABEL": "What are you looking for?",
+        "QUERY_PLACEHOLDER": "Nature, city, sport...",
+        "ORIENTATION": "Orientation",
+        "LANDSCAPE": "Landscape",
+        "PORTRAIT": "Portrait",
+        "SQUARE": "Square",
+        "SIZE": "Size",
+        "LARGE": "Large",
+        "MEDIUM": "Medium",
+        "SMALL": "Small",
+        "LOCALE": "Localization",
+        "LOCALE_PLACEHOLDER": "Any language"
+    },
+    "FAVORITES_PAGE": {
+        "TITLE": "Favorites",
+        "EMPTY": "No favorites yet.",
+        "EMPTY_SUBTITLE": "Save videos you want to watch again.",
+        "BROWSE": "Browse videos"
+    },
+    "PROFILE": {
+        "TITLE": "Profile",
+        "FAVORITES": "Favorites",
+        "WATCHED": "Watched",
+        "LOGOUT": "Sign out",
+        "DELETE_ACCOUNT": "Delete account",
+        "DELETE_TITLE": "Delete account",
+        "DELETE_CONFIRM": "Are you sure you want to permanently delete your account? This action cannot be undone.",
+        "DELETE_CONFIRM_BTN": "Confirm",
+        "DELETE_CANCEL": "Cancel"
+    },
+    "RECENTLY_WATCHED": {
+        "TITLE": "Recently watched"
+    },
+    "LOGIN": {
+        "EMAIL_LABEL": "Email",
+        "EMAIL_PLACEHOLDER": "name@example.com",
+        "SEND_CODE": "Send code",
+        "CODE_SENT": "Code sent to",
+        "CODE_LABEL": "Verification code",
+        "CODE_PLACEHOLDER": "000000",
+        "VERIFY": "Verify",
+        "BACK": "← Back",
+        "ERROR_SEND": "Failed to send code. Try again.",
+        "ERROR_VERIFY": "Invalid or expired code.",
+        "GOOGLE": "Continue with Google",
+        "OR": "or",
+        "ERROR_EMAIL_REQUIRED": "Please enter your email address.",
+        "ERROR_CODE_REQUIRED": "Please enter the 6-digit code."
     }
-  }
 }

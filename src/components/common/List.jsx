@@ -15,7 +15,6 @@ import EmptyState from './EmptyState'
  * @param {React.Component} props.loadingComponent
  * @param {React.Component} props.emptyComponent
  * @param {('scrollable' | 'tags' | 'default')} props.typeList
- * @param {React.Ref} props.ref
  * @returns {React.ReactNode}
  */
 
@@ -26,7 +25,6 @@ function List({
   className,
   emptyComponent: EmptyComponent,
   typeList = 'video',
-  ref,
 }) {
 
   const Empty = EmptyComponent ?? EmptyState
@@ -42,9 +40,10 @@ function List({
           :
           <ul
             className={`list list--${typeList} ${className}`}
-            ref={ref}
           >
             {items.map((item, index) => (
+              // Index fallback is intentional: List is a generic component and
+              // not all item types are guaranteed to have an id field.
               <Fragment key={item?.id ?? index}>
                 {renderItem(item, index)}
               </Fragment>

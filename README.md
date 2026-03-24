@@ -1,6 +1,6 @@
 # Pulse
 
-Video discovery app powered by the Pexels Videos API.
+Video discovery app powered by the Pexels API. Browse trending videos, save favorites, and track your watch history.
 
 ---
 
@@ -8,15 +8,16 @@ Video discovery app powered by the Pexels Videos API.
 
 | Layer | Technology |
 |---|---|
-| UI | React 19, React Router 6 |
-| State | Zustand 5 (persisted) |
-| Server state | TanStack Query 5 |
+| Frontend | React 19, Vite + SWC |
+| Styling | SCSS/BEM |
+| State | Zustand 5, TanStack Query 5 |
+| Auth | Supabase (Email OTP + Google OAuth) |
+| Data | Supabase (PostgreSQL), Pexels API |
+| i18n | react-i18next (English, Spanish) |
+| Routing | React Router 6 |
 | Forms | Formik + Yup |
 | HTTP | Axios |
-| Video playback | react-player, media-chrome |
-| Styles | SCSS + BEM |
-| i18n | react-i18next |
-| Build | Vite + SWC |
+| Video | react-player, media-chrome |
 
 ---
 
@@ -30,16 +31,23 @@ Demo credentials are shown directly on the login screen.
 
 ## Features
 
-- Demo login with credentials displayed on the login screen
-- Featured feed of popular Pexels videos
-- Searchable video library with orientation, size, and locale filters
-- Video detail page with embedded player, quality selector, and playlist navigation
-- Full SCSS/BEM styling with responsive breakpoints
-- Pexels attribution in compliance with API terms (footer link and per-video author credit)
+- Browse popular and trending videos via Pexels API
+- Search videos with orientation, size, and locale-aware filters
+- Save favorites (persisted in Supabase)
+- Watch history with deduplication (persisted in Supabase)
+- User profile with favorites and watch history counts
+- Email OTP login (passwordless)
+- Google OAuth login (popup flow)
+- Favorite toggle from the video player page
+- Animated digit counters on profile stats (YouTube-style)
+- Account deletion with confirmation modal
+- Responsive design (mobile, tablet, desktop)
+- Language switcher (EN / ES)
+- Pexels attribution in compliance with API terms
 
 ---
 
-## Getting started
+## Setup
 
 Install dependencies:
 
@@ -59,6 +67,12 @@ Start the dev server:
 npm run dev
 ```
 
+If you want to use Supabase features (auth, favorites, watch history), create a project at [supabase.com](https://supabase.com), then run the schema in the SQL editor:
+
+```
+# File: src/services/supabase/schema.sql
+```
+
 ---
 
 ## Environment variables
@@ -66,8 +80,12 @@ npm run dev
 | Variable | Description |
 |---|---|
 | `VITE_PEXELS_API_KEY` | Pexels API key — obtain at pexels.com/api |
-| `VITE_DEMO_USERNAME` | Username shown as a hint on the login screen |
+| `VITE_SUPABASE_URL` | Supabase project URL — found in Project Settings > API |
+| `VITE_SUPABASE_ANON_KEY` | Supabase anon/public key — found in Project Settings > API |
+| `VITE_DEMO_USERNAME` | Email shown as a hint on the login screen |
 | `VITE_DEMO_PASSWORD` | Password shown as a hint on the login screen |
+
+The Supabase variables are required for Google OAuth, favorites, and watch history. Without them the app falls back to demo-only mode.
 
 ---
 

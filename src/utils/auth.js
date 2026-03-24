@@ -1,3 +1,5 @@
+import { supabase } from '../services/supabase/supabaseClient'
+
 const ACCESS_TOKEN_KEY = 'accessToken'
 
 export function getToken() {
@@ -19,9 +21,15 @@ export function isAuthenticated() {
   return !!getToken()
 }
 
+export async function getUser() {
+  const { data } = await supabase.auth.getUser()
+  return data?.user ?? null
+}
+
 export default {
   getToken,
   setToken,
   clearToken,
   isAuthenticated,
+  getUser,
 }

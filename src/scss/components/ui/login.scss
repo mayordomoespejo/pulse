@@ -101,6 +101,49 @@
   &__button {
     align-self: center;
     justify-self: center;
+    height: 46px;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  &__code-input {
+    .input__input-wrapper {
+      height: 46px;
+    }
+
+    .input__field {
+      text-align: center;
+      font-size: 1.5rem;
+      letter-spacing: 0.4em;
+
+      &:focus::placeholder {
+        opacity: 0;
+      }
+    }
+  }
+
+  &__code-field {
+    position: relative;
+  }
+
+  &__back-link {
+    position: absolute;
+    top: calc(1rem * 1.25 / 2);
+    right: 0;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    padding: 0;
+    font-size: 0.75rem;
+    color: $c-primary;
+    opacity: 0.6;
+    cursor: pointer;
+    line-height: 1.25;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 1;
+    }
   }
 
   &__password-toggle {
@@ -111,6 +154,69 @@
     align-items: center;
     color: inherit;
     cursor: pointer;
+  }
+
+  &__divider {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 0.25rem 0;
+  }
+
+  &__divider-line {
+    flex: 1;
+    height: 1px;
+    background: $c-primary;
+    opacity: 0.2;
+  }
+
+  &__divider-text {
+    font-size: 0.75rem;
+    color: $c-primary;
+    opacity: 0.5;
+    text-transform: lowercase;
+    white-space: nowrap;
+  }
+
+  &__google-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    width: 100%;
+    padding: 0 1.25rem;
+    height: 46px;
+    background: $c-primary;
+    color: $c-tertiary;
+    border: 1px solid $c-border;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-family: $font-default;
+    font-weight: 500;
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+
+    > span {
+      transform: translateY(2px);
+    }
+
+    &:hover:not(:disabled) {
+      background-color: $c-tertiary;
+      border-color: $c-primary;
+      color: $c-primary;
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+
+  &__google-icon {
+    flex-shrink: 0;
+    display: block;
+    align-self: center;
   }
 
   &__empty-state-anchor {
