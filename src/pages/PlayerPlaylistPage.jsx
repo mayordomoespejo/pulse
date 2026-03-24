@@ -8,8 +8,8 @@ import PlayerVideo from '../components/player/PlayerVideo'
 import Heading from '../components/ui/Heading'
 import ProgressGradient from '../components/ui/ProgressGradient'
 import TitleCard from '../components/ui/TitleCard'
-import { PEXELS_URL } from '../constants/constants'
 import { ROUTES_NAMES } from '../router/routesNames'
+import { useWatchHistory } from '../hooks/useWatchHistory'
 import { getVideo } from '../services/videos/getVideo'
 import useVideoStore from '../stores/videoStore'
 
@@ -25,6 +25,7 @@ function PlayerPlaylistPage() {
   const { videoId } = useParams()
   const navigate = useNavigate()
   const { currentPlaylist, currentVideo, setCurrentPlaylist, setCurrentVideo } = useVideoStore()
+  const { addToHistory } = useWatchHistory()
 
   const { data, isLoading, isError } = useQuery({
     queryKey: ['video', videoId],
@@ -52,7 +53,8 @@ function PlayerPlaylistPage() {
 
     setCurrentPlaylist(playlistLike)
     setCurrentVideo(playlistLike.playlistItems[0])
-  }, [video, setCurrentPlaylist, setCurrentVideo])
+    addToHistory(video) // fire-and-forget
+  }, [video, setCurrentPlaylist, setCurrentVideo]) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (!video?.title) return
@@ -78,20 +80,23 @@ function PlayerPlaylistPage() {
         <MediaProvider>
           <div className="player-play-list-page__player-section">
             <PlayerVideo />
-            <TitleCard
-              className="player-play-list-page__title"
-              title={currentVideo?.video?.title}
-              tags={currentVideo?.video?.tags}
-            />
-            <p className="video-card__credits player-play-list-page__credits">
-              {PEXELS.VIDEO_BY}{' '}
-              <a href={currentVideo?.video?.photographerUrl} target="_blank" rel="noreferrer">
-                {currentVideo?.video?.photographer}
-              </a>{' '}{PEXELS.ON}{' '}
-              <a href={currentVideo?.video?.pexelsUrl || PEXELS_URL} target="_blank" rel="noreferrer">
-                {PEXELS.BRAND}
-              </a>
-            </p>
+            <div className="player-play-list-page__player-info">
+              <TitleCard
+                className="player-play-list-page__title"
+                title={currentVideo?.video?.title}
+                tags={currentVideo?.video?.tags}
+              />
+
+              <p className="player-play-list-page__credits">
+                {PEXELS.VIDEO_BY}{' '}
+                <a href={currentVideo?.video?.photographerUrl} target="_blank" rel="noreferrer">
+                  {currentVideo?.video?.photographer}
+                </a>{' '}{PEXELS.ON}{' '}
+                <a href={currentVideo?.video?.pexelsUrl} target="_blank" rel="noreferrer">
+                  {PEXELS.BRAND}
+                </a>
+              </p>
+            </div>
           </div>
         </MediaProvider>
       </div>

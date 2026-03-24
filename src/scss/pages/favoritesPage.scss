@@ -1,0 +1,49 @@
+@use "../config/variables" as *;
+@use "../config/mixins" as *;
+
+.favorites-page {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  flex: 1;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  &__title {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  &__empty {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    text-align: center;
+    padding: 3rem 1rem;
+  }
+
+  &__empty-text {
+    font-size: 1.125rem;
+    color: $c-tertiary;
+    font-weight: 500;
+  }
+
+  &__empty-link {
+    font-size: 0.9rem;
+    color: $c-secondary;
+    text-decoration: underline;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}

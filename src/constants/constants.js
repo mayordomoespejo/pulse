@@ -13,6 +13,9 @@ export const PLAYER_CIRCLE_ICON_STYLE = {
 export const SIDEBAR_MENU_ITEMS = [
   { key: 'SIDEBAR.FEATURED', path: ROUTES_NAMES.ROOT },
   { key: 'SIDEBAR.LIBRARY', path: ROUTES_NAMES.VIDEOS },
+  { key: 'SIDEBAR.FAVORITES', path: ROUTES_NAMES.FAVORITES },
+  { key: 'SIDEBAR.PROFILE', path: ROUTES_NAMES.PROFILE },
+  { key: 'SIDEBAR.LOGOUT', isLogout: true },
 ]
 
 export const DEFAULT_BREAKPOINTS = {

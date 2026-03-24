@@ -6,6 +6,7 @@ import Heading from '../components/ui/Heading'
 import VideoCard from '../components/video/VideoCard'
 import { getDefaultPexelsLocale } from '../constants/pexelsFilters'
 import useBreakpoint from '../hooks/useBreakpoint'
+import { useWatchHistory } from '../hooks/useWatchHistory'
 import useVideosQuery from '../hooks/useVideosQuery'
 
 /**
@@ -21,10 +22,12 @@ const GRID_ROWS = 2
 function FeaturedPage() {
   const { t, i18n } = useTranslation()
   const FEATURED_PAGE = t('FEATURED_PAGE', { returnObjects: true })
+  const RECENTLY_WATCHED = t('RECENTLY_WATCHED', { returnObjects: true })
   const defaultLocale = getDefaultPexelsLocale(i18n.resolvedLanguage || i18n.language)
   const { isPhone } = useBreakpoint()
   const listContainerRef = useRef(null)
   const [limit, setLimit] = useState(MOBILE_FEATURED_LIMIT)
+  const { history } = useWatchHistory(limit)
 
   useEffect(() => {
     if (isPhone) {
@@ -86,6 +89,19 @@ function FeaturedPage() {
           renderItem={(video) => <VideoCard key={video?.id} video={video} />}
         />
       </div>
+
+      {history.length > 0 && (
+        <div className="featured-page__recently-watched">
+          <h2 className="featured-page__section-title">{RECENTLY_WATCHED.TITLE}</h2>
+          <div className="featured-page__recently-watched-row">
+            {history.map((entry) => (
+              <div key={entry.id} className="featured-page__recently-watched-item">
+                <VideoCard video={entry.video_data} />
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   )
 }

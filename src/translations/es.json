@@ -1,287 +1,306 @@
 {
-  "CONSTANTS": {
-    "CANCEL": "Cancelar",
-    "CREATE": "Crear",
-    "EDIT": "Editar",
-    "SAVE": "Guardar",
-    "ADD": "Añadir",
-    "COLOR": "Color",
-    "VIDEOS": "vídeos",
-    "VIDEO": "vídeo",
-    "UPLOAD": "Subir",
-    "SELECT_NO_OPTIONS": "Sin opciones",
-    "TAGS_LABEL": "Etiquetas asociadas",
-    "TAGS_PLACEHOLDER": "Buscar por etiqueta",
-    "DELETE": "Eliminar",
-    "CONFIRM": "Confirmar",
-    "GENERAL_ERROR": "Ha ocurrido un error",
-    "TODAY": "Hoy",
-    "TOMORROW": "Mañana",
-    "THIS_WEEK": "Esta semana",
-    "CLOSE": "Cerrar",
-    "SEARCH": "Buscar",
-    "BACK_TO_HOME": "Volver a la página principal"
-  },
-  "TITLE": {
-    "MAIN": "Gestor de vídeos"
-  },
-  "NOT_FOUND": {
-    "NUMBER": "404",
-    "TITLE": "Página no encontrada",
-    "DESCRIPTION": "Parece que te has perdido. La página que estás buscando no se encuentra disponible",
-    "SUGGESTION": "¿Qué puedes hacer?"
-  },
-  "SIDEBAR": {
-    "LOGO": "PULSE",
-    "FEATURED": "Destacados",
-    "LIBRARY": "Explorar",
-    "LOGOUT": "Salir"
-  },
-  "NAVBAR": {
-    "LIBRARY": "Explorar",
-    "GO_TO_HOME": "Ir a la página principal"
-  },
-  "HEADER": {
-    "TOGGLE_MENU": "Alternar menú"
-  },
-  "LANGUAGE_SWITCH": {
-    "TITLE": "ES / EN",
-    "ARIA": "Cambiar idioma a {{lang}}"
-  },
-  "LINK_UNDERLINE": {
-    "BACK": "Volver"
-  },
-  "PEXELS": {
-    "VIEW_DETAILS": "Ver detalle",
-    "VIDEO_BY": "Vídeo de",
-    "ON": "en",
-    "BRAND": "Pexels",
-    "PROVIDED_BY": "Vídeos proporcionados por Pexels",
-    "DURATION": "Duración"
-  },
-  "PLAYER_OVERLAY": {
-    "EMPTY": "No hay vídeos para reproducir"
-  },
-  "PLAYER_PLAYLIST": {
-    "TITLE": "Lista de reproducción"
-  },
-  "PLAYER_VIDEO": {
-    "QUALITY": "Calidad",
-    "QUALITY_AUTO": "Auto",
-    "QUALITY_HD": "HD",
-    "QUALITY_SD": "SD",
-    "QUALITY_HLS": "HLS"
-  },
-  "HOME": {
-    "TITLE": "Gestor de vídeos Pulse",
-    "DESCRIPTION": "Bienvenido al gestor de vídeos"
-  },
-  "PAGINATION": {
-    "NAVIGATION": "Navegación de paginación",
-    "GO_TO_PREVIOUS": "Ir a la página anterior",
-    "GO_TO_NEXT": "Ir a la página siguiente",
-    "OF": "de"
-  },
-  "SELECT_DATE_RANGE": {
-    "PLACEHOLDER": "Seleccionar fecha"
-  },
-  "PLAYLISTS_PAGE": {
-    "TITLE": "Gestor de vídeos",
-    "HEADING": "Playlists",
-    "CREATE_BUTTON": "playlist"
-  },
-  "FEATURED_PAGE": {
-    "TITLE": "Destacados",
-    "HERO_TEXT": "Lo más potente de Pulse está aquí",
-    "PLAYLISTS_LABEL": "Playlists",
-    "VIDEOS_LABEL": "Descubrir"
-  },
-  "PLAYLIST_SORT_VIDEOS_MODAL": {
-    "TITLE": "Ordenar vídeos",
-    "SUBTITLE": "Arrastra los vídeos para reordenarlos",
-    "SAVE_ORDER": "Guardar",
-    "SAVING": "Guardando…",
-    "TOAST": {
-      "SUCCESS": "Orden actualizado",
-      "ERROR": "Error actualizando el orden"
-    }
-  },
-  "TAGS_PAGE": {
-    "TITLE": "Panel de etiquetas",
-    "LIST_HEADER": "Lista de etiquetas",
-    "ADD": "etiqueta",
-    "TOAST": {
-      "CREATE_SUCCESS": "Etiqueta creada correctamente",
-      "EDIT_SUCCESS": "Etiqueta actualizada correctamente",
-      "CREATE_ERROR": "Error al crear la etiqueta",
-      "EDIT_ERROR": "Error al actualizar la etiqueta",
-      "DELETE_SUCCESS": "Etiqueta eliminada correctamente",
-      "DELETE_ERROR": "Error al eliminar la etiqueta"
-    }
-  },
-  "TAG_FORM_MODAL": {
-    "TITLE_CREATE": "Añadir etiqueta",
-    "TITLE_EDIT": "Editar etiqueta",
-    "NAME": "Nombre",
-    "PLACEHOLDER": "Crossfit, WOD...",
-    "VALIDATION": {
-      "NAME": "Añade una etiqueta",
-      "COLOR_INVALID": "Color inválido",
-      "COLOR_REQUIRED": "Añade un color"
-    }
-  },
-  "TAG_REMOVE_MODAL": {
-    "TITLE": "Se requiere confirmación",
-    "BODY": {
-      "LINE_1": "Estás a punto de eliminar la etiqueta <1>{{name}}</1>.",
-      "LINE_2": "¿Deseas continuar?"
-    }
-  },
-  "VIDEO_UPLOAD_INPUT": {
-    "EDIT_LABEL": "Archivo subido",
-    "PLACEHOLDER": "Arrastra un vídeo o haz clic para subirlo",
-    "REMOVE_ARIA": "Quitar vídeo"
-  },
-  "REMOVE_MODAL": {
-    "TITLE": "Se requiere confirmación",
-    "BODY": {
-      "LINE_1": "Estás a punto de eliminar el vídeo <1>{{title}}</1>.",
-      "LINE_2": "¿Deseas continuar?"
+    "CONSTANTS": {
+        "CANCEL": "Cancelar",
+        "CREATE": "Crear",
+        "EDIT": "Editar",
+        "SAVE": "Guardar",
+        "ADD": "Añadir",
+        "COLOR": "Color",
+        "VIDEOS": "vídeos",
+        "VIDEO": "vídeo",
+        "UPLOAD": "Subir",
+        "SELECT_NO_OPTIONS": "Sin opciones",
+        "TAGS_LABEL": "Etiquetas asociadas",
+        "TAGS_PLACEHOLDER": "Buscar por etiqueta",
+        "DELETE": "Eliminar",
+        "CONFIRM": "Confirmar",
+        "GENERAL_ERROR": "Ha ocurrido un error",
+        "TODAY": "Hoy",
+        "TOMORROW": "Mañana",
+        "THIS_WEEK": "Esta semana",
+        "CLOSE": "Cerrar",
+        "SEARCH": "Buscar",
+        "BACK_TO_HOME": "Volver a la página principal"
     },
-    "BUTTON": {
-      "CANCEL": "Cancelar",
-      "CONFIRM": "Eliminar"
-    }
-  },
-  "VIDEO_FORM_MODAL": {
-    "TITLE_CREATE": "Subir vídeo",
-    "TITLE_EDIT": "Editar vídeo",
-    "TITLE_LABEL": "Título",
-    "TITLE_PLACEHOLDER": "Escribe el título del vídeo",
-    "VALIDATION": {
-      "TITLE": "Añade un título",
-      "VIDEO": "Añade un vídeo",
-      "VIDEO_TYPE": "Solo se permiten vídeos MP4",
-      "VIDEO_SIZE": "El tamaño máximo es 500MB"
+    "TITLE": {
+        "MAIN": "Gestor de vídeos"
     },
-    "TOAST": {
-      "CREATE_SUCCESS": "Vídeo creado correctamente",
-      "EDIT_SUCCESS": "Vídeo actualizado correctamente",
-      "CREATE_ERROR": "Error al crear el vídeo",
-      "EDIT_ERROR": "Error al actualizar el vídeo"
-    }
-  },
-  "VIDEO_CARD": {
-    "ACTIONS": {
-      "EDIT": "Editar",
-      "DELETE": "Eliminar"
+    "NOT_FOUND": {
+        "NUMBER": "404",
+        "TITLE": "Página no encontrada",
+        "DESCRIPTION": "Parece que te has perdido. La página que estás buscando no se encuentra disponible",
+        "SUGGESTION": "¿Qué puedes hacer?"
     },
-    "PROCESSING": "Vídeo procesándose"
-  },
-  "VIDEO_MANAGE": {
-    "TITLE": "Explorar",
-    "SUBTITLE": "Descubrir",
-    "SEARCH_PLACEHOLDER": "Buscar por temática",
-    "UPLOAD_BUTTON": "vídeo",
-    "EMPTY_STATE": "No hay vídeos disponibles. Sube uno para empezar",
-    "TOAST": {
-      "DELETE_SUCCESS": "Vídeo eliminado correctamente",
-      "DELETE_ERROR": "Error al eliminar el vídeo"
-    }
-  },
-  "EMPTY_STATE": {
-    "DEFAULT": "No hay elementos para mostrar",
-    "VIDEOS": "No hay vídeos disponibles. Sube uno para empezar",
-    "PLAYLISTS": "No hay playlists disponibles. Crea una para empezar",
-    "TAGS": "No hay etiquetas disponibles. Crea una para empezar"
-  },
-  "PLAYLIST_FORM_MODAL": {
-    "TITLE_CREATE": "Crear playlist",
-    "TITLE_EDIT": "Editar playlist",
-    "TITLE_LABEL": "Titulo",
-    "TITLE_PLACEHOLDER": "Escribe el titulo de la playlist",
-    "SCHEDULES_LABEL": "Programación",
-    "DATE_PLACEHOLDER": "Selecciona fecha y hora",
-    "VALIDATION": {
-      "TITLE": "Añade un título",
-      "SCHEDULE_REQUIRED": "Añade una fecha"
+    "SIDEBAR": {
+        "LOGO": "PULSE",
+        "FEATURED": "Destacados",
+        "LIBRARY": "Explorar",
+        "FAVORITES": "Favoritos",
+        "PROFILE": "Perfil",
+        "LOGOUT": "Salir"
     },
-    "TOAST": {
-      "CREATE_SUCCESS": "Playlist creada correctamente",
-      "EDIT_SUCCESS": "Playlist actualizada correctamente",
-      "CREATE_ERROR": "Error al crear la playlist",
-      "EDIT_ERROR": "Error al actualizar la playlist"
-    }
-  },
-  "PLAYLIST_ADD_VIDEOS_MODAL": {
-    "TITLE": "Descubrir",
-    "HELP": "Selecciona los vídeos que quieres añadir a la playlist.",
-    "SEARCH_PLACEHOLDER": "Buscar por nombre",
-    "LOAD_MORE": "Cargar más",
-    "TOAST": {
-      "SUCCESS": "Vídeos añadidos correctamente",
-      "ERROR": "Error al añadir los vídeos"
-    }
-  },
-  "PLAYLIST_ACTIONS_BAR": {
-    "EDIT": "Editar datos",
-    "SORT": "Ordenar lista",
-    "ADD_VIDEOS": "Explorar contenido",
-    "DELETE": "Eliminar playlist"
-  },
-  "PLAYLIST_REMOVE_MODAL": {
-    "TITLE": "Se requiere confirmación",
-    "BODY": {
-      "LINE_1": "Estás a punto de eliminar la playlist <1>{{title}}</1>.",
-      "LINE_2": "¿Deseas continuar?"
+    "NAVBAR": {
+        "LIBRARY": "Explorar",
+        "GO_TO_HOME": "Ir a la página principal"
     },
-    "TOAST": {
-      "DELETE_SUCCESS": "Playlist eliminada correctamente",
-      "DELETE_ERROR": "Error al eliminar la playlist"
-    }
-  },
-  "ERROR": {
-    "TITLE": "Error",
-    "MESSAGE": "Ha ocurrido un error"
-  },
-  "NOTFOUND": {
-    "TITLE": "404 - Página no encontrada",
-    "MESSAGE": "La página que buscas no existe"
-  },
-  "MEDIA_SEARCH": {
-    "TITLE": "Buscar media",
-    "CLEAR": "Limpiar",
-    "QUERY_LABEL": "¿Qué buscas?",
-    "QUERY_PLACEHOLDER": "Naturaleza, ciudad, deporte...",
-    "ORIENTATION": "Orientación",
-    "LANDSCAPE": "Horizontal",
-    "PORTRAIT": "Vertical",
-    "SQUARE": "Cuadrado",
-    "SIZE": "Tamaño",
-    "LARGE": "Grande",
-    "MEDIUM": "Mediano",
-    "SMALL": "Pequeño",
-    "LOCALE": "Localización",
-    "LOCALE_PLACEHOLDER": "Cualquier idioma"
-  },
-  "LOGIN": {
-    "USERNAME_LABEL": "Usuario",
-    "PASSWORD_LABEL": "Contraseña",
-    "SUBMIT": "Iniciar sesión",
-    "SHOW_PASSWORD": "Mostrar contraseña",
-    "HIDE_PASSWORD": "Ocultar contraseña",
-    "TOAST": {
-      "SUCCESS": "Sesión iniciada",
-      "ERROR": "Error al iniciar sesión"
+    "HEADER": {
+        "TOGGLE_MENU": "Alternar menú"
     },
-    "ERRORS": {
-      "DEFAULT": "Error al iniciar sesión",
-      "INVALID_DEMO": "Credenciales demo inválidas"
+    "LANGUAGE_SWITCH": {
+        "TITLE": "ES / EN",
+        "ARIA": "Cambiar idioma a {{lang}}"
     },
-    "DEMO_HINT": "Introduce \"<1>{{value}}</1>\"",
-    "VALIDATION": {
-      "USERNAME_REQUIRED": "Añade un usuario",
-      "PASSWORD_REQUIRED": "Añade una contraseña"
+    "LINK_UNDERLINE": {
+        "BACK": "Volver"
+    },
+    "PEXELS": {
+        "VIEW_DETAILS": "Ver detalle",
+        "VIDEO_BY": "Vídeo de",
+        "ON": "en",
+        "BRAND": "Pexels",
+        "PROVIDED_BY": "Vídeos proporcionados por Pexels",
+        "DURATION": "Duración",
+        "PHOTOGRAPHER": "Fotógrafo",
+        "VIEW_ON_PEXELS": "Ver en Pexels"
+    },
+    "PLAYER_OVERLAY": {
+        "EMPTY": "No hay vídeos para reproducir"
+    },
+    "PLAYER_PLAYLIST": {
+        "TITLE": "Lista de reproducción"
+    },
+    "PLAYER_VIDEO": {
+        "QUALITY": "Calidad",
+        "QUALITY_AUTO": "Auto",
+        "QUALITY_HD": "HD",
+        "QUALITY_SD": "SD",
+        "QUALITY_HLS": "HLS",
+        "FPS": "FPS",
+        "RESOLUTION": "Resolución"
+    },
+    "HOME": {
+        "TITLE": "Gestor de vídeos Pulse",
+        "DESCRIPTION": "Bienvenido al gestor de vídeos"
+    },
+    "PAGINATION": {
+        "NAVIGATION": "Navegación de paginación",
+        "GO_TO_PREVIOUS": "Ir a la página anterior",
+        "GO_TO_NEXT": "Ir a la página siguiente",
+        "OF": "de"
+    },
+    "SELECT_DATE_RANGE": {
+        "PLACEHOLDER": "Seleccionar fecha"
+    },
+    "PLAYLISTS_PAGE": {
+        "TITLE": "Gestor de vídeos",
+        "HEADING": "Playlists",
+        "CREATE_BUTTON": "playlist"
+    },
+    "FEATURED_PAGE": {
+        "TITLE": "Destacados",
+        "HERO_TEXT": "Lo más potente de Pulse está aquí",
+        "PLAYLISTS_LABEL": "Playlists",
+        "VIDEOS_LABEL": "Descubrir"
+    },
+    "PLAYLIST_SORT_VIDEOS_MODAL": {
+        "TITLE": "Ordenar vídeos",
+        "SUBTITLE": "Arrastra los vídeos para reordenarlos",
+        "SAVE_ORDER": "Guardar",
+        "SAVING": "Guardando…",
+        "TOAST": {
+            "SUCCESS": "Orden actualizado",
+            "ERROR": "Error actualizando el orden"
+        }
+    },
+    "TAGS_PAGE": {
+        "TITLE": "Panel de etiquetas",
+        "LIST_HEADER": "Lista de etiquetas",
+        "ADD": "etiqueta",
+        "TOAST": {
+            "CREATE_SUCCESS": "Etiqueta creada correctamente",
+            "EDIT_SUCCESS": "Etiqueta actualizada correctamente",
+            "CREATE_ERROR": "Error al crear la etiqueta",
+            "EDIT_ERROR": "Error al actualizar la etiqueta",
+            "DELETE_SUCCESS": "Etiqueta eliminada correctamente",
+            "DELETE_ERROR": "Error al eliminar la etiqueta"
+        }
+    },
+    "TAG_FORM_MODAL": {
+        "TITLE_CREATE": "Añadir etiqueta",
+        "TITLE_EDIT": "Editar etiqueta",
+        "NAME": "Nombre",
+        "PLACEHOLDER": "Crossfit, WOD...",
+        "VALIDATION": {
+            "NAME": "Añade una etiqueta",
+            "COLOR_INVALID": "Color inválido",
+            "COLOR_REQUIRED": "Añade un color"
+        }
+    },
+    "TAG_REMOVE_MODAL": {
+        "TITLE": "Se requiere confirmación",
+        "BODY": {
+            "LINE_1": "Estás a punto de eliminar la etiqueta <1>{{name}}</1>.",
+            "LINE_2": "¿Deseas continuar?"
+        }
+    },
+    "VIDEO_UPLOAD_INPUT": {
+        "EDIT_LABEL": "Archivo subido",
+        "PLACEHOLDER": "Arrastra un vídeo o haz clic para subirlo",
+        "REMOVE_ARIA": "Quitar vídeo"
+    },
+    "REMOVE_MODAL": {
+        "TITLE": "Se requiere confirmación",
+        "BODY": {
+            "LINE_1": "Estás a punto de eliminar el vídeo <1>{{title}}</1>.",
+            "LINE_2": "¿Deseas continuar?"
+        },
+        "BUTTON": {
+            "CANCEL": "Cancelar",
+            "CONFIRM": "Eliminar"
+        }
+    },
+    "VIDEO_FORM_MODAL": {
+        "TITLE_CREATE": "Subir vídeo",
+        "TITLE_EDIT": "Editar vídeo",
+        "TITLE_LABEL": "Título",
+        "TITLE_PLACEHOLDER": "Escribe el título del vídeo",
+        "VALIDATION": {
+            "TITLE": "Añade un título",
+            "VIDEO": "Añade un vídeo",
+            "VIDEO_TYPE": "Solo se permiten vídeos MP4",
+            "VIDEO_SIZE": "El tamaño máximo es 500MB"
+        },
+        "TOAST": {
+            "CREATE_SUCCESS": "Vídeo creado correctamente",
+            "EDIT_SUCCESS": "Vídeo actualizado correctamente",
+            "CREATE_ERROR": "Error al crear el vídeo",
+            "EDIT_ERROR": "Error al actualizar el vídeo"
+        }
+    },
+    "VIDEO_CARD": {
+        "ACTIONS": {
+            "EDIT": "Editar",
+            "DELETE": "Eliminar"
+        },
+        "PROCESSING": "Vídeo procesándose"
+    },
+    "VIDEO_MANAGE": {
+        "TITLE": "Explorar",
+        "SUBTITLE": "Descubrir",
+        "SEARCH_PLACEHOLDER": "Buscar por temática",
+        "UPLOAD_BUTTON": "vídeo",
+        "EMPTY_STATE": "No hay vídeos disponibles. Sube uno para empezar",
+        "TOAST": {
+            "DELETE_SUCCESS": "Vídeo eliminado correctamente",
+            "DELETE_ERROR": "Error al eliminar el vídeo"
+        }
+    },
+    "EMPTY_STATE": {
+        "DEFAULT": "No hay elementos para mostrar",
+        "VIDEOS": "No hay vídeos disponibles. Sube uno para empezar",
+        "PLAYLISTS": "No hay playlists disponibles. Crea una para empezar",
+        "TAGS": "No hay etiquetas disponibles. Crea una para empezar"
+    },
+    "PLAYLIST_FORM_MODAL": {
+        "TITLE_CREATE": "Crear playlist",
+        "TITLE_EDIT": "Editar playlist",
+        "TITLE_LABEL": "Titulo",
+        "TITLE_PLACEHOLDER": "Escribe el titulo de la playlist",
+        "SCHEDULES_LABEL": "Programación",
+        "DATE_PLACEHOLDER": "Selecciona fecha y hora",
+        "VALIDATION": {
+            "TITLE": "Añade un título",
+            "SCHEDULE_REQUIRED": "Añade una fecha"
+        },
+        "TOAST": {
+            "CREATE_SUCCESS": "Playlist creada correctamente",
+            "EDIT_SUCCESS": "Playlist actualizada correctamente",
+            "CREATE_ERROR": "Error al crear la playlist",
+            "EDIT_ERROR": "Error al actualizar la playlist"
+        }
+    },
+    "PLAYLIST_ADD_VIDEOS_MODAL": {
+        "TITLE": "Descubrir",
+        "HELP": "Selecciona los vídeos que quieres añadir a la playlist.",
+        "SEARCH_PLACEHOLDER": "Buscar por nombre",
+        "LOAD_MORE": "Cargar más",
+        "TOAST": {
+            "SUCCESS": "Vídeos añadidos correctamente",
+            "ERROR": "Error al añadir los vídeos"
+        }
+    },
+    "PLAYLIST_ACTIONS_BAR": {
+        "EDIT": "Editar datos",
+        "SORT": "Ordenar lista",
+        "ADD_VIDEOS": "Explorar contenido",
+        "DELETE": "Eliminar playlist"
+    },
+    "PLAYLIST_REMOVE_MODAL": {
+        "TITLE": "Se requiere confirmación",
+        "BODY": {
+            "LINE_1": "Estás a punto de eliminar la playlist <1>{{title}}</1>.",
+            "LINE_2": "¿Deseas continuar?"
+        },
+        "TOAST": {
+            "DELETE_SUCCESS": "Playlist eliminada correctamente",
+            "DELETE_ERROR": "Error al eliminar la playlist"
+        }
+    },
+    "ERROR": {
+        "TITLE": "Error",
+        "MESSAGE": "Ha ocurrido un error"
+    },
+    "NOTFOUND": {
+        "TITLE": "404 - Página no encontrada",
+        "MESSAGE": "La página que buscas no existe"
+    },
+    "MEDIA_SEARCH": {
+        "TITLE": "Buscar media",
+        "CLEAR": "Limpiar",
+        "QUERY_LABEL": "¿Qué buscas?",
+        "QUERY_PLACEHOLDER": "Naturaleza, ciudad, deporte...",
+        "ORIENTATION": "Orientación",
+        "LANDSCAPE": "Horizontal",
+        "PORTRAIT": "Vertical",
+        "SQUARE": "Cuadrado",
+        "SIZE": "Tamaño",
+        "LARGE": "Grande",
+        "MEDIUM": "Mediano",
+        "SMALL": "Pequeño",
+        "LOCALE": "Localización",
+        "LOCALE_PLACEHOLDER": "Cualquier idioma"
+    },
+    "FAVORITES_PAGE": {
+        "TITLE": "Favoritos",
+        "EMPTY": "Aún no tienes favoritos.",
+        "EMPTY_SUBTITLE": "Guarda los vídeos que quieras volver a ver.",
+        "BROWSE": "Explorar vídeos"
+    },
+    "PROFILE": {
+        "TITLE": "Perfil",
+        "FAVORITES": "Favoritos",
+        "WATCHED": "Vistos",
+        "LOGOUT": "Cerrar sesión",
+        "DELETE_ACCOUNT": "Eliminar cuenta",
+        "DELETE_CONFIRM": "¿Seguro que quieres eliminar tu cuenta de forma permanente? Esta acción no se puede deshacer."
+    },
+    "RECENTLY_WATCHED": {
+        "TITLE": "Visto recientemente"
+    },
+    "LOGIN": {
+        "EMAIL_LABEL": "Correo electrónico",
+        "EMAIL_PLACEHOLDER": "nombre@ejemplo.com",
+        "SEND_CODE": "Enviar código",
+        "CODE_SENT": "Código enviado a",
+        "CODE_LABEL": "Código de verificación",
+        "CODE_PLACEHOLDER": "000000",
+        "VERIFY": "Verificar",
+        "BACK": "← Volver",
+        "ERROR_SEND": "Error al enviar el código. Inténtalo de nuevo.",
+        "ERROR_VERIFY": "Código inválido o expirado.",
+        "GOOGLE": "Continuar con Google",
+        "OR": "o",
+        "ERROR_EMAIL_REQUIRED": "Introduce tu correo electrónico.",
+        "ERROR_CODE_REQUIRED": "Introduce el código de 6 dígitos."
     }
-  }
 }

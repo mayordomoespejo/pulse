@@ -4,22 +4,12 @@
 .player-video {
   display: grid;
   gap: 20px;
-  width: fit-content;
+  width: 100%;
   height: fit-content;
   flex-grow: 1;
   position: relative;
-  background-color: #000;
+  background-color: $c-tertiary;
   border-radius: 1rem;
-  @include full-width;
-
-  @include breakpoint(tablet) {
-    width: 100%;
-    left: initial;
-    right: initial;
-    margin-left: initial;
-    margin-right: initial;
-    position: relative;
-  }
 
   .media-control-bar {
     display: grid;
@@ -97,7 +87,7 @@
     height: 100%;
     object-fit: contain;
     position: relative;
-    background-color: #000000;
+    background-color: $c-tertiary;
   }
 
   &__cast-button {
@@ -110,14 +100,18 @@
 
   &__quality-dropdown {
     position: relative;
-    display: flex;
+    display: none;
     align-items: center;
+
+    @include breakpoint(tablet) {
+      display: flex;
+    }
   }
 
   &__quality-trigger {
     border: 0;
     background: transparent;
-    color: rgba(#fff, 0.75);
+    color: rgba($c-primary, 0.75);
     padding: 0.2rem 0.5rem;
     font-size: 0.6875rem;
     font-family: $font-secondary;
@@ -130,17 +124,17 @@
     justify-content: center;
     line-height: 1.25;
     position: relative;
-    border: 1px solid rgba(#fff, 0.25);
+    border: 1px solid rgba($c-primary, 0.25);
     border-radius: 3333px;
     transition: color 0.2s ease, border-color 0.2s ease;
 
     &:hover {
-      color: #fff;
-      border-color: rgba(#fff, 0.6);
+      color: $c-primary;
+      border-color: rgba($c-primary, 0.6);
     }
 
     &:focus-visible {
-      outline: 1px solid #fff;
+      outline: 1px solid $c-primary;
       outline-offset: 1px;
     }
   }
@@ -167,9 +161,9 @@
     margin: 0;
     padding: 0.4rem;
     list-style: none;
-    border: 1px solid rgba(#fff, 0.45);
+    border: 1px solid rgba($c-primary, 0.45);
     border-radius: 0.45rem;
-    background: rgba(#000, 0.9);
+    background: rgba($c-tertiary, 0.9);
     min-width: max-content;
     z-index: 25;
     display: flex;
@@ -180,7 +174,7 @@
   &__quality-option {
     border: 0;
     background: transparent;
-    color: rgba(#fff, 0.75);
+    color: rgba($c-primary, 0.75);
     width: 100%;
     text-align: left;
     padding: 0.4rem 0.65rem;
@@ -196,8 +190,8 @@
 
     &:hover,
     &:focus-visible {
-      background: rgba(#fff, 0.14);
-      color: #fff;
+      background: rgba($c-primary, 0.14);
+      color: $c-primary;
       outline: none;
     }
 

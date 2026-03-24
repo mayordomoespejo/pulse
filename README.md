@@ -16,6 +16,7 @@ Video discovery app powered by the Pexels Videos API.
 | Video playback | react-player, media-chrome |
 | Styles | SCSS + BEM |
 | i18n | react-i18next |
+| Auth + DB | Supabase |
 | Build | Vite + SWC |
 
 ---
@@ -31,9 +32,13 @@ Demo credentials are shown directly on the login screen.
 ## Features
 
 - Demo login with credentials displayed on the login screen
-- Featured feed of popular Pexels videos
+- Google OAuth sign-in via Supabase
+- Featured feed of popular Pexels videos with a "Recently watched" row
 - Searchable video library with orientation, size, and locale filters
 - Video detail page with embedded player, quality selector, and playlist navigation
+- Favorites — save and manage videos from any card
+- Watch history — automatically recorded per authenticated user
+- Profile page showing avatar, favorites count, and watch history count
 - Full SCSS/BEM styling with responsive breakpoints
 - Pexels attribution in compliance with API terms (footer link and per-video author credit)
 
@@ -53,6 +58,12 @@ Copy the environment file and fill in your values:
 cp .env.example .env
 ```
 
+If you want to use the Supabase features (Google OAuth, favorites, watch history), create a Supabase project at [supabase.com](https://supabase.com), then run the schema in the SQL editor:
+
+```bash
+# File: src/services/supabase/schema.sql
+```
+
 Start the dev server:
 
 ```bash
@@ -68,6 +79,10 @@ npm run dev
 | `VITE_PEXELS_API_KEY` | Pexels API key — obtain at pexels.com/api |
 | `VITE_DEMO_USERNAME` | Username shown as a hint on the login screen |
 | `VITE_DEMO_PASSWORD` | Password shown as a hint on the login screen |
+| `VITE_SUPABASE_URL` | Supabase project URL — found in Project Settings > API |
+| `VITE_SUPABASE_ANON_KEY` | Supabase anon/public key — found in Project Settings > API |
+
+The Supabase variables are required for Google OAuth, favorites, and watch history. Without them the app falls back to demo-only mode.
 
 ---
 

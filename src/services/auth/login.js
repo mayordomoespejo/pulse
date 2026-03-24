@@ -1,31 +1,53 @@
-const DEMO_USERNAME = import.meta.env.VITE_DEMO_USERNAME || 'demo@pulse.dev'
-const DEMO_PASSWORD = import.meta.env.VITE_DEMO_PASSWORD || 'Pulse123!'
+import { supabase } from '../supabase/supabaseClient'
 
 /**
- * Simulates login against demo credentials.
- *
- * @param {Object} credentials User credentials.
- * @param {string} credentials.username Username/email.
- * @param {string} credentials.password Password.
- * @returns {Promise<{data: {accessToken: string}}>} Mock access token payload.
+ * Sends an OTP code to the given email address.
+ * Creates the user if they don't exist yet.
  */
-export async function loginService({ username, password }) {
-  if (username === DEMO_USERNAME && password === DEMO_PASSWORD) {
-    return Promise.resolve({
-      data: {
-        accessToken: `demo-token-${Date.now()}`,
-      },
-    })
-  }
-
-  return Promise.reject({
-    status: 401,
-    response: {
-      data: {
-        errorKey: 'LOGIN.ERRORS.INVALID_DEMO',
-      },
-    },
+export async function sendOtp(email) {
+  const { error } = await supabase.auth.signInWithOtp({
+    email,
+    options: { shouldCreateUser: true },
   })
+  if (error) throw error
 }
 
-export default loginService
+/**
+ * Verifies the OTP token sent to the given email.
+ * Returns the session data on success.
+ */
+export async function verifyOtp(email, token) {
+  const { data, error } = await supabase.auth.verifyOtp({
+    email,
+    token,
+    type: 'email',
+  })
+  if (error) throw error
+  return data
+}
+
+/**
+ * Signs the current user out.
+ */
+export async function logout() {
+  const { error } = await supabase.auth.signOut()
+  if (error) throw error
+}
+
+/**
+ * Initiates Google OAuth sign-in flow.
+ * Redirects the user to Google's consent screen.
+ */
+export async function loginWithGoogle() {
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: 'google',
+    options: {
+      redirectTo: `${window.location.origin}/auth/callback`,
+      skipBrowserRedirect: true,
+      queryParams: { prompt: 'select_account' },
+    },
+  })
+  if (error) throw error
+
+  window.open(data.url, 'google-oauth', 'width=500,height=600,left=400,top=150')
+}

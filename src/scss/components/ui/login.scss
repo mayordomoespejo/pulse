@@ -103,6 +103,37 @@
     justify-self: center;
   }
 
+  &__code-hint {
+    font-size: 0.875rem;
+    color: $c-primary;
+    opacity: 0.7;
+    text-align: center;
+  }
+
+  &__code-input {
+    .input__field {
+      text-align: center;
+      font-size: 1.5rem;
+      letter-spacing: 0.4em;
+    }
+  }
+
+  &__back-link {
+    background: transparent;
+    border: none;
+    padding: 0;
+    font-size: 0.875rem;
+    color: $c-primary;
+    opacity: 0.6;
+    cursor: pointer;
+    align-self: center;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
   &__password-toggle {
     background: transparent;
     border: none;
@@ -111,6 +142,63 @@
     align-items: center;
     color: inherit;
     cursor: pointer;
+  }
+
+  &__divider {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 0.25rem 0;
+  }
+
+  &__divider-line {
+    flex: 1;
+    height: 1px;
+    background: $c-primary;
+    opacity: 0.2;
+  }
+
+  &__divider-text {
+    font-size: 0.75rem;
+    color: $c-primary;
+    opacity: 0.5;
+    text-transform: lowercase;
+    white-space: nowrap;
+  }
+
+  &__google-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    width: 100%;
+    padding: 0.75rem 1.25rem;
+    background: $c-primary;
+    color: $c-tertiary;
+    border: 1px solid $c-border;
+    border-radius: 6px;
+    font-size: 0.9375rem;
+    font-family: $font-default;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+
+    &:hover:not(:disabled) {
+      background-color: $c-tertiary;
+      border-color: $c-primary;
+      color: $c-primary;
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+
+  &__google-icon {
+    flex-shrink: 0;
+    display: block;
+    align-self: center;
   }
 
   &__empty-state-anchor {

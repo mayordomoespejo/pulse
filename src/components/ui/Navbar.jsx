@@ -35,6 +35,16 @@ function Navbar({ onNavClick, onMenuClick }) {
       path: ROUTES_NAMES.VIDEOS,
       label: t('NAVBAR.LIBRARY'),
     },
+    {
+      key: 'FAVORITES',
+      path: ROUTES_NAMES.FAVORITES,
+      label: t('SIDEBAR.FAVORITES'),
+    },
+    {
+      key: 'PROFILE',
+      path: ROUTES_NAMES.PROFILE,
+      label: t('SIDEBAR.PROFILE'),
+    },
   ], [t])
 
   const handleLogoClick = () => {
@@ -66,7 +76,7 @@ function Navbar({ onNavClick, onMenuClick }) {
         {navItems.map((item) => {
           const isActive = item.path === ROUTES_NAMES.VIDEOS
             ? location.pathname === ROUTES_NAMES.VIDEOS || location.pathname.startsWith('/video/')
-            : location.pathname === item.path
+            : location.pathname === item.path || location.pathname.startsWith(item.path + '/')
 
           return (
             <div key={item.key} className="navbar__button-wrapper">

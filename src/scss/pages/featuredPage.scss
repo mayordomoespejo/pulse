@@ -153,4 +153,29 @@
       font-size: 0.875rem;
     }
   }
+
+  &__section-title {
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: $c-tertiary;
+    margin-bottom: 1rem;
+  }
+
+  &__recently-watched {
+    display: flex;
+    flex-direction: column;
+    padding-top: 2.5rem;
+    border-top: 1px solid $c-tertiary;
+  }
+
+  &__recently-watched-row {
+    @include video-list-grid;
+  }
+
+  &__recently-watched-item {
+    width: 100%;
+  }
+
 }

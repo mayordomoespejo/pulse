@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { SIDEBAR_MENU_ITEMS } from '../../constants/constants'
 import useBreakpoint from '../../hooks/useBreakpoint'
 import { ROUTES_NAMES } from '../../router/routesNames'
+import { logout } from '../../services/auth/login'
 import { clearToken } from '../../utils/auth'
 
 import Header from './Header'
@@ -35,8 +36,9 @@ function Navigation() {
       }
     }), [location.pathname])
 
-  const handleMenuClick = (item) => {
+  const handleMenuClick = async (item) => {
     if (item?.isLogout) {
+      await logout().catch(() => {})
       clearToken()
       navigate(ROUTES_NAMES.LOGIN)
       return
