@@ -176,26 +176,34 @@ function Login() {
             </form>
           ) : (
             <form className="login-page__form" onSubmit={handleVerifyOtp} noValidate>
-              <p className="login-page__code-hint">
-                {LOGIN.CODE_SENT} {email}
-              </p>
               <div className="login-page__fields">
-                <Input
-                  useFormik={false}
-                  name="code"
-                  type="text"
-                  label={LOGIN.CODE_LABEL}
-                  variant="primary"
-                  placeholder={LOGIN.CODE_PLACEHOLDER}
-                  value={code}
-                  onChange={(e) => setCode(e.target.value)}
-                  required
-                  disabled={isLoading}
-                  autoComplete="one-time-code"
-                  inputMode="numeric"
-                  maxLength={6}
-                  className="login-page__code-input"
-                />
+                <div className="login-page__code-field">
+                  <Input
+                    useFormik={false}
+                    id="otp-code"
+                    name="code"
+                    type="text"
+                    label={LOGIN.CODE_LABEL}
+                    variant="primary"
+                    placeholder={LOGIN.CODE_PLACEHOLDER}
+                    value={code}
+                    onChange={(e) => setCode(e.target.value)}
+                    required
+                    disabled={isLoading}
+                    autoComplete="one-time-code"
+                    inputMode="numeric"
+                    maxLength={6}
+                    className="login-page__code-input"
+                  />
+                  <button
+                    type="button"
+                    className="login-page__back-link"
+                    onClick={handleBack}
+                    disabled={isLoading}
+                  >
+                    {LOGIN.BACK}
+                  </button>
+                </div>
               </div>
               <Button
                 type="submit"
@@ -204,14 +212,6 @@ function Login() {
                 iconEnd={isLoading ? <Spinner size="button" /> : null}
                 disabled={isLoading}
               />
-              <button
-                type="button"
-                className="login-page__back-link"
-                onClick={handleBack}
-                disabled={isLoading}
-              >
-                {LOGIN.BACK}
-              </button>
             </form>
           )}
 

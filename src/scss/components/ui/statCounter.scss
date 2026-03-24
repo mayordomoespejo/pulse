@@ -1,0 +1,57 @@
+@use "../../config/variables" as *;
+
+.stat-counter {
+  display: inline-flex;
+
+  &__digit {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    height: 1.2em;
+  }
+
+  &__digit-value {
+    display: block;
+    line-height: 1.2;
+
+    &--in-up {
+      animation: stat-in-up 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    &--in-down {
+      animation: stat-in-down 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    &--out-up {
+      position: absolute;
+      inset: 0;
+      animation: stat-out-up 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    &--out-down {
+      position: absolute;
+      inset: 0;
+      animation: stat-out-down 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+  }
+}
+
+@keyframes stat-in-up {
+  from { transform: translateY(110%); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+@keyframes stat-out-up {
+  from { transform: translateY(0);     opacity: 1; }
+  to   { transform: translateY(-110%); opacity: 0; }
+}
+
+@keyframes stat-in-down {
+  from { transform: translateY(-110%); opacity: 0; }
+  to   { transform: translateY(0);     opacity: 1; }
+}
+
+@keyframes stat-out-down {
+  from { transform: translateY(0);    opacity: 1; }
+  to   { transform: translateY(110%); opacity: 0; }
+}

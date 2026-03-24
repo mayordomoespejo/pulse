@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import Button from '../components/ui/Button'
 import Heading from '../components/ui/Heading'
 import Spinner from '../components/ui/Spinner'
+import StatCounter from '../components/ui/StatCounter'
 import { useFavorites } from '../hooks/useFavorites'
 import { useWatchHistory } from '../hooks/useWatchHistory'
 import { ROUTES_NAMES } from '../router/routesNames'
@@ -80,11 +81,11 @@ function ProfilePage() {
 
       <div className="profile-page__stats">
         <div className="profile-page__stat">
-          <span className="profile-page__stat-value">{favorites.length}</span>
+          <span className="profile-page__stat-value"><StatCounter value={favorites.length} /></span>
           <span className="profile-page__stat-label">{PROFILE.FAVORITES}</span>
         </div>
         <div className="profile-page__stat">
-          <span className="profile-page__stat-value">{history.length}</span>
+          <span className="profile-page__stat-value"><StatCounter value={history.length} /></span>
           <span className="profile-page__stat-label">{PROFILE.WATCHED}</span>
         </div>
       </div>
