@@ -58,7 +58,7 @@ function PlayerPlaylistPage() {
     setCurrentPlaylist(playlistLike)
     setCurrentVideo(playlistLike.playlistItems[0])
     addToHistory(video) // fire-and-forget
-  }, [video, setCurrentPlaylist, setCurrentVideo]) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [video, setCurrentPlaylist, setCurrentVideo, addToHistory])
 
   useEffect(() => {
     if (!video?.title) return

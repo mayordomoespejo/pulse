@@ -1,4 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { useCallback } from 'react'
+
 import { addToHistory, getWatchHistory } from '../services/watchHistory/watchHistoryService'
 
 export function useWatchHistory(limit = 10) {
@@ -14,7 +16,7 @@ export function useWatchHistory(limit = 10) {
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['watch-history'] }),
   })
 
-  const addToHistoryMutation = (video) => addMutate(video)
+  const addToHistoryMutation = useCallback((video) => addMutate(video), [addMutate])
 
   return { history, addToHistory: addToHistoryMutation, isLoading }
 }

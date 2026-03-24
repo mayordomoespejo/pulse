@@ -28,7 +28,11 @@ export async function addToHistory(video) {
   if (!userId) return
   const videoId = String(video.id)
   // Delete existing entry so watched_at is always fresh
-  await supabase.from('watch_history').delete().eq('user_id', userId).eq('video_id', videoId)
+  try {
+    await supabase.from('watch_history').delete().eq('user_id', userId).eq('video_id', videoId)
+  } catch {
+    // Non-fatal: if delete fails, proceed with insert anyway
+  }
   const { error } = await supabase.from('watch_history').insert({
     user_id: userId,
     video_id: videoId,

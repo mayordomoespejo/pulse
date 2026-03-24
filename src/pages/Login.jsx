@@ -13,6 +13,7 @@ import { isAuthenticated, setToken } from '../utils/auth'
 
 function Login() {
   const logoRef = useRef(null)
+  const channelRef = useRef(null)
   const [step, setStep] = useState('email')
   const [email, setEmail] = useState('')
   const [code, setCode] = useState('')
@@ -74,6 +75,7 @@ function Login() {
     try {
       await loginWithGoogle()
       const channel = new BroadcastChannel('auth')
+      channelRef.current = channel
       channel.onmessage = async (event) => {
         if (event.data.type === 'AUTH_COMPLETE') {
           // Fetch the session directly from Supabase — never trust payload-embedded credentials
@@ -81,6 +83,7 @@ function Login() {
           if (data.session?.access_token) {
             setToken(data.session.access_token)
             channel.close()
+            channelRef.current = null
             navigate(ROUTES_NAMES.ROOT, { replace: true })
           }
         }
@@ -90,6 +93,13 @@ function Login() {
       setIsGoogleLoading(false)
     }
   }
+
+  useEffect(() => {
+    return () => {
+      channelRef.current?.close()
+      channelRef.current = null
+    }
+  }, [])
 
   useEffect(() => {
     const target = logoRef.current

@@ -42,6 +42,8 @@ function List({
             className={`list list--${typeList} ${className}`}
           >
             {items.map((item, index) => (
+              // Index fallback is intentional: List is a generic component and
+              // not all item types are guaranteed to have an id field.
               <Fragment key={item?.id ?? index}>
                 {renderItem(item, index)}
               </Fragment>
