@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
@@ -10,27 +10,22 @@ import StatCounter from '../components/ui/StatCounter'
 import { useFavorites } from '../hooks/useFavorites'
 import { useWatchHistory } from '../hooks/useWatchHistory'
 import { ROUTES_NAMES } from '../router/routesNames'
-import { logout } from '../services/auth/login'
-import { supabase } from '../services/supabase/supabaseClient'
-import { clearToken, getUser } from '../utils/auth'
+import { clearHistory } from '../services/watchHistory/watchHistoryService'
+import { clearFavorites } from '../services/supabase/favoritesService'
+import { useAuthStore } from '../stores/authStore'
 
 function ProfilePage() {
   const { t } = useTranslation()
   const PROFILE = t('PROFILE', { returnObjects: true })
   const navigate = useNavigate()
-  const [user, setUser] = useState(null)
+  const { user, signOut, reauthenticateWithGoogle } = useAuthStore()
   const [deleteError, setDeleteError] = useState(null)
   const [showDeleteModal, setShowDeleteModal] = useState(false)
   const { favorites } = useFavorites()
   const { history } = useWatchHistory()
 
-  useEffect(() => {
-    getUser().then(setUser)
-  }, [])
-
   const handleLogout = async () => {
-    await logout().catch(() => {})
-    clearToken()
+    await signOut().catch(() => {})
     navigate(ROUTES_NAMES.LOGIN, { replace: true })
   }
 
@@ -40,22 +35,30 @@ function ProfilePage() {
 
   const handleConfirmDelete = async () => {
     setShowDeleteModal(false)
-    try {
-      const { data: { user: authUser } } = await supabase.auth.getUser()
-      if (authUser) {
-        await supabase.from('watch_history').delete().eq('user_id', authUser.id)
-        await supabase.from('favorites').delete().eq('user_id', authUser.id)
-        // Note: deleting the record from auth.users requires a Supabase service-role key
-        // (admin privileges), which must never be exposed in a client-side app.
-        // The auth record is therefore left in place; the user's personal data (watch
-        // history and favorites) has already been erased above. To fully remove the
-        // auth record, call a server-side edge function or Supabase admin API endpoint.
+    const attemptDelete = async () => {
+      if (user) {
+        await clearHistory(user.uid)
+        await clearFavorites(user.uid)
+        await user.delete()
       }
-      await supabase.auth.signOut()
-      clearToken()
+    }
+    try {
+      await attemptDelete()
+      localStorage.removeItem('video-store')
       navigate(ROUTES_NAMES.LOGIN)
     } catch (err) {
-      setDeleteError(err?.message || t('CONSTANTS.GENERAL_ERROR'))
+      if (err?.code === 'auth/requires-recent-login') {
+        try {
+          await reauthenticateWithGoogle()
+          await attemptDelete()
+          localStorage.removeItem('video-store')
+          navigate(ROUTES_NAMES.LOGIN)
+        } catch (retryErr) {
+          setDeleteError(retryErr?.message || t('CONSTANTS.GENERAL_ERROR'))
+        }
+      } else {
+        setDeleteError(err?.message || t('CONSTANTS.GENERAL_ERROR'))
+      }
     }
   }
 
@@ -63,8 +66,8 @@ function ProfilePage() {
     return <div className="profile-page profile-page--loading"><Spinner size="large" /></div>
   }
 
-  const displayName = user.user_metadata?.full_name || user.email
-  const initials = (user.user_metadata?.full_name || user.email || '')
+  const displayName = user.displayName || user.email
+  const initials = (user.displayName || user.email || '')
     .split(' ')
     .slice(0, 2)
     .map((w) => w[0]?.toUpperCase())
@@ -82,7 +85,7 @@ function ProfilePage() {
         </div>
         <div className="profile-page__info">
           <p className="profile-page__name">{displayName}</p>
-          <p className="profile-page__email">{user.email}</p>
+          {user.displayName && <p className="profile-page__email">{user.email}</p>}
         </div>
       </div>
 
