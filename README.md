@@ -81,7 +81,6 @@ For auth, create a Firebase project at [console.firebase.google.com](https://con
 | `VITE_FIREBASE_MESSAGING_SENDER_ID` | Firebase messaging sender ID |
 | `VITE_FIREBASE_APP_ID` | Firebase app ID |
 | `VITE_SUPABASE_URL` | Supabase project URL — found in Project Settings > API |
-| `VITE_SUPABASE_ANON_KEY` | Supabase anon/public key — found in Project Settings > API |
 
 The Firebase variables are required for auth. The Supabase variables are required for favorites and watch history.
 
