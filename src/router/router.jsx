@@ -1,7 +1,6 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom'
 
 import MainLayout from '../layout/MainLayout'
-import AuthCallback from '../pages/AuthCallback'
 import Error from '../pages/Error'
 import FavoritesPage from '../pages/FavoritesPage'
 import FeaturedPage from '../pages/FeaturedPage'
@@ -16,7 +15,6 @@ import { ROUTES_NAMES } from './routesNames'
 
 export const routes = [
   { path: ROUTES_NAMES.LOGIN, element: <Login /> },
-  { path: ROUTES_NAMES.AUTH_CALLBACK, element: <AuthCallback /> },
   {
     element: <RequireAuth />,
     children: [
