@@ -18,11 +18,5 @@ export const SIDEBAR_MENU_ITEMS = [
   { key: 'SIDEBAR.LOGOUT', isLogout: true },
 ]
 
-export const DEFAULT_BREAKPOINTS = {
-  phone: 0,
-  tablet: 768,
-  desktop: 1024,
-  desktopLg: 1440,
-}
-
+export const DEFAULT_STALE_TIME = 5 * 60 * 1000
 export const DEFAULT_LIMIT = 15
