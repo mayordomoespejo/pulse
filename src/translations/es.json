@@ -287,7 +287,8 @@
         "DELETE_TITLE": "Eliminar cuenta",
         "DELETE_CONFIRM": "¿Seguro que quieres eliminar tu cuenta de forma permanente? Esta acción no se puede deshacer.",
         "DELETE_CONFIRM_BTN": "Confirmar",
-        "DELETE_CANCEL": "Cancelar"
+        "DELETE_CANCEL": "Cancelar",
+        "DELETE_ERROR_REAUTH": "Por seguridad, vuelve a iniciar sesión antes de eliminar tu cuenta."
     },
     "RECENTLY_WATCHED": {
         "TITLE": "Visto recientemente"
@@ -295,17 +296,19 @@
     "LOGIN": {
         "EMAIL_LABEL": "Correo electrónico",
         "EMAIL_PLACEHOLDER": "nombre@ejemplo.com",
-        "SEND_CODE": "Enviar código",
-        "CODE_SENT": "Código enviado a",
-        "CODE_LABEL": "Código de verificación",
-        "CODE_PLACEHOLDER": "000000",
-        "VERIFY": "Verificar",
-        "BACK": "← Volver",
-        "ERROR_SEND": "Error al enviar el código. Inténtalo de nuevo.",
-        "ERROR_VERIFY": "Código inválido o expirado.",
+        "PASSWORD_LABEL": "Contraseña",
+        "PASSWORD_PLACEHOLDER": "Tu contraseña",
+        "SIGN_IN": "Iniciar sesión",
+        "SIGN_UP": "Crear cuenta",
+        "TOGGLE_TO_SIGNUP": "¿No tienes cuenta? Regístrate",
+        "TOGGLE_TO_SIGNIN": "¿Ya tienes cuenta? Inicia sesión",
         "GOOGLE": "Continuar con Google",
         "OR": "o",
         "ERROR_EMAIL_REQUIRED": "Introduce tu correo electrónico.",
-        "ERROR_CODE_REQUIRED": "Introduce el código de 6 dígitos."
+        "ERROR_EMAIL_INVALID": "Introduce un correo electrónico válido.",
+        "ERROR_PASSWORD_REQUIRED": "Introduce tu contraseña.",
+        "ERROR_INVALID_CREDENTIALS": "Credenciales incorrectas. Inténtalo de nuevo.",
+        "SHOW_PASSWORD": "Mostrar contraseña",
+        "HIDE_PASSWORD": "Ocultar contraseña"
     }
 }
