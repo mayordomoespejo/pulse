@@ -1,8 +1,17 @@
-import { useCallback, useEffect, useState, useRef } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 
 import { CloseIcon } from '../../assets/icons/icons'
 import useBreakpoint from '../../hooks/useBreakpoint'
+
+const FOCUSABLE_SELECTORS = [
+  'button:not([disabled])',
+  '[href]',
+  'input:not([disabled])',
+  'select:not([disabled])',
+  'textarea:not([disabled])',
+  '[tabindex]:not([tabindex="-1"])',
+].join(', ')
 
 /**
  * Modal - Componente de ventana modal genérico con animación de apertura y cierre
@@ -48,14 +57,29 @@ const Modal = ({
   const [isDragging, setIsDragging] = useState(false)
 
   const modalRef = useRef(null)
+  const previouslyFocusedRef = useRef(null)
   const { isPhone, isTablet } = useBreakpoint()
 
   useEffect(() => {
     document.body.classList.add('modal-open')
-    const timer = setTimeout(() => setIsVisible(true), 10)
+    previouslyFocusedRef.current = document.activeElement
+
+    const timer = setTimeout(() => {
+      setIsVisible(true)
+      // Focus first focusable element inside the modal
+      if (modalRef.current) {
+        const focusable = modalRef.current.querySelectorAll(FOCUSABLE_SELECTORS)
+        if (focusable.length > 0) focusable[0].focus()
+      }
+    }, 10)
+
     return () => {
       clearTimeout(timer)
       document.body.classList.remove('modal-open')
+      // Restore focus to the element that was focused before the modal opened
+      if (previouslyFocusedRef.current && typeof previouslyFocusedRef.current.focus === 'function') {
+        previouslyFocusedRef.current.focus()
+      }
     }
   }, [])
 
@@ -112,6 +136,44 @@ const Modal = ({
       onCloseRef.current = null
     }
   }, [handleClose, onCloseRef])
+
+  // Escape key closes the modal; Tab / Shift+Tab are trapped inside
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        handleClose()
+        return
+      }
+
+      if (event.key !== 'Tab') return
+
+      const modal = modalRef.current
+      if (!modal) return
+
+      const focusable = Array.from(modal.querySelectorAll(FOCUSABLE_SELECTORS))
+      if (focusable.length === 0) return
+
+      const first = focusable[0]
+      const last = focusable[focusable.length - 1]
+
+      if (event.shiftKey) {
+        // Shift+Tab: if focus is on the first element, wrap to the last
+        if (document.activeElement === first) {
+          event.preventDefault()
+          last.focus()
+        }
+      } else {
+        // Tab: if focus is on the last element, wrap to the first
+        if (document.activeElement === last) {
+          event.preventDefault()
+          first.focus()
+        }
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [handleClose])
 
   return (
     <div

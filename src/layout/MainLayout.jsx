@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { Outlet } from 'react-router-dom'
 
 import { PEXELS_URL } from '../constants/constants'
+import ErrorBoundary from '../components/common/ErrorBoundary'
 import Navigation from '../components/ui/Navigation'
 
 function MainLayout() {
@@ -13,7 +14,9 @@ function MainLayout() {
       <Navigation />
       <main className="main-layout__content">
         <div className="main-layout__body">
-          <Outlet />
+          <ErrorBoundary>
+            <Outlet />
+          </ErrorBoundary>
         </div>
         <footer className="main-layout__footer">
           <p className="main-layout__footer-credits">
