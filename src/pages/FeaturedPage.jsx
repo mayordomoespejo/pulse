@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import List from '../components/common/List'
@@ -6,6 +6,8 @@ import Heading from '../components/ui/Heading'
 import VideoCard from '../components/video/VideoCard'
 import { getDefaultPexelsLocale } from '../constants/pexelsFilters'
 import useBreakpoint from '../hooks/useBreakpoint'
+import { useFavorites } from '../hooks/useFavorites'
+import useGridColumns from '../hooks/useGridColumns'
 import { useWatchHistory } from '../hooks/useWatchHistory'
 import useVideosQuery from '../hooks/useVideosQuery'
 
@@ -25,7 +27,8 @@ function FeaturedPage() {
   const RECENTLY_WATCHED = t('RECENTLY_WATCHED', { returnObjects: true })
   const defaultLocale = getDefaultPexelsLocale(i18n.resolvedLanguage || i18n.language)
   const { isPhone } = useBreakpoint()
-  const listContainerRef = useRef(null)
+  const { isFavorite } = useFavorites()
+  const { containerRef: listContainerRef, columns } = useGridColumns({ minCardWidth: GRID_MIN_CARD_WIDTH, columnGap: GRID_COLUMN_GAP })
   const [limit, setLimit] = useState(MOBILE_FEATURED_LIMIT)
   const { history } = useWatchHistory(limit)
 
@@ -35,30 +38,9 @@ function FeaturedPage() {
       return
     }
 
-    const updateLimit = () => {
-      const availableWidth = listContainerRef.current?.clientWidth || window.innerWidth
-      const columns = Math.max(
-        1,
-        Math.floor((availableWidth + GRID_COLUMN_GAP) / (GRID_MIN_CARD_WIDTH + GRID_COLUMN_GAP)),
-      )
-      const nextLimit = columns * GRID_ROWS
-      setLimit((previousLimit) => (previousLimit === nextLimit ? previousLimit : nextLimit))
-    }
-
-    updateLimit()
-
-    const resizeObserver = new ResizeObserver(updateLimit)
-    if (listContainerRef.current) {
-      resizeObserver.observe(listContainerRef.current)
-    }
-
-    window.addEventListener('resize', updateLimit)
-
-    return () => {
-      resizeObserver.disconnect()
-      window.removeEventListener('resize', updateLimit)
-    }
-  }, [isPhone])
+    const nextLimit = columns * GRID_ROWS
+    setLimit((previousLimit) => (previousLimit === nextLimit ? previousLimit : nextLimit))
+  }, [isPhone, columns])
 
   const { data, isLoading } = useVideosQuery({
     search: '',
@@ -86,7 +68,7 @@ function FeaturedPage() {
           typeList="default"
           isLoading={isLoading}
           items={videos}
-          renderItem={(video) => <VideoCard key={video?.id} video={video} />}
+          renderItem={(video) => <VideoCard key={video?.id} video={video} isFavorite={isFavorite(video?.id)} />}
         />
       </div>
 
@@ -96,7 +78,7 @@ function FeaturedPage() {
           <div className="featured-page__recently-watched-row">
             {history.map((entry) => (
               <div key={entry.id} className="featured-page__recently-watched-item">
-                <VideoCard video={entry.video_data} />
+                <VideoCard video={entry.video_data} isFavorite={isFavorite(entry.video_data?.id)} />
               </div>
             ))}
           </div>

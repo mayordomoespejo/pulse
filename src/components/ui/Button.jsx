@@ -15,6 +15,8 @@
  * @param {React.ReactNode} [props.iconEnd]
  * @param {boolean} [props.mobileIconOnly=false]
  */
+import { memo } from 'react'
+
 const Button = ({
   children,
   label,
@@ -60,4 +62,4 @@ const Button = ({
   )
 }
 
-export default Button
+export default memo(Button)

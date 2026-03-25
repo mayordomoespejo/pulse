@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 
-import { DEFAULT_LIMIT } from '../constants/constants'
+import { DEFAULT_LIMIT, DEFAULT_STALE_TIME } from '../constants/constants'
 import { getVideos } from '../services/videos/getVideos'
 
 /**
@@ -21,6 +21,7 @@ function useVideosQuery({ search = '', page = 1, limit = DEFAULT_LIMIT, source =
     queryKey: ['videos', source, search, page, limit, orientation, size, locale],
     queryFn: () => getVideos({ search, page, limit, source, orientation, size, locale }),
     refetchOnWindowFocus: false,
+    staleTime: DEFAULT_STALE_TIME,
   })
 }
 

@@ -2,104 +2,65 @@ import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Navigate, useNavigate } from 'react-router-dom'
 
-import { LogoTextIcon } from '../assets/icons/icons'
+import { EyeToggleIcon, LogoTextIcon } from '../assets/icons/icons'
 import Button from '../components/ui/Button'
 import Input from '../components/ui/Input'
 import Spinner from '../components/ui/Spinner'
 import { ROUTES_NAMES } from '../router/routesNames'
-import { loginWithGoogle, sendOtp, verifyOtp } from '../services/auth/login'
-import { supabase } from '../services/supabase/supabaseClient'
-import { isAuthenticated, setToken } from '../utils/auth'
+import { useAuthStore } from '../stores/authStore'
 
 function Login() {
   const logoRef = useRef(null)
-  const channelRef = useRef(null)
-  const [step, setStep] = useState('email')
   const [email, setEmail] = useState('')
-  const [code, setCode] = useState('')
+  const [password, setPassword] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(null)
+  const [showPassword, setShowPassword] = useState(false)
   const [isGoogleLoading, setIsGoogleLoading] = useState(false)
   const [googleError, setGoogleError] = useState(null)
   const navigate = useNavigate()
-  const alreadyLogged = isAuthenticated()
+  const { user, smartAuth, signInWithGoogle } = useAuthStore()
   const { t } = useTranslation()
   const LOGIN = t('LOGIN', { returnObjects: true })
 
-  const handleSendOtp = async (e) => {
+  const handleEmailSubmit = async (e) => {
     e.preventDefault()
     if (!email.trim()) {
       setError(LOGIN.ERROR_EMAIL_REQUIRED)
       return
     }
-    setIsLoading(true)
-    setError(null)
-    try {
-      await sendOtp(email)
-      setStep('code')
-    } catch {
-      setError(LOGIN.ERROR_SEND)
-    } finally {
-      setIsLoading(false)
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(email.trim())) {
+      setError(LOGIN.ERROR_EMAIL_INVALID)
+      return
     }
-  }
-
-  const handleVerifyOtp = async (e) => {
-    e.preventDefault()
-    if (!code.trim()) {
-      setError(LOGIN.ERROR_CODE_REQUIRED)
+    if (!password.trim()) {
+      setError(LOGIN.ERROR_PASSWORD_REQUIRED)
       return
     }
     setIsLoading(true)
     setError(null)
     try {
-      const data = await verifyOtp(email, code)
-      setToken(data.session.access_token)
+      await smartAuth(email, password)
       navigate(ROUTES_NAMES.ROOT, { replace: true })
     } catch {
-      setError(LOGIN.ERROR_VERIFY)
+      setError(LOGIN.ERROR_INVALID_CREDENTIALS)
     } finally {
       setIsLoading(false)
     }
-  }
-
-  const handleBack = () => {
-    setStep('email')
-    setCode('')
-    setError(null)
   }
 
   const handleGoogleLogin = async () => {
     setIsGoogleLoading(true)
     setGoogleError(null)
     try {
-      await loginWithGoogle()
-      const channel = new BroadcastChannel('auth')
-      channelRef.current = channel
-      channel.onmessage = async (event) => {
-        if (event.data.type === 'AUTH_COMPLETE') {
-          // Fetch the session directly from Supabase — never trust payload-embedded credentials
-          const { data } = await supabase.auth.getSession()
-          if (data.session?.access_token) {
-            setToken(data.session.access_token)
-            channel.close()
-            channelRef.current = null
-            navigate(ROUTES_NAMES.ROOT, { replace: true })
-          }
-        }
-      }
+      await signInWithGoogle()
+      navigate(ROUTES_NAMES.ROOT, { replace: true })
     } catch {
-      setGoogleError(LOGIN.ERROR_SEND)
+      setGoogleError(LOGIN.ERROR_INVALID_CREDENTIALS)
       setIsGoogleLoading(false)
     }
   }
-
-  useEffect(() => {
-    return () => {
-      channelRef.current?.close()
-      channelRef.current = null
-    }
-  }, [])
 
   useEffect(() => {
     const target = logoRef.current
@@ -141,7 +102,7 @@ function Login() {
     }
   }, [])
 
-  if (alreadyLogged) {
+  if (user) {
     return <Navigate to={ROUTES_NAMES.ROOT} replace />
   }
 
@@ -159,71 +120,57 @@ function Login() {
             <p className="input__error login-page__error">{error || googleError}</p>
           )}
 
-          {step === 'email' ? (
-            <form className="login-page__form" onSubmit={handleSendOtp} autoComplete="off" noValidate>
-              <div className="login-page__fields">
-                <Input
-                  useFormik={false}
-                  name="email"
-                  type="email"
-                  label={LOGIN.EMAIL_LABEL}
-                  variant="primary"
-                  placeholder={LOGIN.EMAIL_PLACEHOLDER}
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  disabled={isLoading}
-                  autoComplete="email"
-                />
-              </div>
-              <Button
-                type="submit"
-                className="login-page__button"
-                label={isLoading ? '' : LOGIN.SEND_CODE}
-                iconEnd={isLoading ? <Spinner size="button" /> : null}
+          <form className="login-page__form" onSubmit={handleEmailSubmit} autoComplete="off" noValidate>
+            <div className="login-page__fields">
+              <Input
+                useFormik={false}
+                name="email"
+                type="email"
+                label={LOGIN.EMAIL_LABEL}
+                variant="primary"
+                placeholder={LOGIN.EMAIL_PLACEHOLDER}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
                 disabled={isLoading}
+                autoComplete="off"
               />
-            </form>
-          ) : (
-            <form className="login-page__form" onSubmit={handleVerifyOtp} noValidate>
-              <div className="login-page__fields">
-                <div className="login-page__code-field">
-                  <Input
-                    useFormik={false}
-                    id="otp-code"
-                    name="code"
-                    type="text"
-                    label={LOGIN.CODE_LABEL}
-                    variant="primary"
-                    placeholder={LOGIN.CODE_PLACEHOLDER}
-                    value={code}
-                    onChange={(e) => setCode(e.target.value)}
-                    required
-                    disabled={isLoading}
-                    autoComplete="one-time-code"
-                    inputMode="numeric"
-                    maxLength={6}
-                    className="login-page__code-input"
-                  />
+              <Input
+                useFormik={false}
+                name="password"
+                type={showPassword ? 'text' : 'password'}
+                label={LOGIN.PASSWORD_LABEL}
+                variant="primary"
+                placeholder={LOGIN.PASSWORD_PLACEHOLDER}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                disabled={isLoading}
+                autoComplete="new-password"
+                readOnly
+                onFocus={(e) => e.target.removeAttribute('readonly')}
+                IconAfter={
                   <button
                     type="button"
-                    className="login-page__back-link"
-                    onClick={handleBack}
-                    disabled={isLoading}
+                    onClick={() => setShowPassword((prev) => !prev)}
+                    aria-label={showPassword ? LOGIN.HIDE_PASSWORD : LOGIN.SHOW_PASSWORD}
+                    tabIndex={-1}
+                    className="login-page__eye-btn"
                   >
-                    {LOGIN.BACK}
+                    <EyeToggleIcon isOpen={showPassword} />
                   </button>
-                </div>
-              </div>
-              <Button
-                type="submit"
-                className="login-page__button"
-                label={isLoading ? '' : LOGIN.VERIFY}
-                iconEnd={isLoading ? <Spinner size="button" /> : null}
-                disabled={isLoading}
+                }
+                iconAfterInteractive
               />
-            </form>
-          )}
+            </div>
+            <Button
+              type="submit"
+              className="login-page__button"
+              label={isLoading ? '' : LOGIN.SIGN_IN}
+              iconEnd={isLoading ? <Spinner size="button" /> : null}
+              disabled={isLoading}
+            />
+          </form>
 
           <div className="login-page__divider">
             <span className="login-page__divider-line" />
@@ -254,7 +201,6 @@ function Login() {
           </button>
         </div>
       </div>
-
     </div>
   )
 }

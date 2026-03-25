@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSearchParams } from 'react-router-dom'
 
@@ -16,6 +16,8 @@ import {
   PEXELS_VIDEO_SIZES,
 } from '../constants/pexelsFilters'
 import useBreakpoint from '../hooks/useBreakpoint'
+import { useFavorites } from '../hooks/useFavorites'
+import useGridColumns from '../hooks/useGridColumns'
 import useVideosQuery from '../hooks/useVideosQuery'
 
 /**
@@ -33,7 +35,8 @@ function VideoManage() {
   const { t, i18n } = useTranslation()
   const VIDEO_MANAGE = t('VIDEO_MANAGE', { returnObjects: true })
   const { isPhone } = useBreakpoint()
-  const listContainerRef = useRef(null)
+  const { isFavorite } = useFavorites()
+  const { containerRef: listContainerRef, columns } = useGridColumns({ minCardWidth: GRID_MIN_CARD_WIDTH, columnGap: GRID_COLUMN_GAP })
   const [limit, setLimit] = useState(MOBILE_EXPLORE_LIMIT)
 
   const [searchParams, setSearchParams] = useSearchParams()
@@ -53,30 +56,9 @@ function VideoManage() {
       return
     }
 
-    const updateLimit = () => {
-      const availableWidth = listContainerRef.current?.clientWidth || window.innerWidth
-      const columns = Math.max(
-        1,
-        Math.floor((availableWidth + GRID_COLUMN_GAP) / (GRID_MIN_CARD_WIDTH + GRID_COLUMN_GAP)),
-      )
-      const nextLimit = columns * EXPLORE_GRID_ROWS
-      setLimit((previousLimit) => (previousLimit === nextLimit ? previousLimit : nextLimit))
-    }
-
-    updateLimit()
-
-    const resizeObserver = new ResizeObserver(updateLimit)
-    if (listContainerRef.current) {
-      resizeObserver.observe(listContainerRef.current)
-    }
-
-    window.addEventListener('resize', updateLimit)
-
-    return () => {
-      resizeObserver.disconnect()
-      window.removeEventListener('resize', updateLimit)
-    }
-  }, [isPhone])
+    const nextLimit = columns * EXPLORE_GRID_ROWS
+    setLimit((previousLimit) => (previousLimit === nextLimit ? previousLimit : nextLimit))
+  }, [isPhone, columns])
 
   const { data: videosData, isLoading } = useVideosQuery({
     search,
@@ -128,7 +110,7 @@ function VideoManage() {
             isLoading={isLoading}
             items={videos}
             renderItem={(video) => (
-              <VideoCard key={video?.id} video={video} />
+              <VideoCard key={video?.id} video={video} isFavorite={isFavorite(video?.id)} />
             )}
           />
         </div>

@@ -1,6 +1,6 @@
 # Pulse
 
-Video discovery app powered by the Pexels API. Browse trending videos, save favorites, and track your watch history.
+Video discovery platform powered by the Pexels API. Browse trending videos, save favorites, and track your watch history — with a smart auth flow that handles login and registration in a single form.
 
 ---
 
@@ -9,9 +9,9 @@ Video discovery app powered by the Pexels API. Browse trending videos, save favo
 | Layer | Technology |
 |---|---|
 | Frontend | React 19, Vite + SWC |
-| Styling | SCSS/BEM |
+| Styling | SCSS / BEM |
 | State | Zustand 5, TanStack Query 5 |
-| Auth | Supabase (Email OTP + Google OAuth) |
+| Auth | Firebase Auth (Email/Password + Google OAuth) |
 | Data | Supabase (PostgreSQL), Pexels API |
 | i18n | react-i18next (English, Spanish) |
 | Routing | React Router 6 |
@@ -25,24 +25,22 @@ Video discovery app powered by the Pexels API. Browse trending videos, save favo
 
 Live: https://pulse-ashy-six.vercel.app
 
-Demo credentials are shown directly on the login screen.
-
 ---
 
 ## Features
 
-- Browse popular and trending videos via Pexels API
+- Browse popular and trending videos via the Pexels API
 - Search videos with orientation, size, and locale-aware filters
+- Smart auth: a single form detects whether the email is new or returning and handles registration or login automatically
+- Google OAuth login via popup flow
 - Save favorites (persisted in Supabase)
 - Watch history with deduplication (persisted in Supabase)
 - User profile with favorites and watch history counts
-- Email OTP login (passwordless)
-- Google OAuth login (popup flow)
 - Favorite toggle from the video player page
-- Animated digit counters on profile stats (YouTube-style)
+- Animated digit counters on profile stats
 - Account deletion with confirmation modal
-- Responsive design (mobile, tablet, desktop)
 - Language switcher (EN / ES)
+- Responsive layout (mobile, tablet, desktop)
 - Pexels attribution in compliance with API terms
 
 ---
@@ -67,11 +65,7 @@ Start the dev server:
 npm run dev
 ```
 
-If you want to use Supabase features (auth, favorites, watch history), create a project at [supabase.com](https://supabase.com), then run the schema in the SQL editor:
-
-```
-# File: src/services/supabase/schema.sql
-```
+For auth, create a Firebase project at [console.firebase.google.com](https://console.firebase.google.com) and enable the Email/Password and Google providers. For favorites and watch history, create a Supabase project at [supabase.com](https://supabase.com) — the `pulse_favorites` and `pulse_watch_history` tables are managed via Supabase Edge Functions using the service role key server-side, so no manual table setup is needed for contributors.
 
 ---
 
@@ -80,12 +74,16 @@ If you want to use Supabase features (auth, favorites, watch history), create a 
 | Variable | Description |
 |---|---|
 | `VITE_PEXELS_API_KEY` | Pexels API key — obtain at pexels.com/api |
+| `VITE_FIREBASE_API_KEY` | Firebase API key — found in Project Settings > General |
+| `VITE_FIREBASE_AUTH_DOMAIN` | Firebase auth domain — e.g. your-project.firebaseapp.com |
+| `VITE_FIREBASE_PROJECT_ID` | Firebase project ID |
+| `VITE_FIREBASE_STORAGE_BUCKET` | Firebase storage bucket |
+| `VITE_FIREBASE_MESSAGING_SENDER_ID` | Firebase messaging sender ID |
+| `VITE_FIREBASE_APP_ID` | Firebase app ID |
 | `VITE_SUPABASE_URL` | Supabase project URL — found in Project Settings > API |
 | `VITE_SUPABASE_ANON_KEY` | Supabase anon/public key — found in Project Settings > API |
-| `VITE_DEMO_USERNAME` | Email shown as a hint on the login screen |
-| `VITE_DEMO_PASSWORD` | Password shown as a hint on the login screen |
 
-The Supabase variables are required for Google OAuth, favorites, and watch history. Without them the app falls back to demo-only mode.
+The Firebase variables are required for auth. The Supabase variables are required for favorites and watch history.
 
 ---
 

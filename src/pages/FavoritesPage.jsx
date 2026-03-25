@@ -10,7 +10,7 @@ import { ROUTES_NAMES } from '../router/routesNames'
 function FavoritesPage() {
   const { t } = useTranslation()
   const FAVORITES = t('FAVORITES_PAGE', { returnObjects: true })
-  const { favorites, isLoading } = useFavorites()
+  const { favorites, isFavorite, isLoading } = useFavorites()
 
   const videos = favorites.map((f) => f.video_data)
 
@@ -32,7 +32,7 @@ function FavoritesPage() {
           typeList="default"
           isLoading={isLoading}
           items={videos}
-          renderItem={(video) => <VideoCard key={video?.id} video={video} />}
+          renderItem={(video) => <VideoCard key={video?.id} video={video} isFavorite={isFavorite(video?.id)} />}
         />
       )}
     </div>

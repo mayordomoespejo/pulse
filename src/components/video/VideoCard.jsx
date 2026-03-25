@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
@@ -9,12 +10,12 @@ import TitleCard from '../ui/TitleCard'
 
 import VideoDuration from './VideoDuration'
 
-function VideoCard({ video }) {
+function VideoCard({ video, isFavorite }) {
   const { t } = useTranslation()
   const PEXELS = t('PEXELS', { returnObjects: true })
   const VIDEO_CARD = t('VIDEO_CARD', { returnObjects: true })
   const navigate = useNavigate()
-  const { isFavorite, toggleFavorite } = useFavorites()
+  const { toggleFavorite } = useFavorites()
 
   const {
     id,
@@ -26,7 +27,7 @@ function VideoCard({ video }) {
     photographerUrl,
   } = video || {}
 
-  const favorited = isFavorite(id)
+  const favorited = isFavorite
 
   const handleOpenDetail = () => {
     if (!id) return
@@ -80,4 +81,4 @@ function VideoCard({ video }) {
   )
 }
 
-export default VideoCard
+export default memo(VideoCard)

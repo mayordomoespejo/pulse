@@ -283,7 +283,8 @@
         "DELETE_TITLE": "Delete account",
         "DELETE_CONFIRM": "Are you sure you want to permanently delete your account? This action cannot be undone.",
         "DELETE_CONFIRM_BTN": "Confirm",
-        "DELETE_CANCEL": "Cancel"
+        "DELETE_CANCEL": "Cancel",
+        "DELETE_ERROR_REAUTH": "For security, please sign in again before deleting your account."
     },
     "RECENTLY_WATCHED": {
         "TITLE": "Recently watched"
@@ -291,17 +292,19 @@
     "LOGIN": {
         "EMAIL_LABEL": "Email",
         "EMAIL_PLACEHOLDER": "name@example.com",
-        "SEND_CODE": "Send code",
-        "CODE_SENT": "Code sent to",
-        "CODE_LABEL": "Verification code",
-        "CODE_PLACEHOLDER": "000000",
-        "VERIFY": "Verify",
-        "BACK": "← Back",
-        "ERROR_SEND": "Failed to send code. Try again.",
-        "ERROR_VERIFY": "Invalid or expired code.",
+        "PASSWORD_LABEL": "Password",
+        "PASSWORD_PLACEHOLDER": "Your password",
+        "SIGN_IN": "Sign in",
+        "SIGN_UP": "Create account",
+        "TOGGLE_TO_SIGNUP": "Don't have an account? Sign up",
+        "TOGGLE_TO_SIGNIN": "Already have an account? Sign in",
         "GOOGLE": "Continue with Google",
         "OR": "or",
         "ERROR_EMAIL_REQUIRED": "Please enter your email address.",
-        "ERROR_CODE_REQUIRED": "Please enter the 6-digit code."
+        "ERROR_EMAIL_INVALID": "Please enter a valid email address.",
+        "ERROR_PASSWORD_REQUIRED": "Please enter your password.",
+        "ERROR_INVALID_CREDENTIALS": "Invalid credentials. Please try again.",
+        "SHOW_PASSWORD": "Show password",
+        "HIDE_PASSWORD": "Hide password"
     }
 }

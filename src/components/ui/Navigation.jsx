@@ -4,8 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { SIDEBAR_MENU_ITEMS } from '../../constants/constants'
 import useBreakpoint from '../../hooks/useBreakpoint'
 import { ROUTES_NAMES } from '../../router/routesNames'
-import { logout } from '../../services/auth/login'
-import { clearToken } from '../../utils/auth'
+import { useAuthStore } from '../../stores/authStore'
 
 import Header from './Header'
 import Navbar from './Navbar'
@@ -22,6 +21,7 @@ function Navigation() {
   const navigate = useNavigate()
   const location = useLocation()
   const { isPhone } = useBreakpoint()
+  const { signOut } = useAuthStore()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   const baseItems = useMemo(() =>
@@ -38,8 +38,7 @@ function Navigation() {
 
   const handleMenuClick = async (item) => {
     if (item?.isLogout) {
-      await logout().catch(() => {})
-      clearToken()
+      await signOut().catch(() => {})
       navigate(ROUTES_NAMES.LOGIN)
       return
     }

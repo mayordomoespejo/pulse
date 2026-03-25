@@ -251,6 +251,15 @@
   }
 }
 
+.login-page__eye-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  color: inherit;
+}
+
 @keyframes login-logo-fade-in {
   from {
     opacity: 0;
